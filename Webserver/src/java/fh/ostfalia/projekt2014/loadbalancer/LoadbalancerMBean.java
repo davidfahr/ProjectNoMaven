@@ -26,7 +26,7 @@ public class LoadbalancerMBean extends RemoteManagedBean{
     private String mode;
     
     public LoadbalancerMBean() {
-         super("localhost", "3700", "java:global/Webserver/LoadbalancerBean");
+         super("localhost", "3700", "java:global/NewProjectNoMaven/Loadbalancer/LoadbalancerBean");
     }
    
     

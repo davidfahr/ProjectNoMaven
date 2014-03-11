@@ -24,7 +24,7 @@ public class LoginMBean extends RemoteManagedBean {
     private String password;
 
     public LoginMBean() {
-        super("localhost", "3700", "java:global/Webserver/LoginBean");
+        super("localhost", "3700", "java:global/NewProjectNoMaven/Loginservice/LoginBean");
     }
 
     @PostConstruct

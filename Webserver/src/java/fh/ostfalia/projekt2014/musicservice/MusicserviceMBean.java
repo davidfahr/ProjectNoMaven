@@ -21,7 +21,7 @@ import javax.servlet.http.Part;
 public class MusicserviceMBean extends RemoteManagedBean {
     private String part;
      public MusicserviceMBean() {
-        super("localhost", "3700", "java:global/Webserver/MusicserviceBean");
+        super("localhost", "3700", "java:global/NewProjectNoMaven/Musicservice/MusicserviceBean");
         System.out.println("ENDELookup");
     }
      private Musicservice musicserviceBeanWebserver;
