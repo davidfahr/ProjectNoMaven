@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:jsp="http://java.sun.com/jsp/jstl/core">
+    <jsp:set value="${Mp3Dao.passedParameter}" var="id"/> 
+    <h:head>
+        
+        <title>#{Mp3ArtistDao.getMp3ArtistNameByMp3Id(id)} - #{Mp3Dao.getMp3_title(id)}</title>
+    </h:head>
+    <h:body>
+        <h1>#{Mp3ArtistDao.getMp3ArtistNameByMp3Id(id)} - #{Mp3Dao.getMp3_title(id)}</h1>
+        <h:form>
+            <h:commandLink action="#{Mp3Dao.allMp3}" value="download"/>
+            <br/>
+            <h:inputTextarea rows="5" />
+            <br/>
+            <h:commandButton action="#{Mp3Dao.allMp3}" value="Post Comment"/>    
+            <br/>
+        </h:form>
+        <h:link outcome="index" value="Home"/>
+    </h:body>
+</html>
