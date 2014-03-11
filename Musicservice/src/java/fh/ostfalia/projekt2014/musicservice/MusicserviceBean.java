@@ -6,6 +6,8 @@
 package fh.ostfalia.projekt2014.musicservice;
 
 
+import fh.ostfalia.projekt2014.commentservice.CommentserviceMBean;
+import fh.ostfalia.projekt2014.commentserviceremoteinterfaces.entities.Comment;
 import fh.ostfalia.projekt2014.musicservice.dao.Mp3DaoLocal;
 import fh.ostfalia.projekt2014.musicservice.entities.Mp3ArtistBean;
 import fh.ostfalia.projekt2014.musicserviceremoteinterface.interfaces.Musicservice;
@@ -26,6 +28,8 @@ public class MusicserviceBean implements Musicservice, Serializable {
     private static final long serialVersionUID = 1L;
     @EJB
     private Mp3DaoLocal mp3Dao;
+    
+    private CommentserviceMBean commentservice = new CommentserviceMBean();
     
     //@EJB
     //private Mp3ArtistDaoLocal mp3ArtistDao;
@@ -76,4 +80,25 @@ public class MusicserviceBean implements Musicservice, Serializable {
      return null;
      }
      */
+    
+    
+    @Override
+    public List<Comment> getAllArtistCommentsById(int id) {
+        return commentservice.getAllArtistCommentsById(id);
+    }
+
+
+    @Override
+    public List<Comment> getAllMp3CommentsById(int id) {
+        return commentservice.getAllMp3CommentsById(id);
+    }
+
+
+    @Override
+    public void addComment(String text, long id, String identfier) {
+        System.out.println("MUSICSERVICE");
+        System.out.println(identfier);
+        commentservice.addComment(text, id, identfier);
+    }
+    
 }
