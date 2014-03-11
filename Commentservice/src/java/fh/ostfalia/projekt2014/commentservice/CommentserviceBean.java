@@ -10,14 +10,20 @@ import fh.ostfalia.projekt2014.commentservice.dao.CommentDao;
 import fh.ostfalia.projekt2014.commentservice.entities.CommentBean;
 import fh.ostfalia.projekt2014.commentserviceremoteinterfaces.entities.Comment;
 import fh.ostfalia.projekt2014.commentserviceremoteinterfaces.interfaces.Commentservice;
+import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.ejb.Stateless;
 
 /**
  *
  * @author Mettbroetchen
  */
-public class CommentserviceBean implements Commentservice{
+@Stateless
+public class CommentserviceBean implements Commentservice, Serializable{
+   
+     private static final long serialVersionUID = 1L;
+     
     @EJB
     CommentDao commentDao;
     

@@ -12,21 +12,28 @@ import fh.ostfalia.projekt2014.commentserviceremoteinterfaces.interfaces.Comment
 import fh.ostfalia.projekt2014.musicserviceremoteinterface.interfaces.Musicservice;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.ejb.Stateless;
 
 /**
  *
  * @author Mettbroetchen
  */
-public class CommentserviceMBean extends RemoteManagedBean{
-    public CommentserviceMBean() {
-        super("localhost", "3700", "java:global/NewProjectNoMaven/Commentservice/CommentserviceBean");
-    }
+@Stateless
+public class CommentserviceMBean extends RemoteManagedBean implements CommentserviceBeanLocal{
     
     private Commentservice commentserviceBean;
     
+    public CommentserviceMBean() {
+        super("localhost", "3700", "java:global/NewProjectNoMaven/Commentservice/CommentserviceBean");
+        //Holen der entfernten Loginbean bzw. deren Stub-Objekt
+        
+    }
+    
+    
+    
     @PostConstruct
     public void initBean() {
-        //Holen der entfernten Loginbean bzw. deren Stub-Objekt
+        
         commentserviceBean = (Commentservice) super.getObject();
     }
     
@@ -38,7 +45,7 @@ public class CommentserviceMBean extends RemoteManagedBean{
     public List<Comment> getAllMp3CommentsById(int id) {
         return commentserviceBean.getAllMp3CommentsById(id);
     }
-    
+    @Override
     public void addComment(String text, long id, String identfier) {
         System.out.println("MUSICSERVICE aber COMMENTSERVICE BEAN");
         commentserviceBean.addComment(text, id, identfier);

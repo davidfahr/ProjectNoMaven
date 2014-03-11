@@ -23,12 +23,13 @@ public class MusicserviceMBean extends RemoteManagedBean {
     private String part;
     private String commentText;
     private long id;
+    private Musicservice musicserviceBeanWebserver;
 
     public MusicserviceMBean() {
         super("localhost", "3700", "java:global/NewProjectNoMaven/Musicservice/MusicserviceBean");
         System.out.println("ENDELookup");
     }
-    private Musicservice musicserviceBeanWebserver;
+    
 
     @PostConstruct
     public void initBean() {

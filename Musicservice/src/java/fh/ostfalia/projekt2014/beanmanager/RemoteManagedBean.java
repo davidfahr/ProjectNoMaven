@@ -2,6 +2,7 @@ package fh.ostfalia.projekt2014.beanmanager;
 
 import fh.ostfalia.projekt2014.beanmanager.RemoteBeanManager;
 import javax.annotation.PostConstruct;
+import javax.ejb.Stateless;
 
 
 /* abstrakte Klasse, die von jeder RemoteManagedBean pro Service geerbet wird,
@@ -15,7 +16,7 @@ public abstract class RemoteManagedBean {
     //Objektname
     private String name = null;
     private Object object;
-    
+  
 
     public RemoteManagedBean(String ip, String port, String name){
         this.ip = ip;
@@ -31,6 +32,8 @@ public abstract class RemoteManagedBean {
      */
     @PostConstruct
     private void initObject(){
+        System.out.println("Lookup:");
         this.object = RemoteBeanManager.getInstance().lookupRemoteBean(name, ip, port);
+        System.out.println(this.object);
     }
 }
