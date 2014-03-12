@@ -7,13 +7,13 @@ package fh.ostfalia.projekt2014.loadbalancer;
 import fh.ostfalia.projekt2014.beanmanager.RemoteBean;
 import fh.ostfalia.projekt2014.loadbalancer.entities.LoadbalancerResultBean;
 import fh.ostfalia.projekt2014.loadbalancer.remote.Musicservice1Remote;
-import fh.ostfalia.projekt2014.loadbalancer.remote.Musicservice2Remote;
 import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.entities.LoadbalancerResult;
 import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.interfaces.Loadbalancer;
-import fh.ostfalia.projekt2014.musicserviceremoteinterface.interfaces.Musicservice;
+import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.interfaces.LoadbalancerSimulation;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 /**
@@ -21,13 +21,15 @@ import javax.ejb.Stateless;
  * @author Yannick
  */
 @Stateless
-public class LoadbalancerSimulationBean implements Loadbalancer {
+public class LoadbalancerSimulationBean implements LoadbalancerSimulation {
 
     private int requests;
-    private Musicservice targetMusicService;
+    @EJB
+    private MusicserviceLocal targetMusicService;
     private LoadbalancerResult lbR;
-    private Musicservice1Remote m1;
-    private Musicservice2Remote m2;
+    @EJB
+    private MusicserviceLocal m1;
+
     private boolean status = true;
     int time;
     
@@ -64,17 +66,17 @@ public class LoadbalancerSimulationBean implements Loadbalancer {
         //generiere einen Zufallswert für die Anzahl der Anfragen an den ersten Zielserver
 
         //Wähle den nächsten Server:
-        Musicservice tempMusicservice;
+        Loadbalancer tempMusicservice;
 
 
         if (status) {
-            tempMusicservice = m1.getMusicservice1Bean();
-            executeRequests(tempMusicservice, (int) ((Math.random() * 20) + 1));
+            //tempMusicservice = m1.getMusicservice1Bean();
+            //executeRequests(tempMusicservice, (int) ((Math.random() * 20) + 1));
             status = false;
 
         } else {
-            tempMusicservice = m2.getMusicservice2Bean();
-            executeRequests(tempMusicservice, (int) ((Math.random() * 20) + 1));
+            //tempMusicservice = m2.getMusicservice2Bean();
+            //executeRequests(tempMusicservice, (int) ((Math.random() * 20) + 1));
             status = true;
         }
 
@@ -87,7 +89,7 @@ public class LoadbalancerSimulationBean implements Loadbalancer {
         return loadbalancerResult;
     }
 
-    public void executeRequests(Musicservice tempMusicservice, int requests) {
+    public void executeRequests(Loadbalancer tempMusicservice, int requests) {
         for (int i = 0; i < requests; i++) {
             tempMusicservice.whoAmI();
         }

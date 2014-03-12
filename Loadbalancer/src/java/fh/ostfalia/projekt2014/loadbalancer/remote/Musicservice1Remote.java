@@ -14,17 +14,19 @@ import fh.ostfalia.projekt2014.musicserviceremoteinterface.interfaces.Musicservi
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.ejb.Stateless;
 
 /**
  *
  * @author KingDCB
  */
-public class Musicservice1Remote extends RemoteBean implements Musicservice, Serializable, MusicserviceLocal{
+@Stateless
+public class Musicservice1Remote extends RemoteBean implements Serializable, MusicserviceLocal{
     private static final long serialVersionUID = 1L;
     private Musicservice musicservice1Bean;
 
     public Musicservice1Remote() {
-        super("localhost", "3700", "java:global/Loadbalancer/MusicserviceBean");
+        super("localhost", "3700", "java:global/NewProjectNoMaven/Musicservice/MusicserviceBean");
         System.out.println("ENDELookup");
     }
 
@@ -48,47 +50,47 @@ public class Musicservice1Remote extends RemoteBean implements Musicservice, Ser
         musicservice1Bean.whoAmI();
     }
 
-    @Override
+  
     public List<Mp3> getAllMp3s() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
+   
     public Mp3 getMp3(int mp3Id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
+   
     public byte[] getMp3File(int mp3Id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
+   
     public String getIdParameter() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
+   
     public void upload(String part) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
+
     public void downloadMp3File(String filename, int mp3Id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
+
     public List<Comment> getAllArtistCommentsById(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
+
     public List<Comment> getAllMp3CommentsById(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
+ 
     public void addComment(String text, long id, String identfier) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

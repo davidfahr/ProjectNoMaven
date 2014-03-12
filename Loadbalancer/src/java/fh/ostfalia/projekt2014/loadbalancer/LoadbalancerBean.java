@@ -7,24 +7,29 @@
 package fh.ostfalia.projekt2014.loadbalancer;
 
 import fh.ostfalia.projekt2014.loadbalancer.remote.Musicservice1Remote;
-import fh.ostfalia.projekt2014.loadbalancer.remote.Musicservice2Remote;
-import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.musicinterfaces.entities.Mp3;
-import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.musicinterfaces.remote.Musicservice;
+import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.interfaces.Loadbalancer;
+import fh.ostfalia.projekt2014.musicserviceremoteinterface.entities.Mp3;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.ejb.Stateless;
 
 /**
  *
  * @author Mettbroetchen
  */
-public class MusicserviceRemote implements Musicservice, Serializable{
+@Stateless
+public class LoadbalancerBean implements Serializable, Loadbalancer{
     private static final long serialVersionUID = 1L;
+    /*
+    * Hier wird Musiservice1Remote geladen
+    */
+    @EJB
+    private MusicserviceLocal targetMusicservice;
+
     @EJB
     private MusicserviceLocal m1;
-
-
-    private Musicservice targetMusicservice;
+    
     private int randNumber = (int) ((Math.random() * 20) + 1);
     private int requests;
     
@@ -42,7 +47,7 @@ public class MusicserviceRemote implements Musicservice, Serializable{
                 /**
                  * Lookup
                  */
-                targetMusicservice = (Musicservice)m1;
+               targetMusicservice = m1;
             }
         } else {
             /**
@@ -56,54 +61,55 @@ public class MusicserviceRemote implements Musicservice, Serializable{
         }
     }
     
-    @Override
+ 
     public void whoAmI() {
         assignMusicservice();
         targetMusicservice.whoAmI();
         
     }
 
-    @Override
+
     public List<Mp3> getAllMp3s() {
-        return targetMusicservice.getAllMp3s();
+        //return targetMusicservice.getAllMp3s();
+        return null;
     }
 
-    @Override
+
     public Mp3 getMp3(int mp3Id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
+  
     public byte[] getMp3File(int mp3Id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
+
     public String getIdParameter() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
+
     public void upload(String part) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
+
     public void downloadMp3File(String filename, int mp3Id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
+    
     public List<fh.ostfalia.projekt2014.commentserviceremoteinterfaces.entities.Comment> getAllArtistCommentsById(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
+   
     public List<fh.ostfalia.projekt2014.commentserviceremoteinterfaces.entities.Comment> getAllMp3CommentsById(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
+  
     public void addComment(String text, long id, String identfier) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

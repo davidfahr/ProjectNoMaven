@@ -9,14 +9,14 @@
         <managed-bean-scope>view</managed-bean-scope>
     </managed-bean>
     <managed-bean>
-        <managed-bean-name>LoadbalancerMBean</managed-bean-name>
-        <managed-bean-class>fh.ostfalia.projekt2014.loadbalancer.LoadbalancerMBean</managed-bean-class>
+        <managed-bean-name>LoadbalancerSimulationMBean</managed-bean-name>
+        <managed-bean-class>fh.ostfalia.projekt2014.loadbalancer.LoadbalancerSimulationMBean</managed-bean-class>
     
         <managed-bean-scope>request</managed-bean-scope></managed-bean>
      <managed-bean>
-        <managed-bean-name>MusicserviceMBean</managed-bean-name>
-        <managed-bean-class>fh.ostfalia.projekt2014.musicservice.MusicserviceMBean</managed-bean-class>
+        <managed-bean-name>LoadbalancerMBean</managed-bean-name>
+        <managed-bean-class>fh.ostfalia.projekt2014.loadbalancer.LoadbalancerMBean</managed-bean-class>
     
-        <managed-bean-scope>request</managed-bean-scope>
-    </managed-bean> 
+    
+        <managed-bean-scope>request</managed-bean-scope></managed-bean> 
 </faces-config>

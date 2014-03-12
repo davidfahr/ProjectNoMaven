@@ -4,7 +4,10 @@
  */
 package fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.interfaces;
 
+import fh.ostfalia.projekt2014.commentserviceremoteinterfaces.entities.Comment;
 import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.entities.LoadbalancerResult;
+import fh.ostfalia.projekt2014.musicserviceremoteinterface.entities.Mp3;
+import java.util.List;
 import javax.ejb.Remote;
 
 /**
@@ -14,12 +17,15 @@ import javax.ejb.Remote;
 @Remote
 public interface Loadbalancer {
     
-    
-    public LoadbalancerResult startLoadbalancerSimulation();
-    
-    public LoadbalancerResult startLoadbalancerSimulationByTime(int time);
-    
-     
-    public void stopLoadbalancerSimulation();
+    public void whoAmI();
+    public List<Mp3> getAllMp3s();
+    public Mp3 getMp3(int mp3Id); 
+    public byte[] getMp3File(int mp3Id);
+    public String getIdParameter();
+    public void upload(String part);
+    public void downloadMp3File(String filename, int mp3Id);
+    public List<Comment> getAllArtistCommentsById(int id);
+    public List<Comment> getAllMp3CommentsById(int id);
+    public void addComment(String text, long id, String identfier);
 
 }

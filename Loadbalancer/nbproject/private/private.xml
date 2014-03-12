@@ -7,10 +7,12 @@
             <file>file:/C:/Users/Yannick/Documents/GitHub/ProjectNoMaven/Loadbalancer/src/java/fh/ostfalia/projekt2014/beanmanager/RemoteBeanManager.java</file>
             <file>file:/C:/Users/Yannick/Documents/GitHub/ProjectNoMaven/Loadbalancer/src/java/fh/ostfalia/projekt2014/loadbalancer/entities/LoadbalancerResultBean.java</file>
             <file>file:/C:/Users/Yannick/Documents/GitHub/ProjectNoMaven/Loadbalancer/src/java/fh/ostfalia/projekt2014/loadbalancer/MusicserviceLocal.java</file>
-            <file>file:/C:/Users/Yannick/Documents/GitHub/ProjectNoMaven/Loadbalancer/src/java/fh/ostfalia/projekt2014/loadbalancer/remote/Musicservice2Remote.java</file>
+            <file>file:/C:/Users/Yannick/Documents/GitHub/ProjectNoMaven/Loadbalancer/src/java/fh/ostfalia/projekt2014/loadbalancer/MusicserviceTargetLocal.java</file>
+            <file>file:/C:/Users/Yannick/Documents/GitHub/ProjectNoMaven/Loadbalancer/src/java/fh/ostfalia/projekt2014/loadbalancer/LoadbalancerBean.java</file>
+            <file>file:/C:/Users/Yannick/Documents/GitHub/ProjectNoMaven/Loadbalancer/src/java/fh/ostfalia/projekt2014/loadbalancer/SetOfRequests.java</file>
+            <file>file:/C:/Users/Yannick/Documents/GitHub/ProjectNoMaven/Loadbalancer/src/java/fh/ostfalia/projekt2014/loadbalancer/LoadbalancerRemoteBeanManager.java</file>
             <file>file:/C:/Users/Yannick/Documents/GitHub/ProjectNoMaven/Loadbalancer/src/java/fh/ostfalia/projekt2014/beanmanager/RemoteBean.java</file>
             <file>file:/C:/Users/Yannick/Documents/GitHub/ProjectNoMaven/Loadbalancer/src/java/fh/ostfalia/projekt2014/loadbalancer/remote/Musicservice1Remote.java</file>
-            <file>file:/C:/Users/Yannick/Documents/GitHub/ProjectNoMaven/Loadbalancer/src/java/fh/ostfalia/projekt2014/loadbalancer/MusicserviceRemote.java</file>
             <file>file:/C:/Users/Yannick/Documents/GitHub/ProjectNoMaven/Loadbalancer/src/java/fh/ostfalia/projekt2014/loadbalancer/LoadbalancerSimulationBean.java</file>
         </group>
     </open-files>

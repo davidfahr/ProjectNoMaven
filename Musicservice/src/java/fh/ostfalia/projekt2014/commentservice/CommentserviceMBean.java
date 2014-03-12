@@ -28,9 +28,7 @@ public class CommentserviceMBean extends RemoteManagedBean implements Commentser
         //Holen der entfernten Loginbean bzw. deren Stub-Objekt
         
     }
-    
-    
-    
+
     @PostConstruct
     public void initBean() {
         
