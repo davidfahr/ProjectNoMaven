@@ -6,6 +6,7 @@
 
 package fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.musicinterfaces.remote;
 
+import fh.ostfalia.projekt2014.commentserviceremoteinterfaces.entities.Comment;
 import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.musicinterfaces.entities.Mp3;
 import java.util.List;
 import javax.ejb.Remote;

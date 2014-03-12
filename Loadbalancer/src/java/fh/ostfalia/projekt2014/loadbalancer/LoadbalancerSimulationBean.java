@@ -21,7 +21,7 @@ import javax.ejb.Stateless;
  * @author Yannick
  */
 @Stateless
-public class LoadbalancerBean implements Loadbalancer {
+public class LoadbalancerSimulationBean implements Loadbalancer {
 
     private int requests;
     private Musicservice targetMusicService;
@@ -31,7 +31,7 @@ public class LoadbalancerBean implements Loadbalancer {
     private boolean status = true;
     int time;
     
-    public LoadbalancerBean() {
+    public LoadbalancerSimulationBean() {
         //Zufallsmethode
         
         System.out.println("ENDELookup");
@@ -123,4 +123,6 @@ public class LoadbalancerBean implements Loadbalancer {
 
         //Versuche zu unterbrechen
     }
+
+
 }

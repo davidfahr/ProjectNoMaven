@@ -7,8 +7,10 @@ package fh.ostfalia.projekt2014.musicservice;
 
 import fh.ostfalia.projekt2014.beanmanager.RemoteManagedBean;
 import fh.ostfalia.projekt2014.commentserviceremoteinterfaces.entities.Comment;
+//import fh.ostfalia.projekt2014.musicserviceremoteinterface.entities.Mp3;
 import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.musicinterfaces.entities.Mp3;
-import fh.ostfalia.projekt2014.musicserviceremoteinterface.interfaces.Musicservice;
+import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.musicinterfaces.remote.Musicservice;
+//import fh.ostfalia.projekt2014.musicserviceremoteinterface.interfaces.Musicservice;
 
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -26,7 +28,7 @@ public class MusicserviceMBean extends RemoteManagedBean {
     private Musicservice musicserviceBeanWebserver;
 
     public MusicserviceMBean() {
-        super("localhost", "3700", "java:global/NewProjectNoMaven/Musicservice/MusicserviceBean");
+        super("localhost", "3700", "java:global/NewProjectNoMaven/Loadbalancer/MusicserviceRemote");
         System.out.println("ENDELookup");
     }
     
@@ -99,6 +101,10 @@ public class MusicserviceMBean extends RemoteManagedBean {
 
     public void setId(long id) {
         this.id = id;
+    }
+    
+    public void whoAmI(){
+        musicserviceBeanWebserver.whoAmI();
     }
 
 }
