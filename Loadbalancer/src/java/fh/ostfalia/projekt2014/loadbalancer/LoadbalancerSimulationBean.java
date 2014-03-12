@@ -7,6 +7,7 @@ package fh.ostfalia.projekt2014.loadbalancer;
 import fh.ostfalia.projekt2014.beanmanager.RemoteBean;
 import fh.ostfalia.projekt2014.loadbalancer.entities.LoadbalancerResultBean;
 import fh.ostfalia.projekt2014.loadbalancer.remote.Musicservice1Remote;
+import fh.ostfalia.projekt2014.loadbalancer.remote.Musicservice2Remote;
 import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.entities.LoadbalancerResult;
 import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.interfaces.Loadbalancer;
 import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.interfaces.LoadbalancerSimulation;
@@ -25,11 +26,12 @@ import javax.ejb.Stateless;
 public class LoadbalancerSimulationBean implements LoadbalancerSimulation {
 
     private int requests;
-    @EJB
-    private Musicservice targetMusicService;
     private LoadbalancerResult lbR;
+    
     @EJB
-    private Musicservice m1;
+    private Musicservice1Remote m1;
+    @EJB
+    private Musicservice2Remote m2;
 
     private boolean status = true;
     int time;
@@ -67,17 +69,23 @@ public class LoadbalancerSimulationBean implements LoadbalancerSimulation {
         //generiere einen Zufallswert für die Anzahl der Anfragen an den ersten Zielserver
 
         //Wähle den nächsten Server:
-        Loadbalancer tempMusicservice;
+     
 
 
         if (status) {
-            //tempMusicservice = m1.getMusicservice1Bean();
-            //executeRequests(tempMusicservice, (int) ((Math.random() * 20) + 1));
+         
+            
+            for(int i=0;i<(int) ((Math.random() * 20) + 1);i++){
+                m1.whoAmI();
+            }
+            
             status = false;
 
         } else {
-            //tempMusicservice = m2.getMusicservice2Bean();
-            //executeRequests(tempMusicservice, (int) ((Math.random() * 20) + 1));
+         
+            for(int i=0;i<(int) ((Math.random() * 20) + 1);i++){
+                m2.whoAmI();
+            }
             status = true;
         }
 
@@ -90,12 +98,6 @@ public class LoadbalancerSimulationBean implements LoadbalancerSimulation {
         return loadbalancerResult;
     }
 
-    public void executeRequests(Loadbalancer tempMusicservice, int requests) {
-        for (int i = 0; i < requests; i++) {
-            tempMusicservice.whoAmI();
-        }
-
-    }
 
     @Override
     public LoadbalancerResult startLoadbalancerSimulationByTime(int time) {

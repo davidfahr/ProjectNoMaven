@@ -7,6 +7,7 @@ package fh.ostfalia.projekt2014.loadbalancer;
 
 import fh.ostfalia.projekt2014.beanmanager.RemoteManagedBean;
 import fh.ostfalia.projekt2014.commentserviceremoteinterfaces.entities.Comment;
+import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.entities.LoadbalancerResult;
 import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.interfaces.Loadbalancer;
 import fh.ostfalia.projekt2014.musicserviceremoteinterface.entities.Mp3;
 
@@ -26,6 +27,14 @@ public class LoadbalancerMBean extends RemoteManagedBean {
     private String commentText;
     private long id;
     private Loadbalancer loadbalancerRemoteBean;
+ 
+  
+    private LoadbalancerResult loadbalancerResult;
+
+
+
+
+ 
 
     public LoadbalancerMBean() {
         super("localhost", "3700", "java:global/NewProjectNoMaven/Loadbalancer/LoadbalancerBean");
@@ -50,6 +59,7 @@ public class LoadbalancerMBean extends RemoteManagedBean {
     public List<Mp3> getAllMp3s() {
         return loadbalancerRemoteBean.getAllMp3s();
     }
+
 
     public Mp3 getMp3(int mp3Id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

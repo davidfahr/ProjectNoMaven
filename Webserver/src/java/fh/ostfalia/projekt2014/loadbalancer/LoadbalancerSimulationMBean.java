@@ -7,6 +7,7 @@ package fh.ostfalia.projekt2014.loadbalancer;
 import fh.ostfalia.projekt2014.beanmanager.RemoteManagedBean;
 import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.entities.LoadbalancerResult;
 import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.interfaces.Loadbalancer;
+import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.interfaces.LoadbalancerSimulation;
 import javax.annotation.PostConstruct;
 
 
@@ -15,7 +16,7 @@ import javax.annotation.PostConstruct;
  * @author Yannick
  */
 public class LoadbalancerSimulationMBean extends RemoteManagedBean{
-    private Loadbalancer loadbalancerBean;
+    private LoadbalancerSimulation loadBalancerSimulation;
     private LoadbalancerResult loadbalancerResult;
     private int time;
 
@@ -33,7 +34,7 @@ public class LoadbalancerSimulationMBean extends RemoteManagedBean{
      @PostConstruct
     public void initBean() {
         //Holen der entfernten LoadbalancerBean bzw. deren Stub-Objekt
-       loadbalancerBean = (Loadbalancer) super.getObject();
+       loadBalancerSimulation = (LoadbalancerSimulation) super.getObject();
     }
     public String getModePage(){
         System.out.println(mode);
@@ -53,8 +54,8 @@ public class LoadbalancerSimulationMBean extends RemoteManagedBean{
     
 
      
-     public void startLoadbalancerSimulationByTime(int seconds){
-        
+     public void startLoadbalancerSimulationByTime(){
+        loadBalancerSimulation.startLoadbalancerSimulationByTime(time);
     }
     
       public String getMode() {

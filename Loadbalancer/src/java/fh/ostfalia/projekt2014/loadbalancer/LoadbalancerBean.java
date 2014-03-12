@@ -8,6 +8,7 @@ package fh.ostfalia.projekt2014.loadbalancer;
 
 import fh.ostfalia.projekt2014.loadbalancer.remote.Musicservice1Remote;
 import fh.ostfalia.projekt2014.loadbalancer.remote.Musicservice2Remote;
+import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.entities.LoadbalancerResult;
 import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.interfaces.Loadbalancer;
 import fh.ostfalia.projekt2014.musicserviceremoteinterface.entities.Mp3;
 import java.io.Serializable;
@@ -125,5 +126,7 @@ public class LoadbalancerBean implements Serializable, Loadbalancer{
     public void addComment(String text, long id, String identfier) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+  
     
 }

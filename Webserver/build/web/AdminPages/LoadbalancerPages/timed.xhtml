@@ -9,8 +9,8 @@
         <h:form>
             
         <h:outputLabel value="Time in Seconds:"/>
-        <h:inputText value="#{LoadbalancerMBean.time}" maxlength="2" />
-        <h:commandButton value="Start Simulation" action="#{LoadbalancerMBean.startLoadbalancerSimulationByTime()}"/>
+        <h:inputText value="#{LoadbalancerSimulationMBean.time}" maxlength="2" />
+        <h:commandButton value="Start Simulation" action="#{LoadbalancerSimulationMBean.startLoadbalancerSimulationByTime}"/>
         </h:form>
     </h:body>
 </html>
