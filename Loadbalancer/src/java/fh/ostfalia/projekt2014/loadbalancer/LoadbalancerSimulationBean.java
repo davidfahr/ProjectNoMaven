@@ -10,6 +10,7 @@ import fh.ostfalia.projekt2014.loadbalancer.remote.Musicservice1Remote;
 import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.entities.LoadbalancerResult;
 import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.interfaces.Loadbalancer;
 import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.interfaces.LoadbalancerSimulation;
+import fh.ostfalia.projekt2014.musicserviceremoteinterface.interfaces.Musicservice;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 import javax.annotation.PostConstruct;
@@ -25,10 +26,10 @@ public class LoadbalancerSimulationBean implements LoadbalancerSimulation {
 
     private int requests;
     @EJB
-    private MusicserviceLocal targetMusicService;
+    private Musicservice targetMusicService;
     private LoadbalancerResult lbR;
     @EJB
-    private MusicserviceLocal m1;
+    private Musicservice m1;
 
     private boolean status = true;
     int time;

@@ -5,9 +5,9 @@
         <data xmlns="http://www.netbeans.org/ns/j2ee-ejbjarproject/3">
             <name>Musicservice</name>
             <minimum-ant-version>1.6.5</minimum-ant-version>
-            <included-library dirs="200">reference.MusicserviceRemoteInterfaces.jar</included-library>
-            <included-library dirs="200">file.reference.jid3lib.jar</included-library>
             <included-library dirs="200">reference.CommentserviceRemoteInterfaces.jar</included-library>
+            <included-library dirs="200">file.reference.jid3lib.jar</included-library>
+            <included-library dirs="200">reference.MusicserviceRemoteInterfaces.jar</included-library>
             <source-roots>
                 <root id="src.dir"/>
             </source-roots>

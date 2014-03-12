@@ -1,0 +1,95 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package fh.ostfalia.projekt2014.loadbalancer.remote;
+
+import fh.ostfalia.projekt2014.beanmanager.RemoteBean;
+import fh.ostfalia.projekt2014.commentserviceremoteinterfaces.entities.Comment;
+import fh.ostfalia.projekt2014.musicservice2remoteinterface.entities.Mp3;
+import fh.ostfalia.projekt2014.musicservice2remoteinterface.interfaces.Musicservice;
+import java.io.Serializable;
+import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.ejb.Stateless;
+
+/**
+ *
+ * @author Yannick
+ */
+@Stateless
+public class Musicservice2Remote extends RemoteBean implements Serializable{
+    private static final long serialVersionUID = 1L;
+    private Musicservice musicservice1Bean;
+
+    public Musicservice2Remote() {
+        super("localhost", "3700", "java:global/NewProjectNoMaven/Musicservice2/Musicservice2Bean");
+        System.out.println("ENDELookup --> Musikdienst 2");
+    }
+
+    @PostConstruct
+    public void initBean() {
+        //Holen der entfernten Loginbean bzw. deren Stub-Objekt
+        musicservice1Bean = (Musicservice) super.getObject();
+    }
+    
+    
+    public Musicservice getMusicservice1Bean() {
+        return musicservice1Bean;
+    }
+
+    public void setMusicservice1Bean(Musicservice musicservice1Bean) {
+        this.musicservice1Bean = musicservice1Bean;
+    }
+
+    public void whoAmI() {
+        musicservice1Bean.whoAmI();
+    }
+
+  
+    public List<Mp3> getAllMp3s() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+   
+    public Mp3 getMp3(int mp3Id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+   
+    public byte[] getMp3File(int mp3Id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+   
+    public String getIdParameter() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+   
+    public void upload(String part) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
+    public void downloadMp3File(String filename, int mp3Id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
+    public List<Comment> getAllArtistCommentsById(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
+    public List<Comment> getAllMp3CommentsById(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+ 
+    public void addComment(String text, long id, String identfier) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+}

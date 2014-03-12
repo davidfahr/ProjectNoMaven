@@ -8,7 +8,6 @@ package fh.ostfalia.projekt2014.loadbalancer.remote;
 
 import fh.ostfalia.projekt2014.beanmanager.RemoteBean;
 import fh.ostfalia.projekt2014.commentserviceremoteinterfaces.entities.Comment;
-import fh.ostfalia.projekt2014.loadbalancer.MusicserviceLocal;
 import fh.ostfalia.projekt2014.musicserviceremoteinterface.entities.Mp3;
 import fh.ostfalia.projekt2014.musicserviceremoteinterface.interfaces.Musicservice;
 import java.io.Serializable;
@@ -21,13 +20,13 @@ import javax.ejb.Stateless;
  * @author KingDCB
  */
 @Stateless
-public class Musicservice1Remote extends RemoteBean implements Serializable, MusicserviceLocal{
+public class Musicservice1Remote extends RemoteBean implements Serializable{
     private static final long serialVersionUID = 1L;
     private Musicservice musicservice1Bean;
 
     public Musicservice1Remote() {
         super("localhost", "3700", "java:global/NewProjectNoMaven/Musicservice/MusicserviceBean");
-        System.out.println("ENDELookup");
+        System.out.println("ENDELookup --> Musikdienst 1");
     }
 
     @PostConstruct
@@ -45,7 +44,6 @@ public class Musicservice1Remote extends RemoteBean implements Serializable, Mus
         this.musicservice1Bean = musicservice1Bean;
     }
 
-    @Override
     public void whoAmI() {
         musicservice1Bean.whoAmI();
     }

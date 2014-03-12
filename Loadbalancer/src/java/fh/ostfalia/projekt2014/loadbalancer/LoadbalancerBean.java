@@ -7,6 +7,7 @@
 package fh.ostfalia.projekt2014.loadbalancer;
 
 import fh.ostfalia.projekt2014.loadbalancer.remote.Musicservice1Remote;
+import fh.ostfalia.projekt2014.loadbalancer.remote.Musicservice2Remote;
 import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.interfaces.Loadbalancer;
 import fh.ostfalia.projekt2014.musicserviceremoteinterface.entities.Mp3;
 import java.io.Serializable;
@@ -25,10 +26,12 @@ public class LoadbalancerBean implements Serializable, Loadbalancer{
     * Hier wird Musiservice1Remote geladen
     */
     @EJB
-    private MusicserviceLocal targetMusicservice;
-
+    private Musicservice1Remote targetMusicservice;
     @EJB
-    private MusicserviceLocal m1;
+    private Musicservice2Remote m2;
+    
+    private boolean status;
+
     
     private int randNumber = (int) ((Math.random() * 20) + 1);
     private int requests;
@@ -47,7 +50,7 @@ public class LoadbalancerBean implements Serializable, Loadbalancer{
                 /**
                  * Lookup
                  */
-               targetMusicservice = m1;
+               //targetMusicservice = m1;
             }
         } else {
             /**
@@ -64,7 +67,16 @@ public class LoadbalancerBean implements Serializable, Loadbalancer{
  
     public void whoAmI() {
         assignMusicservice();
-        targetMusicservice.whoAmI();
+        if(status ==true){
+            targetMusicservice.whoAmI();
+            status = false;
+        }
+        else{
+            m2.whoAmI();
+            status = true;
+        }
+        
+        
         
     }
 

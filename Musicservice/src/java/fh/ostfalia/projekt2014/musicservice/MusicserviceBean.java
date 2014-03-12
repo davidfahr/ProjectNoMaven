@@ -6,8 +6,8 @@
 package fh.ostfalia.projekt2014.musicservice;
 
 
-import fh.ostfalia.projekt2014.commentservice.CommentserviceBeanLocal;
-import fh.ostfalia.projekt2014.commentservice.CommentserviceMBean;
+import fh.ostfalia.projekt2014.musicservice.commentservice.CommentserviceBeanLocal;
+import fh.ostfalia.projekt2014.musicservice.commentservice.CommentserviceMBean;
 import fh.ostfalia.projekt2014.commentserviceremoteinterfaces.entities.Comment;
 import fh.ostfalia.projekt2014.musicservice.dao.Mp3DaoLocal;
 import fh.ostfalia.projekt2014.musicservice.entities.Mp3ArtistBean;

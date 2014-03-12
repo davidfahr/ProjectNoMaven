@@ -219,6 +219,10 @@ exists or setup the property manually. For example like this:
                 <isset property="build.deploy.on.save"/>
             </not>
         </condition>
+        <ant antfile="${project.CommentserviceRemoteInterfaces}/build.xml" inheritall="false" target="jar">
+            <property location="${build.dir}" name="dist.ear.dir"/>
+            <property name="deploy.on.save" value="false"/>
+        </ant>
         <ant antfile="${project.LoadbalancerRemoteInterfaces}/build.xml" inheritall="false" target="jar">
             <property location="${build.dir}" name="dist.ear.dir"/>
             <property name="deploy.on.save" value="false"/>
@@ -276,13 +280,14 @@ exists or setup the property manually. For example like this:
     <target depends="init,deps-jar,pre-pre-compile,pre-compile" name="-do-compile-deps">
         <copyfiles files="${reference.Musicservice.dist-ear}" todir="${build.dir}//"/>
         <copyfiles files="${reference.Loginservice.dist-ear}" todir="${build.dir}//"/>
-        <copyfiles files="${reference.Musicservice2.dist-ear}" todir="${build.dir}//"/>
         <copyfiles files="${reference.Loadbalancer.dist-ear}" todir="${build.dir}//"/>
         <copyfiles files="${reference.MusicserviceRemoteInterfaces.jar}" todir="${build.dir}//"/>
         <copyfiles files="${reference.LoginserviceRemoteInterfaces.jar}" todir="${build.dir}//"/>
         <copyfiles files="${reference.LoadbalancerRemoteInterfaces.jar}" todir="${build.dir}//"/>
         <copyfiles files="${reference.Webserver.dist-ear}" todir="${build.dir}//"/>
         <copyfiles files="${reference.Commentservice.dist-ear}" todir="${build.dir}//"/>
+        <copyfiles files="${reference.Musicservice2.dist-ear}" todir="${build.dir}//"/>
+        <copyfiles files="${reference.CommentserviceRemoteInterfaces.jar}" todir="${build.dir}//"/>
     </target>
     <target name="post-compile">
         <!-- Empty placeholder for easier customization. -->
@@ -690,6 +695,10 @@ exists or setup the property manually. For example like this:
             </not>
         </condition>
         <ant antfile="${project.Commentservice}/build.xml" inheritall="false" target="clean-ear">
+            <property location="${build.dir}" name="dist.ear.dir"/>
+            <property name="deploy.on.save" value="${build.deploy.on.save}"/>
+        </ant>
+        <ant antfile="${project.CommentserviceRemoteInterfaces}/build.xml" inheritall="false" target="clean">
             <property location="${build.dir}" name="dist.ear.dir"/>
             <property name="deploy.on.save" value="${build.deploy.on.save}"/>
         </ant>
