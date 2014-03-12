@@ -8,6 +8,7 @@ package fh.ostfalia.projekt2014.loadbalancer.remote;
 
 import fh.ostfalia.projekt2014.beanmanager.RemoteBean;
 import fh.ostfalia.projekt2014.commentserviceremoteinterfaces.entities.Comment;
+import fh.ostfalia.projekt2014.loadbalancer.MusicserviceLocal;
 import fh.ostfalia.projekt2014.musicserviceremoteinterface.entities.Mp3;
 import fh.ostfalia.projekt2014.musicserviceremoteinterface.interfaces.Musicservice;
 import java.io.Serializable;
@@ -18,7 +19,7 @@ import javax.annotation.PostConstruct;
  *
  * @author KingDCB
  */
-public class Musicservice1Remote extends RemoteBean implements Musicservice, Serializable{
+public class Musicservice1Remote extends RemoteBean implements Musicservice, Serializable, MusicserviceLocal{
     private static final long serialVersionUID = 1L;
     private Musicservice musicservice1Bean;
 

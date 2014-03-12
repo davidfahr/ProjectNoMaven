@@ -21,9 +21,8 @@ import javax.ejb.EJB;
 public class MusicserviceRemote implements Musicservice, Serializable{
     private static final long serialVersionUID = 1L;
     @EJB
-    private Musicservice1Remote m1;
-    @EJB
-    private Musicservice2Remote m2;
+    private MusicserviceLocal m1;
+
 
     private Musicservice targetMusicservice;
     private int randNumber = (int) ((Math.random() * 20) + 1);
