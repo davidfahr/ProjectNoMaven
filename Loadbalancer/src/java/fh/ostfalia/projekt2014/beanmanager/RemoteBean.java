@@ -4,15 +4,16 @@
  * and open the template in the editor.
  */
 
-package fh.ostfalia.projekt2014.loadbalancer;
+package fh.ostfalia.projekt2014.beanmanager;
 
+import fh.ostfalia.projekt2014.loadbalancer.LoadbalancerRemoteBeanManager;
 import javax.annotation.PostConstruct;
 
 /**
  *
  * @author KingDCB
  */
-public abstract class LoadbalancerRemoteBean {
+public abstract class RemoteBean {
     private String ip = null;
     private String port = null;
     //Objektname
@@ -20,7 +21,7 @@ public abstract class LoadbalancerRemoteBean {
     private Object object;
     
 
-    public LoadbalancerRemoteBean(String ip, String port, String name){
+    public RemoteBean(String ip, String port, String name){
         this.ip = ip;
         this.port = port;
         this.name = name;

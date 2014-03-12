@@ -85,15 +85,13 @@ public class MusicserviceBean implements Musicservice, Serializable {
     
     @Override
     public List<Comment> getAllArtistCommentsById(int id) {
-        //return commentservice.getAllArtistCommentsById(id);
-        return null;
+        return commentservice.getAllArtistCommentsById(id);
     }
 
 
     @Override
     public List<Comment> getAllMp3CommentsById(int id) {
-        //return commentservice.getAllMp3CommentsById(id);
-        return null;
+        return commentservice.getAllMp3CommentsById(id);
     }
 
 

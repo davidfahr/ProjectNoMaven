@@ -7,7 +7,7 @@ package fh.ostfalia.projekt2014.musicservice;
 
 import fh.ostfalia.projekt2014.beanmanager.RemoteManagedBean;
 import fh.ostfalia.projekt2014.commentserviceremoteinterfaces.entities.Comment;
-import fh.ostfalia.projekt2014.musicserviceremoteinterface.entities.Mp3;
+import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.musicinterfaces.entities.Mp3;
 import fh.ostfalia.projekt2014.musicserviceremoteinterface.interfaces.Musicservice;
 
 import java.util.List;
@@ -74,7 +74,10 @@ public class MusicserviceMBean extends RemoteManagedBean {
     }
 
     public List<Comment> getAllMp3CommentsById(int id) {
-        return musicserviceBeanWebserver.getAllMp3CommentsById(id);
+        List<Comment> commentList = musicserviceBeanWebserver.getAllMp3CommentsById(id);
+        System.out.println("WEBSERVERRRRRRRRR SAGT:");
+        System.out.println(commentList.get(0).getcText());
+        return commentList;
     }
 
     public void addComment(String identfier) {

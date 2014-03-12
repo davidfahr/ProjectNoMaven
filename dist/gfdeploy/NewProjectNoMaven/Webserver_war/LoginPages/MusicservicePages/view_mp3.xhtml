@@ -22,11 +22,14 @@ and open the template in the editor.
         <h1>${mp3.mp3Title} - #{mp3.artistName}</h1>
         <h:form>
             <jsp:set value="${mp3.artistName} - ${mp3.mp3Title}" var="mp3Filename"/> 
-            <h:commandLink action="#{MusicserviceMBean.musicserviceBean.downloadMp3File(mp3Filename, id)}" value="download" />
+            <h:commandLink action="#{MusicserviceMBean.downloadMp3File(mp3Filename, id)}" value="download" />
             <br/>
             <h:inputTextarea rows="5" value="#{MusicserviceMBean.commentText}"/>
             <br/>
-            <h:commandButton action="${MusicserviceMBean.addComment(identifier)}" value="Post Comment"/>    
+            <h:commandButton action="${MusicserviceMBean.addComment(identifier)}" value="Post Comment"/> 
+            <jsp:forEach items="${MusicserviceMBean.getAllMp3CommentsById(id)}" var="comment">
+                <h:outputLabel value="${comment.getcText}"/>
+            </jsp:forEach>
             <br/>
         </h:form>
         <h:link outcome="index" value="Home"/>

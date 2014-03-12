@@ -32,6 +32,7 @@ public class CommentBean implements Serializable, Comment{
     @Column(name = "c_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long cId;
+    
 
     @Override
     public Long getcId() {

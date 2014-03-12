@@ -4,6 +4,7 @@
  */
 package fh.ostfalia.projekt2014.loadbalancer;
 
+import fh.ostfalia.projekt2014.beanmanager.RemoteBean;
 import fh.ostfalia.projekt2014.loadbalancer.entities.LoadbalancerResultBean;
 import fh.ostfalia.projekt2014.loadbalancer.remote.Musicservice1Remote;
 import fh.ostfalia.projekt2014.loadbalancer.remote.Musicservice2Remote;
@@ -12,6 +13,7 @@ import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.interfaces.Loadbalan
 import fh.ostfalia.projekt2014.musicserviceremoteinterface.interfaces.Musicservice;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
+import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 
 /**
@@ -28,7 +30,19 @@ public class LoadbalancerBean implements Loadbalancer {
     private Musicservice2Remote m2;
     private boolean status = true;
     int time;
-
+    
+    public LoadbalancerBean() {
+        //Zufallsmethode
+        
+        System.out.println("ENDELookup");
+    }
+    
+      @PostConstruct
+    public void initBean() {
+        //Holen der entfernten Loginbean bzw. deren Stub-Objekt
+        
+    }
+    
     @Override
     public LoadbalancerResult startLoadbalancerSimulation() {
         //Starte das Loadbalancing und speichere das Ergebnis in asyncresult

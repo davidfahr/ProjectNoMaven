@@ -6,7 +6,7 @@
 
 package fh.ostfalia.projekt2014.loadbalancer.remote;
 
-import fh.ostfalia.projekt2014.loadbalancer.LoadbalancerRemoteBean;
+import fh.ostfalia.projekt2014.beanmanager.RemoteBean;
 import fh.ostfalia.projekt2014.musicserviceremoteinterface.interfaces.Musicservice;
 import javax.annotation.PostConstruct;
 
@@ -14,7 +14,7 @@ import javax.annotation.PostConstruct;
  *
  * @author KingDCB
  */
-public class Musicservice1Remote extends LoadbalancerRemoteBean {
+public class Musicservice1Remote extends RemoteBean {
     
     private Musicservice musicservice1Bean;
 
