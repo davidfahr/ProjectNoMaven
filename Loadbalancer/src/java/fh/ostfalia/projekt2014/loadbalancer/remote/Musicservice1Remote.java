@@ -20,7 +20,7 @@ import javax.ejb.Stateless;
  * @author KingDCB
  */
 @Stateless
-public class Musicservice1Remote extends RemoteBean implements Serializable, IMusicserviceRemote{
+public class Musicservice1Remote extends RemoteBean implements Serializable{
     private static final long serialVersionUID = 1L;
     private Musicservice musicservice1Bean;
 
@@ -50,47 +50,47 @@ public class Musicservice1Remote extends RemoteBean implements Serializable, IMu
 
   
     public List<Mp3> getAllMp3s() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return musicservice1Bean.getAllMp3s();
     }
 
    
     public Mp3 getMp3(int mp3Id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return musicservice1Bean.getMp3(mp3Id);
     }
 
    
     public byte[] getMp3File(int mp3Id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return musicservice1Bean.getMp3File(mp3Id);
     }
 
    
     public String getIdParameter() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return musicservice1Bean.getIdParameter();
     }
 
    
     public void upload(String part) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        musicservice1Bean.upload(part);
     }
 
 
     public void downloadMp3File(String filename, int mp3Id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        musicservice1Bean.downloadMp3File(filename, mp3Id);
     }
 
 
     public List<Comment> getAllArtistCommentsById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return musicservice1Bean.getAllArtistCommentsById(id);
     }
 
 
     public List<Comment> getAllMp3CommentsById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return musicservice1Bean.getAllMp3CommentsById(id);
     }
 
  
     public void addComment(String text, long id, String identfier) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        musicservice1Bean.addComment(text, id, identfier);
     }
 
 

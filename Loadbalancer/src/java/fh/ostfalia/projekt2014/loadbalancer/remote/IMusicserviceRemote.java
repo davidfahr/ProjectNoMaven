@@ -7,15 +7,16 @@ package fh.ostfalia.projekt2014.loadbalancer.remote;
 
 import fh.ostfalia.projekt2014.commentserviceremoteinterfaces.entities.Comment;
 import fh.ostfalia.projekt2014.musicserviceentities.Mp3;
+import java.io.Serializable;
 import java.util.List;
 import javax.ejb.Local;
+import javax.ejb.Remote;
 
 /**
  *
  * @author KingDCB
  */
-@Local
-public interface IMusicserviceRemote {
+public interface IMusicserviceRemote{
 
     public void whoAmI();
     

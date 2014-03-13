@@ -6,7 +6,12 @@
             <file>file:/C:/Users/Mettbroetchen/Documents/NetBeansProjects/ProjectNoMaven/Webserver/web/LoginPages/MusicservicePages/show_music.xhtml</file>
             <file>file:/C:/Users/Mettbroetchen/Documents/NetBeansProjects/ProjectNoMaven/Webserver/src/java/fh/ostfalia/projekt2014/musicservice/MusicserviceMBean.java</file>
         </group>
-        <group name="commentservice2_11.03.2014"/>
         <group name="ProjektNoMaven"/>
+        <group name="commentservice2_11.03.2014">
+            <file>file:/C:/Users/Yannick/Documents/GitHub/ProjectNoMaven/Webserver/web/LoginPages/index.xhtml</file>
+            <file>file:/C:/Users/Yannick/Documents/GitHub/ProjectNoMaven/Webserver/web/LoginPages/MusicservicePages/show_music.xhtml</file>
+            <file>file:/C:/Users/Yannick/Documents/GitHub/ProjectNoMaven/Webserver/src/java/fh/ostfalia/projekt2014/loadbalancer/LoadbalancerMBean.java</file>
+            <file>file:/C:/Users/Yannick/Documents/GitHub/ProjectNoMaven/Webserver/web/LoginPages/MusicservicePages/view_mp3.xhtml</file>
+        </group>
     </open-files>
 </project-private>

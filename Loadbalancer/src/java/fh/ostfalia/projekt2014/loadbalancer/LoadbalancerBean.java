@@ -32,8 +32,9 @@ public class LoadbalancerBean implements Serializable, Loadbalancer {
     private Musicservice1Remote m1;
     @EJB 
     private Musicservice2Remote m2;
+    
 
-    private IMusicserviceRemote targetService = m1;
+  
 
     private boolean status;
     
@@ -43,39 +44,43 @@ public class LoadbalancerBean implements Serializable, Loadbalancer {
      * false = Methoden werden zu Musicservice 2 umgeleitet
      */
     private boolean switchServer = false;
-
-    private int randNumber = (int) ((Math.random() * 20) + 1);
+    
+    /*
+    * maxRequests wird hier per Zufallsgenerator erzeugt
+    * maxRequests kann nach diesem Generator zwischen 1 und 20 liegen
+    * Wenn maxRequests erreicht ist, wird die nächste Anfrage auf den anderen Server weitergeletitet
+    * Dies wird durch die Methode assignMusicservice() geschaltet.
+    */
+    private int maxRequests = (int) ((Math.random() * 20) + 1);
     private int requests;
 
     /**
      * Algorythmus zum zuweisen des Musicdienstes
      */
     private void assignMusicservice() {
-        if (requests > randNumber) {
+        System.out.println("aktueller Request: " + requests);
+        System.out.println("Zufallszahl: " + maxRequests);
+        if (requests > maxRequests) {
               /**
              * Neue Zufallsn ummer generieren
              */
-            randNumber = (int) ((Math.random() * 20) + 1);
-            
-            /**
+            maxRequests = (int) ((Math.random() * 20) + 1);
+            requests = 0;
+             /**
              * Prüfen ob schon ein lookup gemacht wurde Wenn nicht, dann lookup
              * ansonsten tue nichts
              */
             if (switchServer == true) {
-                targetService = m1;
+                //targetService = m1;
                 switchServer = false;
             } else {
-                targetService = m2;
+                //targetService = m2;
                 switchServer = true;
             }
-        } 
-        else {      
-            requests++;
-        /**
-         * Neuer Lookup
-         */
-
-    }
+        }else{
+           requests++; 
+        }
+         
 }
 
     public void whoAmI() {
@@ -93,46 +98,100 @@ public class LoadbalancerBean implements Serializable, Loadbalancer {
 
     public List<Mp3> getAllMp3s() {
         assignMusicservice();
-        return null;
+        if(switchServer==true){
+            return m1.getAllMp3s();
+        }
+        else{
+            return m2.getAllMp3s();
+        }
+        
     }
 
 
     public Mp3 getMp3(int mp3Id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        assignMusicservice();
+        if(switchServer==true){
+            return m1.getMp3(mp3Id);
+        }
+        else{
+            return m2.getMp3(mp3Id);
+        }
     }
 
   
     public byte[] getMp3File(int mp3Id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        assignMusicservice();
+        if(switchServer==true){
+            return m1.getMp3File(mp3Id);
+        }
+        else{
+            return m2.getMp3File(mp3Id);
+        }
     }
 
 
     public String getIdParameter() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+          assignMusicservice();
+        if(switchServer==true){
+            return m1.getIdParameter();
+        }
+        else{
+            return m2.getIdParameter();
+        }
     }
 
 
     public void upload(String part) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        assignMusicservice();
+        if(switchServer==true){
+            m1.upload(part);
+        }
+        else{
+            m2.upload(part);
+        }
     }
 
 
     public void downloadMp3File(String filename, int mp3Id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        assignMusicservice();
+        if(switchServer==true){
+            m1.downloadMp3File(filename, mp3Id);
+        }
+        else{
+            m2.downloadMp3File(filename, mp3Id);
+        }
     }
 
     
     public List<fh.ostfalia.projekt2014.commentserviceremoteinterfaces.entities.Comment> getAllArtistCommentsById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       assignMusicservice();
+        if(switchServer==true){
+           return m1.getAllArtistCommentsById(id);
+        }
+        else{
+            return m2.getAllArtistCommentsById(id);
+        }
     }
 
    
     public List<fh.ostfalia.projekt2014.commentserviceremoteinterfaces.entities.Comment> getAllMp3CommentsById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        assignMusicservice();
+        if(switchServer==true){
+           return m1.getAllMp3CommentsById(id);
+        }
+        else{
+            return m1.getAllMp3CommentsById(id);
+        }
     }
 
   
     public void addComment(String text, long id, String identfier) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+          assignMusicservice();
+        if(switchServer==true){
+           m1.addComment(text, id, identfier);
+        }
+        else{
+            m1.addComment(text, id, identfier);
+        }
     }
 }

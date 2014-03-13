@@ -23,17 +23,14 @@ and open the template in the editor.
                     <th>Download</th>
                 </tr>
                 <tr>
-                    <jsp:forEach items="${MusicserviceMBean.musicserviceBean.allMp3s}" var="mp3">
+                    <jsp:forEach items="${LoadbalancerMBean.allMp3s}" var="mp3">
                         <jsp:set value="${mp3.artistName} - ${mp3.mp3Title}" var="mp3Filename"/> 
                         <tr>
                             <td><h:link value="${mp3.mp3Title}" outcome="view_mp3" ><f:param name="id" value="${mp3.mp3Id}" /></h:link></td>
                             <td><h:link value="${mp3.artistName}" outcome="view_artist" ><f:param name="id" value="${mp3.artistId}" /></h:link></td>
-                            <td><h:commandLink action="#{MusicserviceMBean.musicserviceBean.downloadMp3File(mp3Filename,mp3.mp3Id)}" value="download" /></td>
+                            <td><h:commandLink action="#{LoadbalancerMBean.downloadMp3File(mp3Filename,mp3.mp3Id)}" value="download" /></td>
                         </tr>
-                    </jsp:forEach> 
-                     <jsp:forEach items="${MusicserviceMBean.getAllMp3CommentsById(201)}" var="comment">
-                    <h:outputLabel value="${comment.getcText}"/>
-                        </jsp:forEach>
+                  </jsp:forEach>
                 </tr>
             </table>
             <br/>
