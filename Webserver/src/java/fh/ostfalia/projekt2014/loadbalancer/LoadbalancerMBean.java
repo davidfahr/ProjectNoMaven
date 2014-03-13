@@ -67,6 +67,7 @@ public class LoadbalancerMBean extends RemoteManagedBean {
     }
 
     public void upload() {
+        System.out.println("Upload in der LBMBEAN!!!");
         loadbalancerRemoteBean.upload(part);
     }
 

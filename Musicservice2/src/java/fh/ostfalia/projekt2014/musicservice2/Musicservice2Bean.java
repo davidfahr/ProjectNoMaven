@@ -100,5 +100,11 @@ public class Musicservice2Bean implements Musicservice, Serializable {
   
         commentservice.addComment(text, id, identfier);
     }
+
+    @Override
+    public void update(Mp3 mp3Bean) {
+        System.out.println("M2 update(mp3Bean)");
+        mp3Dao.update(mp3Bean);
+    }
     
 }

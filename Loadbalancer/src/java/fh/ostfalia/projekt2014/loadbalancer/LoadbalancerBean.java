@@ -14,8 +14,11 @@ import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.interfaces.Loadbalan
 import fh.ostfalia.projekt2014.musicserviceentities.Mp3;
 import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import org.hibernate.validator.internal.util.logging.Log;
 
 /**
  *
@@ -32,7 +35,7 @@ public class LoadbalancerBean implements Serializable, Loadbalancer {
     private Musicservice1Remote m1;
     @EJB 
     private Musicservice2Remote m2;
-    
+      private static final Logger log = Logger.getLogger( LoadbalancerBean.class.getName() );
 
   
 
@@ -144,9 +147,12 @@ public class LoadbalancerBean implements Serializable, Loadbalancer {
     public void upload(String part) {
         assignMusicservice();
         if(switchServer==true){
+            System.out.println("UPLOAD in LOADBALNCERBEAN!!!!");
             m1.upload(part);
+            
         }
         else{
+             System.out.println("UPLOAD in LOADBALNCERBEAN!!!!");
             m2.upload(part);
         }
     }

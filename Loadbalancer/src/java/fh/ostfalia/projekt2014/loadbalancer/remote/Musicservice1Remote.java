@@ -70,6 +70,7 @@ public class Musicservice1Remote extends RemoteBean implements Serializable{
 
    
     public void upload(String part) {
+        System.out.println("UPLOAD IN MUSICSERVICE1REMOTE");
         musicservice1Bean.upload(part);
     }
 

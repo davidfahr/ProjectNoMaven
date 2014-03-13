@@ -31,5 +31,8 @@ public interface Musicservice {
     public List<Comment> getAllArtistCommentsById(int id);
     public List<Comment> getAllMp3CommentsById(int id);
     public void addComment(String text, long id, String identfier);
+    public void update(Mp3 mp3Bean);
+    public void update(Comment comment);
+    
 
 }

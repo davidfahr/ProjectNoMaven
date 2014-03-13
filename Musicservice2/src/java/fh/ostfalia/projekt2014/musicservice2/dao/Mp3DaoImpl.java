@@ -32,9 +32,10 @@ import java.util.logging.Logger;
  */
 @Stateless
 public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
-    
     @EJB
-    Mp3ArtistDao mp3ArtistDao;
+    private Mp3DBSyncBean mp3Sync;
+    @EJB
+    private Mp3ArtistDao mp3ArtistDao;
     private static final long serialVersionUID = 1L;
     @PersistenceContext(unitName = "MusicservicePU2")
     private EntityManager em;
@@ -249,7 +250,7 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
          * Hilfe der Methode getFileName und dem Parameter part (welcher aus der
          * Komponente im Webfrontend mitgeliefert wird) erstellt
          */
-        File file = new File("C:\\Users\\Mettbroetchen\\Documents\\NetBeansProjects\\ProjectNoMaven\\Musicservice\\Uploads\\" + getFileName(part));
+        File file = new File("C:\\Users\\Yannick\\Documents\\GitHub\\ProjectNoMaven\\Musicservice2\\Uploads\\" + getFileName(part));
 
         /**
          * Initialisierung der Mp3Bean
@@ -266,6 +267,7 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
          * Speicherung der Mp3Bean in Datenbank
          */
         this.persistMp3(mp3Bean);
+        mp3Sync.update(mp3Bean);
     }
 
     /**
@@ -297,4 +299,11 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
         System.out.println("FILENAME: " + fileName);
         return fileName;
     }
+    
+     @Override
+    public void update(Mp3 mp3) {
+         System.out.println("MP3DaoImpl.update(mp3) ---> in M2 ");
+        this.persistMp3((Mp3Bean) mp3);
+    }
+    
 }

@@ -11,6 +11,7 @@ import fh.ostfalia.projekt2014.musicservice.commentservice.CommentserviceMBean;
 import fh.ostfalia.projekt2014.commentserviceremoteinterfaces.entities.Comment;
 import fh.ostfalia.projekt2014.musicservice.dao.Mp3DaoLocal;
 import fh.ostfalia.projekt2014.musicservice.entities.Mp3ArtistBean;
+import fh.ostfalia.projekt2014.musicservice.entities.Mp3Bean;
 import fh.ostfalia.projekt2014.musicserviceentities.Mp3;
 import fh.ostfalia.projekt2014.musicserviceremoteinterface.interfaces.Musicservice;
 
@@ -57,7 +58,7 @@ public class MusicserviceBean implements Musicservice, Serializable {
 
     @Override
     public void upload(String part) {
-
+         System.out.println("UPLOAD IN MUSICESERVICE(1)BEAN");
         mp3Dao.upload(part);
 
     }
@@ -103,5 +104,18 @@ public class MusicserviceBean implements Musicservice, Serializable {
   
         commentservice.addComment(text, id, identfier);
     }
+    @Override
+    public void update(Mp3 mp3Bean) {
+        System.out.println("");
+        mp3Dao.update(mp3Bean);
+    }
+
+
+    @Override
+    public void update(Comment comment) {
+        
+    }
+
+   
     
 }

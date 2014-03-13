@@ -5,6 +5,8 @@
 package fh.ostfalia.projekt2014.musicservice.dao;
 
 
+import fh.ostfalia.projekt2014.commentserviceremoteinterfaces.entities.Comment;
+import fh.ostfalia.projekt2014.musicservice.entities.Mp3Bean;
 import fh.ostfalia.projekt2014.musicserviceentities.Mp3;
 import java.util.List;
 import javax.ejb.Local;
@@ -17,4 +19,5 @@ public interface Mp3DaoLocal {
     public String getIdParameter();
     public byte[] getMp3File(int mp3Id);
     public void downloadMp3File(String filename, int mp3Id);
+    public void update(Mp3 mp3Bean);
 }

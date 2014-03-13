@@ -33,7 +33,8 @@ import java.util.logging.Logger;
  */
 @Stateless
 public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
-    
+    @EJB
+    private Mp3DBSyncBean mp3Sync;
     @EJB
     Mp3ArtistDao mp3ArtistDao;
     private static final long serialVersionUID = 1L;
@@ -249,7 +250,7 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
          * Hilfe der Methode getFileName und dem Parameter part (welcher aus der
          * Komponente im Webfrontend mitgeliefert wird) erstellt
          */
-        File file = new File("C:\\Users\\Mettbroetchen\\Documents\\NetBeansProjects\\ProjectNoMaven\\Musicservice\\Uploads\\" + getFileName(part));
+        File file = new File("C:\\Users\\Yannick\\Documents\\GitHub\\ProjectNoMaven\\Musicservice\\Uploads\\" + getFileName(part));
 
         /**
          * Initialisierung der Mp3Bean
@@ -265,9 +266,31 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
         /**
          * Speicherung der Mp3Bean in Datenbank
          */
+        System.out.println("PERSIST IN Mp3DAOImpl!!!!");
+        this.persistMp3(mp3Bean);
+        /*
+        1. Benachrichtigung über Änderung --> notifyOtherMusicservice()
+        2. Aufruf der anderen Upload-Methode (des anderen Musikdienstes)
+        3. Anderer Musikdienst ruft persisMp3 auf
+        */
+        mp3Sync.update(mp3Bean);
+  
+        
+    }
+  
+    /**
+     * Ruft die update-Methode auf dem Musicservice auf, der 
+     * die Daten in seiner eigenen Daten auf den aktuellen Stand synchronisiert
+     * @param mp3 
+     */
+    
+    @Override
+    public void update(Mp3 mp3) {
+         System.out.println("MP3DaoImpl.update(mp3) ---> in M1 ");
+         Mp3Bean mp3Bean = (Mp3Bean) mp3;
         this.persistMp3(mp3Bean);
     }
-
+    
     /**
      * Wertet den String part aus, welcher aus dem Webfrontend mitgeschickt wird
      * Sinn ist es, den Namen der Datei herauszufinden, um diesen in der Upload
@@ -296,5 +319,5 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
         fileName = part.substring(startPos, lastPos);
         System.out.println("FILENAME: " + fileName);
         return fileName;
-    }
+    }   
 }
