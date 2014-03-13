@@ -4,5 +4,12 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group name="Projekt2014NoMaven"/>
         <group name="commentservice2_11.03.2014"/>
+        <group name="ProjektNoMaven">
+            <file>file:/C:/Users/KingDCB/Documents/GitHub/ProjectNoMaven/Loadbalancer/src/java/fh/ostfalia/projekt2014/beanmanager/RemoteBean.java</file>
+            <file>file:/C:/Users/KingDCB/Documents/GitHub/ProjectNoMaven/Loadbalancer/src/java/fh/ostfalia/projekt2014/loadbalancer/remote/IMusicserviceRemote.java</file>
+            <file>file:/C:/Users/KingDCB/Documents/GitHub/ProjectNoMaven/Loadbalancer/src/java/fh/ostfalia/projekt2014/loadbalancer/LoadbalancerBean.java</file>
+            <file>file:/C:/Users/KingDCB/Documents/GitHub/ProjectNoMaven/Loadbalancer/src/java/fh/ostfalia/projekt2014/loadbalancer/remote/Musicservice1Remote.java</file>
+            <file>file:/C:/Users/KingDCB/Documents/GitHub/ProjectNoMaven/Loadbalancer/src/java/fh/ostfalia/projekt2014/loadbalancer/remote/Musicservice2Remote.java</file>
+        </group>
     </open-files>
 </project-private>

@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 
-package fh.ostfalia.projekt2014.musicserviceremoteinterface.entities;
+package fh.ostfalia.projekt2014.musicserviceentities;
 
-import javax.ejb.Remote;
+
 
 /**
  *

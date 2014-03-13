@@ -887,6 +887,9 @@ exists or setup the property manually. For example like this:
         <ant antfile="${project.LoginserviceRemoteInterfaces}/build.xml" inheritall="false" target="jar">
             <property name="deploy.on.save" value="false"/>
         </ant>
+        <ant antfile="${project.MusicserviceEntities}/build.xml" inheritall="false" target="jar">
+            <property name="deploy.on.save" value="false"/>
+        </ant>
         <ant antfile="${project.MusicserviceRemoteInterfaces}/build.xml" inheritall="false" target="jar">
             <property name="deploy.on.save" value="false"/>
         </ant>
@@ -899,6 +902,9 @@ exists or setup the property manually. For example like this:
             <property name="deploy.on.save" value="false"/>
         </ant>
         <ant antfile="${project.LoginserviceRemoteInterfaces}/build.xml" inheritall="false" target="jar">
+            <property name="deploy.on.save" value="false"/>
+        </ant>
+        <ant antfile="${project.MusicserviceEntities}/build.xml" inheritall="false" target="jar">
             <property name="deploy.on.save" value="false"/>
         </ant>
         <ant antfile="${project.MusicserviceRemoteInterfaces}/build.xml" inheritall="false" target="jar">
@@ -1052,6 +1058,7 @@ exists or setup the property manually. For example like this:
         <copyfiles files="${reference.LoadbalancerRemoteInterfaces.jar}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${reference.CommentserviceRemoteInterfaces.jar}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${reference.MusicserviceRemoteInterfaces.jar}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${reference.MusicserviceEntities.jar}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
         <mkdir dir="${build.web.dir}/META-INF"/>
         <manifest file="${build.web.dir}/META-INF/MANIFEST.MF" mode="update"/>
     </target>
@@ -1060,6 +1067,7 @@ exists or setup the property manually. For example like this:
         <copyfiles files="${reference.LoadbalancerRemoteInterfaces.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${reference.CommentserviceRemoteInterfaces.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${reference.MusicserviceRemoteInterfaces.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copyfiles files="${reference.MusicserviceEntities.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
     </target>
     <target depends="init" if="dist.ear.dir" name="-clean-webinf-lib">
         <delete dir="${build.web.dir}/WEB-INF/lib"/>
@@ -1476,6 +1484,7 @@ exists or setup the property manually. For example like this:
         <ant antfile="${project.CommentserviceRemoteInterfaces}/build.xml" inheritall="false" target="clean"/>
         <ant antfile="${project.LoadbalancerRemoteInterfaces}/build.xml" inheritall="false" target="clean"/>
         <ant antfile="${project.LoginserviceRemoteInterfaces}/build.xml" inheritall="false" target="clean"/>
+        <ant antfile="${project.MusicserviceEntities}/build.xml" inheritall="false" target="clean"/>
         <ant antfile="${project.MusicserviceRemoteInterfaces}/build.xml" inheritall="false" target="clean"/>
     </target>
     <target depends="init" name="do-clean">

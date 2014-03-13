@@ -9,7 +9,8 @@ package fh.ostfalia.projekt2014.musicservice.dao;
 import fh.ostfalia.projekt2014.musicservice.entities.Mp3ArtistBean;
 import fh.ostfalia.projekt2014.musicservice.entities.Mp3Bean;
 import fh.ostfalia.projekt2014.musicservice.util.Id3Tag;
-import fh.ostfalia.projekt2014.musicserviceremoteinterface.entities.Mp3;
+import fh.ostfalia.projekt2014.musicserviceentities.Mp3;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;

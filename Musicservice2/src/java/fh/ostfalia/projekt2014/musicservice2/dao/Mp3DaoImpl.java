@@ -9,7 +9,7 @@ package fh.ostfalia.projekt2014.musicservice2.dao;
 import fh.ostfalia.projekt2014.musicservice2.entities.Mp3ArtistBean;
 import fh.ostfalia.projekt2014.musicservice2.entities.Mp3Bean;
 import fh.ostfalia.projekt2014.musicservice2.util.Id3Tag;
-import fh.ostfalia.projekt2014.musicservice2remoteinterface.entities.Mp3;
+import fh.ostfalia.projekt2014.musicserviceentities.Mp3;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
@@ -126,6 +126,7 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
      * @param mp3_id
      * @return Mp3Bean
      */
+    
     @Override
     public Mp3Bean getMp3(int mp3_id) {
         return em.find(Mp3Bean.class, mp3_id);

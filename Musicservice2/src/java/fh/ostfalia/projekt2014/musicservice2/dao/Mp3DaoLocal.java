@@ -5,7 +5,8 @@
 package fh.ostfalia.projekt2014.musicservice2.dao;
 
 
-import fh.ostfalia.projekt2014.musicservice2remoteinterface.entities.Mp3;
+
+import fh.ostfalia.projekt2014.musicserviceentities.Mp3;
 import java.util.List;
 import javax.ejb.Local;
 

@@ -5,8 +5,7 @@
 package fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.interfaces;
 
 import fh.ostfalia.projekt2014.commentserviceremoteinterfaces.entities.Comment;
-import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.entities.LoadbalancerResult;
-import fh.ostfalia.projekt2014.musicserviceremoteinterface.entities.Mp3;
+import fh.ostfalia.projekt2014.musicserviceentities.Mp3;
 import java.util.List;
 import javax.ejb.Remote;
 
@@ -17,7 +16,7 @@ import javax.ejb.Remote;
 @Remote
 public interface Loadbalancer {
     
-    public void whoAmI();
+
     public List<Mp3> getAllMp3s();
     public Mp3 getMp3(int mp3Id); 
     public byte[] getMp3File(int mp3Id);

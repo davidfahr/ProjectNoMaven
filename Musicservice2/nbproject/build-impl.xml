@@ -812,12 +812,18 @@ exists or setup the property manually. For example like this:
         <ant antfile="${project.Musicservice2RemoteInterfaces}/build.xml" inheritall="false" target="jar">
             <property name="deploy.on.save" value="false"/>
         </ant>
+        <ant antfile="${project.MusicserviceEntities}/build.xml" inheritall="false" target="jar">
+            <property name="deploy.on.save" value="false"/>
+        </ant>
     </target>
     <target depends="init" if="dist.ear.dir" name="-deps-ear-jar" unless="no.deps">
         <ant antfile="${project.CommentserviceRemoteInterfaces}/build.xml" inheritall="false" target="jar">
             <property name="deploy.on.save" value="false"/>
         </ant>
         <ant antfile="${project.Musicservice2RemoteInterfaces}/build.xml" inheritall="false" target="jar">
+            <property name="deploy.on.save" value="false"/>
+        </ant>
+        <ant antfile="${project.MusicserviceEntities}/build.xml" inheritall="false" target="jar">
             <property name="deploy.on.save" value="false"/>
         </ant>
     </target>
@@ -834,22 +840,26 @@ exists or setup the property manually. For example like this:
     <target if="is.jars.in.ejbjar" name="-library-inclusion-in-archive-by-user">
         <copyfiles files="${reference.CommentserviceRemoteInterfaces.jar}" todir="${build.classes.dir}"/>
         <copyfiles files="${file.reference.jid3lib.jar}" todir="${build.classes.dir}"/>
+        <copyfiles files="${reference.MusicserviceEntities.jar}" todir="${build.classes.dir}"/>
         <copyfiles files="${reference.Musicservice2RemoteInterfaces.jar}" todir="${build.classes.dir}"/>
     </target>
     <target if="is.server.weblogic" name="-library-inclusion-in-archive-weblogic">
         <basename file="${reference.CommentserviceRemoteInterfaces.jar}" property="manifest.reference.CommentserviceRemoteInterfaces.jar"/>
         <basename file="${file.reference.jid3lib.jar}" property="manifest.file.reference.jid3lib.jar"/>
+        <basename file="${reference.MusicserviceEntities.jar}" property="manifest.reference.MusicserviceEntities.jar"/>
         <basename file="${reference.Musicservice2RemoteInterfaces.jar}" property="manifest.reference.Musicservice2RemoteInterfaces.jar"/>
         <manifest file="${build.ear.classes.dir}/META-INF/MANIFEST.MF" mode="update">
-            <attribute name="Extension-List" value="jar-1 jar-2 jar-3 "/>
+            <attribute name="Extension-List" value="jar-1 jar-2 jar-3 jar-4 "/>
             <attribute name="jar-1-Extension-Name" value="${manifest.reference.CommentserviceRemoteInterfaces.jar}"/>
             <attribute name="jar-2-Extension-Name" value="${manifest.file.reference.jid3lib.jar}"/>
-            <attribute name="jar-3-Extension-Name" value="${manifest.reference.Musicservice2RemoteInterfaces.jar}"/>
+            <attribute name="jar-3-Extension-Name" value="${manifest.reference.MusicserviceEntities.jar}"/>
+            <attribute name="jar-4-Extension-Name" value="${manifest.reference.Musicservice2RemoteInterfaces.jar}"/>
         </manifest>
     </target>
     <target depends="compile" name="library-inclusion-in-manifest">
         <copyfiles files="${reference.CommentserviceRemoteInterfaces.jar}" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${file.reference.jid3lib.jar}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${reference.MusicserviceEntities.jar}" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${reference.Musicservice2RemoteInterfaces.jar}" todir="${dist.ear.dir}/lib"/>
         <manifest file="${build.ear.classes.dir}/META-INF/MANIFEST.MF" mode="update"/>
     </target>
@@ -1236,6 +1246,7 @@ exists or setup the property manually. For example like this:
     <target depends="init" name="deps-clean" unless="no.deps">
         <ant antfile="${project.CommentserviceRemoteInterfaces}/build.xml" inheritall="false" target="clean"/>
         <ant antfile="${project.Musicservice2RemoteInterfaces}/build.xml" inheritall="false" target="clean"/>
+        <ant antfile="${project.MusicserviceEntities}/build.xml" inheritall="false" target="clean"/>
     </target>
     <target depends="init" name="-do-clean">
         <delete dir="${build.dir}"/>

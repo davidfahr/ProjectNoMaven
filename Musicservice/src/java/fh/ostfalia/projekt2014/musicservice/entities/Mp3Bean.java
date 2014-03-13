@@ -5,7 +5,8 @@
  */
 package fh.ostfalia.projekt2014.musicservice.entities;
 
-import fh.ostfalia.projekt2014.musicserviceremoteinterface.entities.Mp3;
+
+import fh.ostfalia.projekt2014.musicserviceentities.Mp3;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

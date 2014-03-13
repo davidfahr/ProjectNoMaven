@@ -9,7 +9,8 @@ import fh.ostfalia.projekt2014.beanmanager.RemoteManagedBean;
 import fh.ostfalia.projekt2014.commentserviceremoteinterfaces.entities.Comment;
 import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.entities.LoadbalancerResult;
 import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.interfaces.Loadbalancer;
-import fh.ostfalia.projekt2014.musicserviceremoteinterface.entities.Mp3;
+import fh.ostfalia.projekt2014.musicserviceentities.Mp3;
+
 
 
 
@@ -113,8 +114,5 @@ public class LoadbalancerMBean extends RemoteManagedBean {
         this.id = id;
     }
     
-    public void whoAmI(){
-        loadbalancerRemoteBean.whoAmI();
-    }
 
 }

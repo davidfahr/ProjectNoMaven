@@ -8,7 +8,7 @@ package fh.ostfalia.projekt2014.musicservice2remoteinterface.interfaces;
 
 
 import fh.ostfalia.projekt2014.commentserviceremoteinterfaces.entities.Comment;
-import fh.ostfalia.projekt2014.musicservice2remoteinterface.entities.Mp3;
+import fh.ostfalia.projekt2014.musicserviceentities.Mp3;
 import java.util.List;
 import javax.ejb.Remote;
 

@@ -8,8 +8,8 @@ package fh.ostfalia.projekt2014.loadbalancer.remote;
 
 import fh.ostfalia.projekt2014.beanmanager.RemoteBean;
 import fh.ostfalia.projekt2014.commentserviceremoteinterfaces.entities.Comment;
-import fh.ostfalia.projekt2014.musicservice2remoteinterface.entities.Mp3;
 import fh.ostfalia.projekt2014.musicservice2remoteinterface.interfaces.Musicservice;
+import fh.ostfalia.projekt2014.musicserviceentities.Mp3;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -20,7 +20,7 @@ import javax.ejb.Stateless;
  * @author Yannick
  */
 @Stateless
-public class Musicservice2Remote extends RemoteBean implements Serializable{
+public class Musicservice2Remote extends RemoteBean implements Serializable, IMusicserviceRemote{
     private static final long serialVersionUID = 1L;
     private Musicservice musicservice1Bean;
 
@@ -92,4 +92,6 @@ public class Musicservice2Remote extends RemoteBean implements Serializable{
     public void addComment(String text, long id, String identfier) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    
 }

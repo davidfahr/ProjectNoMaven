@@ -7,6 +7,7 @@
             <minimum-ant-version>1.6.5</minimum-ant-version>
             <included-library dirs="200">reference.CommentserviceRemoteInterfaces.jar</included-library>
             <included-library dirs="200">file.reference.jid3lib.jar</included-library>
+            <included-library dirs="200">reference.MusicserviceEntities.jar</included-library>
             <included-library dirs="200">reference.Musicservice2RemoteInterfaces.jar</included-library>
             <source-roots>
                 <root id="src.dir"/>
@@ -29,6 +30,14 @@
             </reference>
             <reference>
                 <foreign-project>Musicservice2RemoteInterfaces</foreign-project>
+                <artifact-type>jar</artifact-type>
+                <script>build.xml</script>
+                <target>jar</target>
+                <clean-target>clean</clean-target>
+                <id>jar</id>
+            </reference>
+            <reference>
+                <foreign-project>MusicserviceEntities</foreign-project>
                 <artifact-type>jar</artifact-type>
                 <script>build.xml</script>
                 <target>jar</target>

@@ -4,14 +4,11 @@
  */
 package fh.ostfalia.projekt2014.loadbalancer;
 
-import fh.ostfalia.projekt2014.beanmanager.RemoteBean;
 import fh.ostfalia.projekt2014.loadbalancer.entities.LoadbalancerResultBean;
 import fh.ostfalia.projekt2014.loadbalancer.remote.Musicservice1Remote;
 import fh.ostfalia.projekt2014.loadbalancer.remote.Musicservice2Remote;
 import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.entities.LoadbalancerResult;
-import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.interfaces.Loadbalancer;
 import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.interfaces.LoadbalancerSimulation;
-import fh.ostfalia.projekt2014.musicserviceremoteinterface.interfaces.Musicservice;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 import javax.annotation.PostConstruct;

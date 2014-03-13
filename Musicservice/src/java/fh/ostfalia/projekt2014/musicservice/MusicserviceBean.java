@@ -11,8 +11,9 @@ import fh.ostfalia.projekt2014.musicservice.commentservice.CommentserviceMBean;
 import fh.ostfalia.projekt2014.commentserviceremoteinterfaces.entities.Comment;
 import fh.ostfalia.projekt2014.musicservice.dao.Mp3DaoLocal;
 import fh.ostfalia.projekt2014.musicservice.entities.Mp3ArtistBean;
+import fh.ostfalia.projekt2014.musicserviceentities.Mp3;
 import fh.ostfalia.projekt2014.musicserviceremoteinterface.interfaces.Musicservice;
-import fh.ostfalia.projekt2014.musicserviceremoteinterface.entities.Mp3;
+
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
