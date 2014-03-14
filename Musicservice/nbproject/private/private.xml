@@ -18,8 +18,8 @@
         <group name="ProjektNoMaven">
             <file>file:/C:/Users/KingDCB/Documents/GitHub/ProjectNoMaven/Musicservice/src/java/fh/ostfalia/projekt2014/musicservice/dao/Mp3DBSyncBean.java</file>
             <file>file:/C:/Users/KingDCB/Documents/GitHub/ProjectNoMaven/Musicservice/src/java/fh/ostfalia/projekt2014/musicservice/entities/Mp3ArtistBean.java</file>
-            <file>file:/C:/Users/KingDCB/Documents/GitHub/ProjectNoMaven/Musicservice/src/java/fh/ostfalia/projekt2014/musicservice/dao/Mp3DaoImpl.java</file>
             <file>file:/C:/Users/KingDCB/Documents/GitHub/ProjectNoMaven/Musicservice/setup/glassfish-resources.xml</file>
+            <file>file:/C:/Users/KingDCB/Documents/GitHub/ProjectNoMaven/Musicservice/src/java/fh/ostfalia/projekt2014/musicservice/dao/Mp3DaoImpl.java</file>
             <file>file:/C:/Users/KingDCB/Documents/GitHub/ProjectNoMaven/Musicservice/src/java/fh/ostfalia/projekt2014/musicservice/dao/Mp3ArtistDao.java</file>
             <file>file:/C:/Users/KingDCB/Documents/GitHub/ProjectNoMaven/Musicservice/src/conf/persistence.xml</file>
             <file>file:/C:/Users/KingDCB/Documents/GitHub/ProjectNoMaven/Musicservice/src/java/fh/ostfalia/projekt2014/musicservice/entities/Mp3Bean.java</file>
