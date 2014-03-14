@@ -25,12 +25,13 @@ import javax.persistence.Query;
 import javax.servlet.http.HttpServletResponse;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.Stateful;
 
 /**
  *
  * @author David
  */
-@Stateless
+@Stateful
 public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
     @EJB
     private Mp3DBSyncBean mp3Sync;
@@ -250,7 +251,7 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
          * Hilfe der Methode getFileName und dem Parameter part (welcher aus der
          * Komponente im Webfrontend mitgeliefert wird) erstellt
          */
-        File file = new File("C:\\Users\\KingDCB\\Documents\\GitHub\\ProjectNoMaven\\Musicservice2\\Uploads\\" + getFileName(part));
+        File file = new File("C:\\Users\\KingDCB\\Documents\\GitHub\\ProjectNoMaven\\Musicservice\\Uploads\\" + getFileName(part));
 
         /**
          * Initialisierung der Mp3Bean

@@ -25,12 +25,13 @@ import javax.persistence.Query;
 import javax.servlet.http.HttpServletResponse;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.Stateful;
 
 /**
  *
  * @author David
  */
-@Stateless
+@Stateful
 public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
 
     @EJB
