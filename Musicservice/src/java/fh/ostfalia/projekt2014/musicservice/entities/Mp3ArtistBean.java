@@ -51,7 +51,7 @@ public class Mp3ArtistBean implements Serializable {
     
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     @Column(name = "artist_id", unique = true, nullable = false)
     public int getArtistId() {
         return artistId;
