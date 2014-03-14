@@ -63,7 +63,7 @@ public class LoadbalancerMBean extends RemoteManagedBean {
 
 
     public Mp3 getMp3(int mp3Id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return loadbalancerRemoteBean.getMp3(mp3Id);
     }
 
     public void upload() {
@@ -95,8 +95,11 @@ public class LoadbalancerMBean extends RemoteManagedBean {
     }
 
     public void addComment(String identfier) {
-        System.out.println("WEBSERVICE");
-        //musicserviceBeanWebserver.addComment(commentText, id, identfier);
+        loadbalancerRemoteBean.addComment(commentText, id, identfier);
+    }
+    
+     public String getIdParameter(){
+       return loadbalancerRemoteBean.getIdParameter();
     }
 
     public String getCommentText() {
@@ -115,5 +118,6 @@ public class LoadbalancerMBean extends RemoteManagedBean {
         this.id = id;
     }
     
+
 
 }

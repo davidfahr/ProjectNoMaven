@@ -5,7 +5,6 @@
  */
 package fh.ostfalia.projekt2014.musicservice.dao;
 
-
 import fh.ostfalia.projekt2014.musicservice.entities.Mp3ArtistBean;
 import fh.ostfalia.projekt2014.musicservice.entities.Mp3Bean;
 import fh.ostfalia.projekt2014.musicservice.util.Id3Tag;
@@ -33,6 +32,7 @@ import java.util.logging.Logger;
  */
 @Stateless
 public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
+
     @EJB
     private Mp3DBSyncBean mp3Sync;
     @EJB
@@ -61,14 +61,15 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
         }
 
     }
-    
+
     /**
-     * Überprüft ob schon einen Mp3 Eintrag mit gleichen Titel in der DB existiert
-     * Dazu wird die NamedQuery getMp3ByName aus der Mp3Bean verwendet
-     * Wenn keiner existiert ist der returnwert false
-     * Existiert einer ist der returnwert true
+     * Überprüft ob schon einen Mp3 Eintrag mit gleichen Titel in der DB
+     * existiert Dazu wird die NamedQuery getMp3ByName aus der Mp3Bean verwendet
+     * Wenn keiner existiert ist der returnwert false Existiert einer ist der
+     * returnwert true
+     *
      * @param mp3Bean
-     * @return 
+     * @return
      */
     private boolean checkMp3(Mp3Bean mp3Bean) {
         boolean existAlready = false;
@@ -269,39 +270,37 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
         System.out.println("PERSIST IN Mp3DAOImpl!!!!");
         this.persistMp3(mp3Bean);
         /*
-        1. Benachrichtigung über Änderung --> notifyOtherMusicservice()
-        2. Aufruf der anderen Upload-Methode (des anderen Musikdienstes)
-        3. Anderer Musikdienst ruft persisMp3 auf
-        */
+         1. Benachrichtigung über Änderung --> notifyOtherMusicservice()
+         2. Aufruf der anderen Upload-Methode (des anderen Musikdienstes)
+         3. Anderer Musikdienst ruft persisMp3 auf
+         */
         mp3Sync.update(mp3Bean);
-  
-        
+
     }
-  
-    
-       /**
-     * Ruft die update-Methode auf dem Musicservice auf, der 
-     * die Daten in seiner eigenen Daten auf den aktuellen Stand synchronisiert
-     * @param mp3 
+
+    /**
+     * Ruft die update-Methode auf dem Musicservice auf, der die Daten in seiner
+     * eigenen Daten auf den aktuellen Stand synchronisiert
+     *
+     * @param mp3
      */
-    
     @Override
     public void update(Mp3 mp3) {
-         System.out.println("MP3DaoImpl.update(mp3) ---> in M1 ");
-         
+        System.out.println("MP3DaoImpl.update(mp3) ---> in M1 ");
+
         Mp3Bean mp3Bean = new Mp3Bean();
         mp3Bean.setMp3File(mp3.getMp3File());
         mp3Bean.setMp3Id(mp3.getMp3Id());
         mp3Bean.setMp3Title(mp3.getMp3Title());
-       
+
         Mp3ArtistBean mp3Artist = new Mp3ArtistBean();
         mp3Artist.setArtistId(mp3.getArtistId());
         mp3Artist.setArtistName(mp3.getArtistName());
-    
-         mp3Bean.setMp3ArtistBean(mp3Artist);
+
+        mp3Bean.setMp3ArtistBean(mp3Artist);
         em.persist(mp3Bean);
     }
-    
+
     /**
      * Wertet den String part aus, welcher aus dem Webfrontend mitgeschickt wird
      * Sinn ist es, den Namen der Datei herauszufinden, um diesen in der Upload
@@ -330,5 +329,5 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
         fileName = part.substring(startPos, lastPos);
         System.out.println("FILENAME: " + fileName);
         return fileName;
-    }   
+    }
 }
