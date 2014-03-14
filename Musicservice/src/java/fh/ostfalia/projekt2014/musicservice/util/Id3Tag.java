@@ -34,7 +34,7 @@ public class Id3Tag implements Serializable{
     public Id3Tag() {
         mp3 = new Mp3Bean();
         mp3Artist = new Mp3ArtistBean();
-        uploadDir = new File("C:\\Users\\Yannick\\Documents\\GitHub\\ProjectNoMaven\\Musicservice\\Uploads\\");
+        uploadDir = new File("C:\\Users\\KingDCB\\Documents\\GitHub\\ProjectNoMaven\\Musicservice\\Uploads\\");
     }
 
     public Id3Tag(String customUploadPath) {

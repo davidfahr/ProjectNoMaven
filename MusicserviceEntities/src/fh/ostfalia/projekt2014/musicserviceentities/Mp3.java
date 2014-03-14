@@ -19,5 +19,6 @@ public interface Mp3 {
     public String getArtistName();
     public int getMp3Id();
     public String getMp3Title();
+    public byte[] getMp3File();
 
 }

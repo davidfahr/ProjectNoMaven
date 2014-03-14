@@ -250,7 +250,7 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
          * Hilfe der Methode getFileName und dem Parameter part (welcher aus der
          * Komponente im Webfrontend mitgeliefert wird) erstellt
          */
-        File file = new File("C:\\Users\\Yannick\\Documents\\GitHub\\ProjectNoMaven\\Musicservice\\Uploads\\" + getFileName(part));
+        File file = new File("C:\\Users\\KingDCB\\Documents\\GitHub\\ProjectNoMaven\\Musicservice\\Uploads\\" + getFileName(part));
 
         /**
          * Initialisierung der Mp3Bean
@@ -278,7 +278,8 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
         
     }
   
-    /**
+    
+       /**
      * Ruft die update-Methode auf dem Musicservice auf, der 
      * die Daten in seiner eigenen Daten auf den aktuellen Stand synchronisiert
      * @param mp3 
@@ -287,8 +288,18 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
     @Override
     public void update(Mp3 mp3) {
          System.out.println("MP3DaoImpl.update(mp3) ---> in M1 ");
-         Mp3Bean mp3Bean = (Mp3Bean) mp3;
-        this.persistMp3(mp3Bean);
+         
+        Mp3Bean mp3Bean = new Mp3Bean();
+        mp3Bean.setMp3File(mp3.getMp3File());
+        mp3Bean.setMp3Id(mp3.getMp3Id());
+        mp3Bean.setMp3Title(mp3.getMp3Title());
+       
+        Mp3ArtistBean mp3Artist = new Mp3ArtistBean();
+        mp3Artist.setArtistId(mp3.getArtistId());
+        mp3Artist.setArtistName(mp3.getArtistName());
+    
+         mp3Bean.setMp3ArtistBean(mp3Artist);
+        em.persist(mp3Bean);
     }
     
     /**
