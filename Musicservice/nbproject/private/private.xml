@@ -6,22 +6,18 @@
             <file>file:/C:/Users/Mettbroetchen/Documents/NetBeansProjects/ProjectNoMaven/Musicservice/src/java/fh/ostfalia/projekt2014/musicservice/MusicserviceBean.java</file>
             <file>file:/C:/Users/Mettbroetchen/Documents/NetBeansProjects/ProjectNoMaven/Musicservice/src/java/fh/ostfalia/projekt2014/commentservice/CommentserviceMBean.java</file>
         </group>
-        <group name="ProjektNoMaven">
-            <file>file:/C:/Users/KingDCB/Documents/GitHub/ProjectNoMaven/Musicservice/src/java/fh/ostfalia/projekt2014/musicservice/dao/Mp3DBSyncBean.java</file>
-            <file>file:/C:/Users/KingDCB/Documents/GitHub/ProjectNoMaven/Musicservice/src/java/fh/ostfalia/projekt2014/musicservice/entities/Mp3ArtistBean.java</file>
-            <file>file:/C:/Users/KingDCB/Documents/GitHub/ProjectNoMaven/Musicservice/setup/glassfish-resources.xml</file>
-            <file>file:/C:/Users/KingDCB/Documents/GitHub/ProjectNoMaven/Musicservice/src/java/fh/ostfalia/projekt2014/musicservice/dao/Mp3DaoImpl.java</file>
-            <file>file:/C:/Users/KingDCB/Documents/GitHub/ProjectNoMaven/Musicservice/src/java/fh/ostfalia/projekt2014/musicservice/dao/Mp3ArtistDao.java</file>
-            <file>file:/C:/Users/KingDCB/Documents/GitHub/ProjectNoMaven/Musicservice/src/conf/persistence.xml</file>
-            <file>file:/C:/Users/KingDCB/Documents/GitHub/ProjectNoMaven/Musicservice/src/java/fh/ostfalia/projekt2014/musicservice/entities/Mp3Bean.java</file>
-            <file>file:/C:/Users/KingDCB/Documents/GitHub/ProjectNoMaven/Musicservice/src/java/fh/ostfalia/projekt2014/musicservice/MusicserviceBean.java</file>
-            <file>file:/C:/Users/KingDCB/Documents/GitHub/ProjectNoMaven/Musicservice/src/java/fh/ostfalia/projekt2014/musicservice/util/Id3Tag.java</file>
-        </group>
         <group name="commentservice11.03.2014"/>
         <group name="commentservice2_11.03.2014">
             <file>file:/C:/Users/Yannick/Documents/GitHub/ProjectNoMaven/Musicservice/nbproject/build-impl.xml</file>
             <file>file:/C:/Users/Yannick/Documents/GitHub/ProjectNoMaven/Musicservice/src/java/fh/ostfalia/projekt2014/musicservice/entities/Mp3ArtistBean.java</file>
             <file>file:/C:/Users/Yannick/Documents/GitHub/ProjectNoMaven/Musicservice/src/java/fh/ostfalia/projekt2014/musicservice/entities/Mp3Bean.java</file>
+        </group>
+        <group name="ProjektNoMaven">
+            <file>file:/C:/Users/KingDCB/Documents/GitHub/ProjectNoMaven/Musicservice/src/java/fh/ostfalia/projekt2014/musicservice/dao/Mp3DBSyncBean.java</file>
+            <file>file:/C:/Users/KingDCB/Documents/GitHub/ProjectNoMaven/Musicservice/src/java/fh/ostfalia/projekt2014/musicservice/dao/Mp3DaoImpl.java</file>
+            <file>file:/C:/Users/KingDCB/Documents/GitHub/ProjectNoMaven/Musicservice/src/java/fh/ostfalia/projekt2014/musicservice/entities/Mp3Bean.java</file>
+            <file>file:/C:/Users/KingDCB/Documents/GitHub/ProjectNoMaven/Musicservice/src/java/fh/ostfalia/projekt2014/musicservice/MusicserviceBean.java</file>
+            <file>file:/C:/Users/KingDCB/Documents/GitHub/ProjectNoMaven/Musicservice/src/java/fh/ostfalia/projekt2014/musicservice/util/Id3Tag.java</file>
         </group>
     </open-files>
 </project-private>

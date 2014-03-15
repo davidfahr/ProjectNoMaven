@@ -30,7 +30,7 @@ public class CommentBean implements Serializable, Comment{
     private static final long serialVersionUID = 1L;
     @Id
     @Column(name = "c_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private Long cId;
     
 

@@ -58,7 +58,7 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
     public void persistMp3(Mp3Bean mp3Bean) {
         if (checkMp3(mp3Bean) == false) {
             mp3Bean = checkArtist(mp3Bean);
-            em.persist(mp3Bean);
+            em.merge(mp3Bean);
         }
 
     }
@@ -303,7 +303,7 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
 
         if (checkMp3(mp3Bean) == false) {
             mp3Bean = checkArtist(mp3Bean);
-            em.persist(mp3Bean);
+            em.merge(mp3Bean);
         }
 
     }
