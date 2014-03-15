@@ -9,9 +9,17 @@
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>fh.ostfalia.projekt2014.loginservice.LoginServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -19,7 +27,7 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>faces/LoginPages/index.xhtml</welcome-file>
+        <welcome-file>faces/LoginServlet</welcome-file>
     </welcome-file-list>
     <security-constraint>
         <display-name>AdminConstraint</display-name>
@@ -70,5 +78,4 @@
         <description/>
         <role-name>admin</role-name>
     </security-role>
-
 </web-app>

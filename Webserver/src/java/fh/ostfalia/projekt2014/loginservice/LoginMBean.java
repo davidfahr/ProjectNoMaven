@@ -7,11 +7,14 @@ package fh.ostfalia.projekt2014.loginservice;
 import fh.ostfalia.projekt2014.beanmanager.RemoteManagedBean;
 import fh.ostfalia.projekt2014.loginserviceremoteinterfaces.interfaces.Login;
 import java.security.Principal;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -39,8 +42,7 @@ public class LoginMBean extends RemoteManagedBean {
         FacesContext fc = FacesContext.getCurrentInstance();
         HttpServletRequest request;
         request = (HttpServletRequest) fc.getExternalContext().getRequest();
-        System.out.println(username);
-         System.out.println(password);
+       
         try {
             System.out.println("Login wird gestartet ... ");
             request.login(username, password);
@@ -61,18 +63,42 @@ public class LoginMBean extends RemoteManagedBean {
             return "error";
         }
     }
-
-    public boolean logout() {
+    
+    public String getStatus(){
         FacesContext fc = FacesContext.getCurrentInstance();
-        HttpServletRequest request = (HttpServletRequest) fc.getExternalContext().getRequest();
-        try {
-            request.logout();
-            return true;
-        } catch (ServletException e) {
-
-            fc.addMessage(null, new FacesMessage("Logout failed."));
-            return false;
+        //Hole aktuelle Session, erzeuge aber keine neue Session, falls keine existiert (-> daher getSession(false)
+        Object session = fc.getExternalContext().getSession(false);
+        System.out.println(session.toString());
+        if(session==null){
+            return "login";
         }
+        else{
+           return "MusicservicePages/index"; 
+        }
+    }
+
+    public String logout() {
+        FacesContext fc = FacesContext.getCurrentInstance();
+        //Hole aktuelle Session, erzeuge aber keine neue Session, falls keine existiert (-> daher getSession(false)
+        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+        HttpServletRequest request;
+        request = (HttpServletRequest) fc.getExternalContext().getRequest();
+        
+        if (session != null) {
+            try {
+                
+                session.invalidate();
+                request.logout();
+                
+            } catch (ServletException ex) {
+                Logger.getLogger(LoginMBean.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
+      
+        fc.addMessage(username, new FacesMessage(username + " wurde erfolgreich abgemeldet."));
+        return "/LoginPages/login.xhtml";
+
     }
 
     public String addUser() {

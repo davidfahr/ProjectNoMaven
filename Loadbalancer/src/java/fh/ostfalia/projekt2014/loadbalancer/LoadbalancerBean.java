@@ -54,7 +54,7 @@ public class LoadbalancerBean implements Serializable, Loadbalancer {
     * Wenn maxRequests erreicht ist, wird die nächste Anfrage auf den anderen Server weitergeletitet
     * Dies wird durch die Methode assignMusicservice() geschaltet.
     */
-    private int maxRequests = (int) ((Math.random() * 20) + 1);
+    private int maxRequests = (int) ((Math.random() * 2) + 1);
     private int requests;
 
     /**
@@ -67,7 +67,7 @@ public class LoadbalancerBean implements Serializable, Loadbalancer {
               /**
              * Neue Zufallsn ummer generieren
              */
-            maxRequests = (int) ((Math.random() * 20) + 1);
+            maxRequests = (int) ((Math.random() * 2) + 1);
             requests = 0;
              /**
              * Prüfen ob schon ein lookup gemacht wurde Wenn nicht, dann lookup

@@ -252,7 +252,7 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
          * Hilfe der Methode getFileName und dem Parameter part (welcher aus der
          * Komponente im Webfrontend mitgeliefert wird) erstellt
          */
-        File file = new File("C:\\Users\\KingDCB\\Documents\\GitHub\\ProjectNoMaven\\Musicservice\\Uploads\\" + getFileName(part));
+        File file = new File("C:\\Users\\Yannick\\Documents\\GitHub\\ProjectNoMaven\\Musicservice\\Uploads\\" + getFileName(part));
 
         /**
          * Initialisierung der Mp3Bean
