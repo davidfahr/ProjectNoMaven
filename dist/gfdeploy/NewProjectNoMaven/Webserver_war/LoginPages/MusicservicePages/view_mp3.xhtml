@@ -17,7 +17,7 @@ and open the template in the editor.
     <f:metadata>
         <f:viewParam name="id" value="#{LoadbalancerMBean.id}" />
     </f:metadata>
-    
+
     <h:head>
         <title>${mp3.mp3Title}</title>
     </h:head>
@@ -32,12 +32,14 @@ and open the template in the editor.
             <h:commandButton action="${LoadbalancerMBean.addComment(identifier)}" value="Post Comment"/> 
             <br/>
         </h:form>
-        
-     
-        <jsp:forEach items="${LoadbalancerMBean.getAllMp3CommentsById(id)}" var="comment">
-             <h:outputLabel value="#{comment.getcText()}"/>
-                
-         </jsp:forEach>
+        <h3>Comments: </h3>
+        <br/>
+        <jsp:if test="${!LoadbalancerMBean.getAllMp3CommentsById(id).isEmpty()}"> 
+            <jsp:forEach items="${LoadbalancerMBean.getAllMp3CommentsById(id)}" var="comment">
+                <h:outputLabel value="#{comment.getcText()}"/>
+                <br/>
+            </jsp:forEach>
+        </jsp:if>
         <h:link outcome="index" value="Home"/>
     </h:body>
 </html>

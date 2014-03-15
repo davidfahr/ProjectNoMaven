@@ -6,6 +6,7 @@
 package fh.ostfalia.projekt2014.loadbalancer;
 
 import fh.ostfalia.projekt2014.beanmanager.RemoteBean;
+import fh.ostfalia.projekt2014.commentserviceremoteinterfaces.entities.Comment;
 import fh.ostfalia.projekt2014.loadbalancer.remote.IMusicserviceRemote;
 import fh.ostfalia.projekt2014.loadbalancer.remote.Musicservice1Remote;
 import fh.ostfalia.projekt2014.loadbalancer.remote.Musicservice2Remote;
@@ -67,7 +68,7 @@ public class LoadbalancerBean implements Serializable, Loadbalancer {
               /**
              * Neue Zufallsn ummer generieren
              */
-            maxRequests = (int) ((Math.random() * 2) + 1);
+            maxRequests = (int) ((Math.random() * 10) + 1);
             requests = 0;
              /**
              * Prüfen ob schon ein lookup gemacht wurde Wenn nicht, dann lookup
@@ -169,7 +170,8 @@ public class LoadbalancerBean implements Serializable, Loadbalancer {
     }
 
     
-    public List<fh.ostfalia.projekt2014.commentserviceremoteinterfaces.entities.Comment> getAllArtistCommentsById(int id) {
+    @Override
+    public List<Comment> getAllArtistCommentsById(int id) {
        assignMusicservice();
         if(switchServer==true){
            return m1.getAllArtistCommentsById(id);
@@ -180,7 +182,8 @@ public class LoadbalancerBean implements Serializable, Loadbalancer {
     }
 
    
-    public List<fh.ostfalia.projekt2014.commentserviceremoteinterfaces.entities.Comment> getAllMp3CommentsById(int id) {
+    @Override
+    public List<Comment> getAllMp3CommentsById(int id) {
         assignMusicservice();
         if(switchServer==true){
            return m1.getAllMp3CommentsById(id);
@@ -198,6 +201,16 @@ public class LoadbalancerBean implements Serializable, Loadbalancer {
         }
         else{
             m1.addComment(text, id, identfier);
+        }
+    }
+    
+    public Mp3 getMp3ArtistByArtistId(int mp3ArtistId){
+         assignMusicservice();
+        if(switchServer==true){
+            return m1.getMp3ArtistByArtistId(mp3ArtistId);
+        }
+        else{
+            return m2.getMp3ArtistByArtistId(mp3ArtistId);
         }
     }
 }

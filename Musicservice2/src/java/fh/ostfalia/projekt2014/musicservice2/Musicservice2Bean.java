@@ -79,7 +79,10 @@ public class Musicservice2Bean implements Musicservice, Serializable {
      return null;
      }
      */
-    
+    @Override
+    public Mp3 getMp3ArtistByArtistId(int mp3ArtistId) {
+        return mp3Dao.getMp3ArtistByArtistId(mp3ArtistId);
+    }
     
     @Override
     public List<Comment> getAllArtistCommentsById(int id) {

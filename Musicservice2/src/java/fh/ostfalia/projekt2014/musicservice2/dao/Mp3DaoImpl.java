@@ -5,7 +5,6 @@
  */
 package fh.ostfalia.projekt2014.musicservice2.dao;
 
-
 import fh.ostfalia.projekt2014.musicservice2.entities.Mp3ArtistBean;
 import fh.ostfalia.projekt2014.musicservice2.entities.Mp3Bean;
 import fh.ostfalia.projekt2014.musicservice2.util.Id3Tag;
@@ -17,7 +16,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.ejb.Stateless;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -33,6 +31,7 @@ import javax.ejb.Stateful;
  */
 @Stateful
 public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
+
     @EJB
     private Mp3DBSyncBean mp3Sync;
     @EJB
@@ -61,14 +60,15 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
         }
 
     }
-    
+
     /**
-     * Überprüft ob schon einen Mp3 Eintrag mit gleichen Titel in der DB existiert
-     * Dazu wird die NamedQuery getMp3ByName aus der Mp3Bean verwendet
-     * Wenn keiner existiert ist der returnwert false
-     * Existiert einer ist der returnwert true
+     * Überprüft ob schon einen Mp3 Eintrag mit gleichen Titel in der DB
+     * existiert Dazu wird die NamedQuery getMp3ByName aus der Mp3Bean verwendet
+     * Wenn keiner existiert ist der returnwert false Existiert einer ist der
+     * returnwert true
+     *
      * @param mp3Bean
-     * @return 
+     * @return
      */
     private boolean checkMp3(Mp3Bean mp3Bean) {
         boolean existAlready = false;
@@ -128,7 +128,6 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
      * @param mp3_id
      * @return Mp3Bean
      */
-    
     @Override
     public Mp3Bean getMp3(int mp3_id) {
         return em.find(Mp3Bean.class, mp3_id);
@@ -142,6 +141,12 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
         Mp3 mp3Bean = em.find(Mp3.class, mp3Id);
 
         return mp3Bean.getArtistId();
+    }
+    
+     @Override
+    public Mp3 getMp3ArtistByArtistId(int mp3ArtistId){
+        
+       return (Mp3)mp3ArtistDao.getMp3ArtistBean(mp3ArtistId);  
     }
 
     public String getMp3Title(int mp3Id) {
@@ -251,11 +256,7 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
          * Hilfe der Methode getFileName und dem Parameter part (welcher aus der
          * Komponente im Webfrontend mitgeliefert wird) erstellt
          */
-        
         File file = new File(part);
-        String absolutePath = file.getAbsolutePath();
-        String filePath = absolutePath.substring(0,absolutePath.lastIndexOf(File.separator));
-        System.out.println("Pfad in Mp3DaoImpl: " + absolutePath);
         /**
          * Initialisierung der Mp3Bean
          */
@@ -275,46 +276,16 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
     }
 
     /**
-     * Wertet den String part aus, welcher aus dem Webfrontend mitgeschickt wird
-     * Sinn ist es, den Namen der Datei herauszufinden, um diesen in der Upload
-     * Methode zu verwenden
+     * Ruft die update-Methode auf dem Musicservice auf, der die Daten in seiner
+     * eigenen Daten auf den aktuellen Stand synchronisiert
      *
-     * @return
+     * @param mp3
      */
-    private String getFileName(String part) {
-        int startPos;
-        int lastPos;
-        String fileName;
-        /**
-         * Sucht nach dem ersten "=" im String part Dies ergibt die
-         * Startposition zum zuschneiden des Strings
-         */
-        startPos = part.indexOf("=") + 1;
-        /**
-         * Sucht nach dem ersten "," welches vorkommt. Dies ergibt die
-         * Endposition zum zuschneiden des Strings
-         */
-        lastPos = part.indexOf(",");
-
-        /**
-         * Schneidet den String so zu, dass nur noch der Name der Datei bleibt
-         */
-        fileName = part.substring(startPos, lastPos);
-        System.out.println("FILENAME: " + fileName);
-        return fileName;
-    }
-    
-       /**
-     * Ruft die update-Methode auf dem Musicservice auf, der 
-     * die Daten in seiner eigenen Daten auf den aktuellen Stand synchronisiert
-     * @param mp3 
-     */
-    
     @Override
     public void update(Mp3 mp3) {
-         System.out.println("MP3DaoImpl.update(mp3) ---> in M2 ");
-         
-          Mp3Bean mp3Bean = new Mp3Bean();
+        System.out.println("MP3DaoImpl.update(mp3) ---> in M2 ");
+
+        Mp3Bean mp3Bean = new Mp3Bean();
 
         mp3Bean.setMp3File(mp3.getMp3File());
         mp3Bean.setMp3Id(mp3.getMp3Id());
@@ -329,5 +300,5 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
             em.merge(mp3Bean);
         }
     }
-    
+
 }

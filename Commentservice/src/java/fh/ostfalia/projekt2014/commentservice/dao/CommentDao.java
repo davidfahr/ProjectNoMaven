@@ -21,32 +21,31 @@ import javax.persistence.Query;
 @Stateless
 public class CommentDao {
 
-    @PersistenceContext(unitName ="CommentservicePU")
+    @PersistenceContext(unitName = "CommentservicePU")
     private EntityManager em;
 
     public void addComment(Comment comment) {
-             em.persist(comment);       
+        em.persist(comment);
     }
-    
+
     private Comment getComment(int cId) {
         return em.find(CommentBean.class, cId);
     }
 
-    public List<Comment> getAllArtistCommentsById(int id){
-       return null;
-    }
-    
-    public List<Comment> getAllMp3CommentsById(int id){
-        System.out.println("ID im Commentdao:");
-        System.out.println(id);
-         Query query = em.createNamedQuery("getAllMp3CommentsById");
-        query.setParameter("id",id);
+    public List<Comment> getAllArtistCommentsById(int id) {
+        Query query = em.createNamedQuery("getAllArtistCommentsById");
+        query.setParameter("id", id);
         List<CommentBean> comments = query.getResultList();
-        System.out.println("erstes Comment:!!!!!!!!!!!!!!!!!!!!");
-        System.out.println(comments.get(0).getcText());
         return new LinkedList<Comment>(comments);
     }
-    
+
+    public List<Comment> getAllMp3CommentsById(int id) {
+        Query query = em.createNamedQuery("getAllMp3CommentsById");
+        query.setParameter("id", id);
+        List<CommentBean> comments = query.getResultList();
+        return new LinkedList<Comment>(comments);
+    }
+
     public Comment getCommentByMp3Id(int mp3Id) {
         return em.find(CommentBean.class, mp3Id);
     }

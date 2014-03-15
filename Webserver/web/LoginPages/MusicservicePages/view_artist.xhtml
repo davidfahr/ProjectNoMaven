@@ -5,12 +5,18 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:jsp="http://java.sun.com/jsp/jstl/core">
 
     <jsp:set value="#{LoadbalancerMBean.idParameter}" var="id"/> 
-    <jsp:set value="#{LoadbalancerMBean.getMp3(id)}" var="mp3"/> 
-    <jsp:set value="mp3" var="identifier"/> 
+    <jsp:set value="#{LoadbalancerMBean.getArtist(id)}" var="artist"/> 
+    <jsp:set value="artist" var="identifier"/> 
+    
+    
+     <f:metadata>
+        <f:viewParam name="id" value="#{LoadbalancerMBean.id}" />
+    </f:metadata>
 
     <h:head>
         <title>${mp3.artistName}</title>
@@ -35,9 +41,20 @@ and open the template in the editor.
             <br/>
             <h:inputTextarea rows="5" value="#{LoadbalancerMBean.commentText}"/>
             <br/>
-            <h:commandButton action="${LoadbalancerMBean.addComment(identifier)}" value="Post Comment"/> 
+            <h:commandButton action="${LoadbalancerMBean.addComment(identifier)}" value="Post Comment" />     
             <br/>
         </h:form>
+        
+        <h3>Comments: </h3>
+        <br/>
+        <jsp:if test="${!LoadbalancerMBean.getAllArtistCommentsById(id).isEmpty()}"> 
+            <jsp:forEach items="${LoadbalancerMBean.getAllArtistCommentsById(id)}" var="comment">
+                <h:outputLabel value="#{comment.getcText()}"/>
+                <br/>
+            </jsp:forEach>
+        </jsp:if>
+    
+        
         <h:link outcome="index" value="Home"/>
     </h:body>
 </html>

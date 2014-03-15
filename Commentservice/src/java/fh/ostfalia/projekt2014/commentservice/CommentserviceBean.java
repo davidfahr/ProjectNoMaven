@@ -46,7 +46,7 @@ public class CommentserviceBean implements Commentservice, Serializable{
         if(identfier.equals("mp3")){
            c.setcMp3Id(id);
         } else if(identfier.equals("artist")){
-           c.setcMp3Id(id);       
+           c.setCmp3ArtistId(id);       
         }
         c.setcText(text);
         

@@ -19,4 +19,5 @@ public interface Mp3DaoLocal {
     public byte[] getMp3File(int mp3Id);
     public void downloadMp3File(String filename, int mp3Id);
     public void update(Mp3 mp3);
+    public Mp3 getMp3ArtistByArtistId(int mp3ArtistId);
 }

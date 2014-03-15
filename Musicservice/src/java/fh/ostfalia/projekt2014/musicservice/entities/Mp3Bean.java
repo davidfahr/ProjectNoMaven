@@ -139,7 +139,4 @@ public class Mp3Bean implements Serializable, Mp3{
         return mp3Artist.getArtistName();
     }
 
-    
-
-
 }

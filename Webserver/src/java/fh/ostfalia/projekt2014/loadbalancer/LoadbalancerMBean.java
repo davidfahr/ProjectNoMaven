@@ -10,25 +10,10 @@ import fh.ostfalia.projekt2014.commentserviceremoteinterfaces.entities.Comment;
 import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.entities.LoadbalancerResult;
 import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.interfaces.Loadbalancer;
 import fh.ostfalia.projekt2014.musicserviceentities.Mp3;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URL;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
-
-
-
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
-
 import javax.servlet.ServletContext;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 
@@ -42,6 +27,7 @@ public class LoadbalancerMBean extends RemoteManagedBean {
     private String commentText;
     private long id;
     private Loadbalancer loadbalancerRemoteBean;
+    private List<Comment> commentList;
     FacesContext faces = FacesContext.getCurrentInstance();
     HttpServletRequest request = (HttpServletRequest) faces.getExternalContext().getRequest();
             
@@ -82,6 +68,10 @@ public class LoadbalancerMBean extends RemoteManagedBean {
     public Mp3 getMp3(int mp3Id) {
        return loadbalancerRemoteBean.getMp3(mp3Id);
     }
+    
+    public Mp3 getArtist(int mp3ArtistId) {
+        return loadbalancerRemoteBean.getMp3ArtistByArtistId(mp3ArtistId);
+    }
 
     public void upload() {
         
@@ -113,18 +103,27 @@ public class LoadbalancerMBean extends RemoteManagedBean {
     }
 
     public List<Comment> getAllArtistCommentsById(int id) {
-        return loadbalancerRemoteBean.getAllArtistCommentsById(id);
-    }
-
-    public List<Comment> getAllMp3CommentsById(int id) {
-        List<Comment> commentList = loadbalancerRemoteBean.getAllMp3CommentsById(id);
-        System.out.println("WEBSERVERRRRRRRRR SAGT:");
-        System.out.println(commentList.get(0).getcText());
+        commentList = loadbalancerRemoteBean.getAllArtistCommentsById(id);
         return commentList;
     }
 
-    public void addComment(String identfier) {
-        loadbalancerRemoteBean.addComment(commentText, id, identfier);
+    public List<Comment> getAllMp3CommentsById(int id) {
+        commentList = loadbalancerRemoteBean.getAllMp3CommentsById(id);
+        return commentList;
+    }
+
+    public String addComment(String identifier) {
+        loadbalancerRemoteBean.addComment(commentText, id, identifier);
+        if (identifier.equals("artist")){
+        return "view_artist.xhtml?faces-redirect=trueid=" + id;
+        }
+        else if(identifier.equals("mp3")){
+            return "view_mp3.xhtml?faces-redirect=trueid=" + id;
+        }
+        else{
+            return null;
+        }
+        
     }
     
      public String getIdParameter(){

@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.ejb.Stateless;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -144,6 +143,13 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
 
         return mp3Bean.getArtistId();
     }
+    
+    @Override
+    public Mp3 getMp3ArtistByArtistId(int mp3ArtistId){
+        
+       return (Mp3)mp3ArtistDao.getMp3ArtistBean(mp3ArtistId);  
+    }
+   
 
     public String getMp3Title(int mp3Id) {
         return em.find(Mp3.class, mp3Id).getMp3Title();
@@ -253,10 +259,7 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
          * Komponente im Webfrontend mitgeliefert wird) erstellt
          */
         File file = new File(part);
-       String absolutePath = file.getAbsolutePath();
-        String filePath = absolutePath.substring(0,absolutePath.lastIndexOf(File.separator));
-      System.out.println("Pfad in Mp3DaoImpl: " + absolutePath);
-        
+
         /**
          * Initialisierung der Mp3Bean
          */
@@ -306,35 +309,5 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
             em.merge(mp3Bean);
         }
 
-    }
-
-    /**
-     * Wertet den String part aus, welcher aus dem Webfrontend mitgeschickt wird
-     * Sinn ist es, den Namen der Datei herauszufinden, um diesen in der Upload
-     * Methode zu verwenden
-     *
-     * @return
-     */
-    private String getFileName(String part) {
-        int startPos;
-        int lastPos;
-        String fileName;
-        /**
-         * Sucht nach dem ersten "=" im String part Dies ergibt die
-         * Startposition zum zuschneiden des Strings
-         */
-        startPos = part.indexOf("=") + 1;
-        /**
-         * Sucht nach dem ersten "," welches vorkommt. Dies ergibt die
-         * Endposition zum zuschneiden des Strings
-         */
-        lastPos = part.indexOf(",");
-
-        /**
-         * Schneidet den String so zu, dass nur noch der Name der Datei bleibt
-         */
-        fileName = part.substring(startPos, lastPos);
-        System.out.println("FILENAME: " + fileName);
-        return fileName;
     }
 }

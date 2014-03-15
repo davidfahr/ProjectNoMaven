@@ -9,10 +9,6 @@
             <file>file:/C:/Users/Yannick/Documents/GitHub/ProjectNoMaven/Musicservice2/src/java/fh/ostfalia/projekt2014/musicservice2/dao/Mp3ArtistDao.java</file>
             <file>file:/C:/Users/Yannick/Documents/GitHub/ProjectNoMaven/Musicservice2/src/java/fh/ostfalia/projekt2014/musicservice2/dao/Mp3DaoImpl.java</file>
         </group>
-        <group name="ProjektNoMaven">
-            <file>file:/C:/Users/KingDCB/Documents/GitHub/ProjectNoMaven/Musicservice2/src/conf/persistence.xml</file>
-            <file>file:/C:/Users/KingDCB/Documents/GitHub/ProjectNoMaven/Musicservice2/src/java/fh/ostfalia/projekt2014/musicservice2/dao/Mp3DaoImpl.java</file>
-            <file>file:/C:/Users/KingDCB/Documents/GitHub/ProjectNoMaven/Musicservice2/src/java/fh/ostfalia/projekt2014/musicservice2/util/Id3Tag.java</file>
-        </group>
+        <group name="ProjektNoMaven"/>
     </open-files>
 </project-private>

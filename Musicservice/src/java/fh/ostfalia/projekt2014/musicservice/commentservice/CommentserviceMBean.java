@@ -35,11 +35,13 @@ public class CommentserviceMBean extends RemoteManagedBean implements Commentser
         commentserviceBean = (Commentservice) super.getObject();
     }
     
+    @Override
     public List<Comment> getAllArtistCommentsById(int id) {
         return commentserviceBean.getAllArtistCommentsById(id);
     }
     
     
+    @Override
     public List<Comment> getAllMp3CommentsById(int id) {
         return commentserviceBean.getAllMp3CommentsById(id);
     }
