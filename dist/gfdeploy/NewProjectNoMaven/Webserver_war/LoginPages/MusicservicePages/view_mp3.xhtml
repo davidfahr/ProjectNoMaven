@@ -32,6 +32,12 @@ and open the template in the editor.
             <h:commandButton action="${LoadbalancerMBean.addComment(identifier)}" value="Post Comment"/> 
             <br/>
         </h:form>
+        
+     
+        <jsp:forEach items="${LoadbalancerMBean.getAllMp3CommentsById(id)}" var="comment">
+             <h:outputLabel value="#{comment.getcText()}"/>
+                
+         </jsp:forEach>
         <h:link outcome="index" value="Home"/>
     </h:body>
 </html>
