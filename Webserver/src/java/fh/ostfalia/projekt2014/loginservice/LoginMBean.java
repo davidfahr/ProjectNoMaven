@@ -41,6 +41,7 @@ public class LoginMBean extends RemoteManagedBean {
         System.out.println("Ich wurde aufgerufen! :D");
         FacesContext fc = FacesContext.getCurrentInstance();
         HttpServletRequest request;
+        
         request = (HttpServletRequest) fc.getExternalContext().getRequest();
        
         try {

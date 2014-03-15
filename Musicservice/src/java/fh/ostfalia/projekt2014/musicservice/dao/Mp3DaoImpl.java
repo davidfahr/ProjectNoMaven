@@ -252,8 +252,11 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
          * Hilfe der Methode getFileName und dem Parameter part (welcher aus der
          * Komponente im Webfrontend mitgeliefert wird) erstellt
          */
-        File file = new File("C:\\Users\\Yannick\\Documents\\GitHub\\ProjectNoMaven\\Musicservice\\Uploads\\" + getFileName(part));
-
+        File file = new File(part);
+       String absolutePath = file.getAbsolutePath();
+        String filePath = absolutePath.substring(0,absolutePath.lastIndexOf(File.separator));
+      System.out.println("Pfad in Mp3DaoImpl: " + absolutePath);
+        
         /**
          * Initialisierung der Mp3Bean
          */

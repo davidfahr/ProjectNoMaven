@@ -61,7 +61,7 @@ public class Mp3Bean implements Serializable, Mp3{
 
     @Id
     @Column(name = "mp3_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     @Override
     public int getMp3Id() {
         return mp3Id;

@@ -10,12 +10,26 @@ import fh.ostfalia.projekt2014.commentserviceremoteinterfaces.entities.Comment;
 import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.entities.LoadbalancerResult;
 import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.interfaces.Loadbalancer;
 import fh.ostfalia.projekt2014.musicserviceentities.Mp3;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 
 
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.annotation.PostConstruct;
+import javax.faces.context.FacesContext;
+
+import javax.servlet.ServletContext;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 
 /**
@@ -24,15 +38,18 @@ import javax.servlet.http.Part;
  */
 public class LoadbalancerMBean extends RemoteManagedBean {
 
-    private String part;
+    private Part part;
     private String commentText;
     private long id;
     private Loadbalancer loadbalancerRemoteBean;
+    FacesContext faces = FacesContext.getCurrentInstance();
+    HttpServletRequest request = (HttpServletRequest) faces.getExternalContext().getRequest();
+            
+    ServletContext ctx = request.getServletContext();
+            
  
   
     private LoadbalancerResult loadbalancerResult;
-
-    //asdasd
 
 
  
@@ -67,15 +84,27 @@ public class LoadbalancerMBean extends RemoteManagedBean {
     }
 
     public void upload() {
-        System.out.println("Upload in der LBMBEAN!!!");
-        loadbalancerRemoteBean.upload(part);
+        
+            // String pfad = ctx.getRealPath(part.getSubmittedFileName());
+           
+            String pfad = ctx.getRealPath("/Uploads/" + part.getSubmittedFileName());
+            
+            System.out.println("PFAAAAD: " + pfad.toString());
+            
+            
+            
+            
+            loadbalancerRemoteBean.upload(pfad);
+       
+      
+    
     }
 
-    public String getPart() {
+    public Part getPart() {
         return part;
     }
 
-    public void setPart(String part) {
+    public void setPart(Part part) {
         this.part = part;
     }
 
@@ -117,7 +146,4 @@ public class LoadbalancerMBean extends RemoteManagedBean {
     public void setId(long id) {
         this.id = id;
     }
-    
-
-
 }
