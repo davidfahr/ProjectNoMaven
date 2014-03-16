@@ -111,7 +111,7 @@ public class Musicservice2Bean implements Musicservice, Serializable {
     }
 
     @Override
-    public Mp3 getMp3ByArtist(int mp3ArtistId) {
+    public List<Mp3> getMp3ByArtist(int mp3ArtistId) {
        return mp3Dao.getMp3ByArtist(mp3ArtistId);
     }
     

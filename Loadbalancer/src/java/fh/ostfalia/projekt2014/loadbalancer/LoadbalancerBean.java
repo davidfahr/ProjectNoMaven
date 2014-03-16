@@ -194,7 +194,7 @@ public class LoadbalancerBean implements Serializable, Loadbalancer {
     }
     
     @Override
-    public Mp3 getMp3ByArtist(int mp3ArtistId){
+    public List<Mp3> getMp3ByArtist(int mp3ArtistId){
          assignMusicservice();
         if(switchServer==true){
             return m1.getMp3ByArtist(mp3ArtistId);

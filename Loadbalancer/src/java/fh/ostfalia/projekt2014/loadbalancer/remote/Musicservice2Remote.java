@@ -98,7 +98,7 @@ public class Musicservice2Remote extends RemoteBean implements Serializable{
         return musicservice2Bean.getMp3ArtistByArtistId(mp3ArtistId);
     }
     
-    public Mp3 getMp3ByArtist(int mp3ArtistId){
+    public List<Mp3> getMp3ByArtist(int mp3ArtistId){
         return musicservice2Bean.getMp3ByArtist(mp3ArtistId);
     }
     

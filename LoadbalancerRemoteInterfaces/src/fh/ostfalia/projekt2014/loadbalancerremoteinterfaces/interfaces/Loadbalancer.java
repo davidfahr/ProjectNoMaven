@@ -28,7 +28,7 @@ public interface Loadbalancer {
     public void addComment(String text, long id, String identfier);
     public Mp3 getMp3ArtistByArtistId(int mp3ArtistId);
 
-    public Mp3 getMp3ByArtist(int mp3ArtistId);
+    public List<Mp3> getMp3ByArtist(int mp3ArtistId);
 
     
 }

@@ -10,7 +10,6 @@
     <h:body>
         <h:form>
             <h:selectOneMenu  required="true" value="#{LoadbalancerSimulationMBean.mode}">
-                <f:selectItem itemValue="manual" itemLabel="Manual"/>
                 <f:selectItem itemValue="timed" itemLabel="Timed"/>           
             </h:selectOneMenu>       
             <h:commandButton action="#{LoadbalancerSimulationMBean.getModePage}" value="Submit" type="submit"/>

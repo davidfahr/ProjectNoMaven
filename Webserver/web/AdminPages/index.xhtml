@@ -20,6 +20,7 @@ and open the template in the editor.
             <h:form id="form" enctype="multipart/form-data">
                 <h:inputFile id="file"  value="#{LoadbalancerMBean.part}"/>
                 <h:commandButton value="Upload Music" action="#{LoadbalancerMBean.upload()}"/>
+                <h:commandButton value="Logout" action="#{LoginMBean.logout()}"/>
             </h:form>
             <h:button outcome="/AdminPages/LoadbalancerPages/index.xhtml" value="Loadbalancer Properties"/>
         </f:view>

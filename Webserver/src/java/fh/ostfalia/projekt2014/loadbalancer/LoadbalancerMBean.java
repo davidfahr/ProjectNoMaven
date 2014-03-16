@@ -12,6 +12,7 @@ import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.interfaces.Loadbalan
 import fh.ostfalia.projekt2014.musicserviceentities.Mp3;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -32,11 +33,11 @@ public class LoadbalancerMBean extends RemoteBean {
     HttpServletRequest request = (HttpServletRequest) faces.getExternalContext().getRequest();
     ServletContext ctx = request.getServletContext();
 
+    //Hole aktuelle Session, erzeuge aber keine neue Session, falls keine existiert (-> daher getSession(false)
     public LoadbalancerMBean() {
         super("localhost", "3700", "java:global/NewProjectNoMaven/Loadbalancer/LoadbalancerBean");
         System.out.println("ENDELookup");
     }
-    
 
     @PostConstruct
     public void initBean() {
@@ -56,24 +57,31 @@ public class LoadbalancerMBean extends RemoteBean {
         return loadbalancerRemoteBean.getAllMp3s();
     }
 
-     public List<Mp3> getMp3ByArtist(int id){
+    public List<Mp3> getMp3ByArtist(int id) {
         return loadbalancerRemoteBean.getMp3ByArtist(id);
     }
 
     public Mp3 getMp3(int mp3Id) {
-       return loadbalancerRemoteBean.getMp3(mp3Id);
+        return loadbalancerRemoteBean.getMp3(mp3Id);
     }
-    
+
     public Mp3 getArtist(int mp3ArtistId) {
         System.out.println(loadbalancerRemoteBean.getMp3ArtistByArtistId(mp3ArtistId).getArtistName());
         System.out.println("NAME:   " + loadbalancerRemoteBean.getMp3ArtistByArtistId(mp3ArtistId));
         return loadbalancerRemoteBean.getMp3ArtistByArtistId(mp3ArtistId);
-        
+
     }
 
     public void upload() {
-            String pfad = ctx.getRealPath("/Uploads/" + part.getSubmittedFileName());
+
+        String pfad = ctx.getRealPath("/Uploads/" + part.getSubmittedFileName());
+
+        if (!pfad.equals(ctx.getRealPath("/Uploads"))) {
             loadbalancerRemoteBean.upload(pfad);
+            faces.addMessage(null, new FacesMessage("File was uploaded successfully!"));
+        } else {
+            faces.addMessage(null, new FacesMessage("Please select a File"));
+        }
     }
 
     public Part getPart() {
@@ -99,20 +107,22 @@ public class LoadbalancerMBean extends RemoteBean {
     }
 
     public String addComment(String identifier) {
-        loadbalancerRemoteBean.addComment(commentText, id, identifier);
-        if (identifier.equals("artist")){
-        return "view_artist.xhtml?faces-redirect=trueid=" + id;
+        String path = "";
+        if (!commentText.equals("")) {
+            loadbalancerRemoteBean.addComment(commentText, id, identifier);
         }
-        else if(identifier.equals("mp3")){
-            return "view_mp3.xhtml?faces-redirect=trueid=" + id;
+
+        if (identifier.equals("artist")) {
+            path = "view_artist.xhtml?faces-redirect=trueid=" + id;
+        } else if (identifier.equals("mp3")) {
+            path = "view_mp3.xhtml?faces-redirect=trueid=" + id;       
         }
-        else{
-            return null;
-        }   
+
+        return path;
     }
- 
-     public String getIdParameter(){
-       return loadbalancerRemoteBean.getIdParameter();
+
+    public String getIdParameter() {
+        return loadbalancerRemoteBean.getIdParameter();
     }
 
     public String getCommentText() {

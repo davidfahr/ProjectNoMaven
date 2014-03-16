@@ -37,13 +37,11 @@ public class LoginMBean extends RemoteBean {
     }
 
     public String login() {
-
-        System.out.println("Ich wurde aufgerufen! :D");
         FacesContext fc = FacesContext.getCurrentInstance();
         HttpServletRequest request;
-        
         request = (HttpServletRequest) fc.getExternalContext().getRequest();
-       
+        System.out.println("Ich wurde aufgerufen! :D");
+
         try {
             System.out.println("Login wird gestartet ... ");
             request.login(username, password);
@@ -64,17 +62,30 @@ public class LoginMBean extends RemoteBean {
             return "error";
         }
     }
-    
-    public String getStatus(){
+
+    public String getRole() {
+        FacesContext fc = FacesContext.getCurrentInstance();
+        HttpServletRequest request;
+        request = (HttpServletRequest) fc.getExternalContext().getRequest();
+        String role = "";
+        if (request.isUserInRole("admin")) {
+            role = "admin";
+        } else if (request.isUserInRole("user")) {
+            role = "user";
+        }
+
+        return role;
+    }
+
+    public String getStatus() {
         FacesContext fc = FacesContext.getCurrentInstance();
         //Hole aktuelle Session, erzeuge aber keine neue Session, falls keine existiert (-> daher getSession(false)
         Object session = fc.getExternalContext().getSession(false);
         System.out.println(session.toString());
-        if(session==null){
+        if (session == null) {
             return "login";
-        }
-        else{
-           return "MusicservicePages/index"; 
+        } else {
+            return "MusicservicePages/index";
         }
     }
 
@@ -84,28 +95,28 @@ public class LoginMBean extends RemoteBean {
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
         HttpServletRequest request;
         request = (HttpServletRequest) fc.getExternalContext().getRequest();
-        
+
         if (session != null) {
             try {
-                
+
                 session.invalidate();
                 request.logout();
-                
+
             } catch (ServletException ex) {
                 Logger.getLogger(LoginMBean.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
         }
-      
+
         fc.addMessage(username, new FacesMessage(username + " wurde erfolgreich abgemeldet."));
         return "/LoginPages/login.xhtml";
 
     }
 
-    public String addUser() {
+    public void addUser() {
         System.out.println("Username: " + username);
         System.out.println("Passwort: " + password);
-        return loginBean.addUser(username, password);
+        loginBean.addUser(username, password);
     }
 
     public void setUsername(String username) {

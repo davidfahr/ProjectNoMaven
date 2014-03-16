@@ -134,8 +134,11 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
     }
 
     @Override
-    public Mp3 getMp3ByArtist(int mp3ArtistId) {
-        return em.find(Mp3.class, mp3ArtistId);
+    public List<Mp3> getMp3ByArtist(int mp3ArtistId) {
+         Query queryMp3List = em.createNamedQuery("getMp3ByMp3ArtistId");
+        queryMp3List.setParameter("id", mp3ArtistId);
+        List<Mp3Bean> mp3BeanList = queryMp3List.getResultList();
+        return new LinkedList<Mp3>(mp3BeanList);
     }
 
     public int getMp3ArtistIdByMp3Id(int mp3Id) {

@@ -44,13 +44,15 @@ and open the template in the editor.
         
         <h3>Comments: </h3>
         <br/>
+        
         <jsp:if test="${!LoadbalancerMBean.getAllArtistCommentsById(id).isEmpty()}"> 
             <jsp:forEach items="${LoadbalancerMBean.getAllArtistCommentsById(id)}" var="comment">
                 <h:outputLabel value="#{comment.getcText()}"/>
                 <br/>
             </jsp:forEach>
         </jsp:if>
-    
+        
+
         
         <h:link outcome="index" value="Home"/>
     </h:body>

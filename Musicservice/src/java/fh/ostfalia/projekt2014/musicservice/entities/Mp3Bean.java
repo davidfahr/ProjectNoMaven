@@ -37,7 +37,8 @@ import javax.persistence.Transient;
 
 @Entity(name = "Mp3")
 @NamedQueries({
-    @NamedQuery(name = "getMp3ByName", query = "SELECT m FROM Mp3 m where m.mp3Title=:name")
+    @NamedQuery(name = "getMp3ByName", query = "SELECT m FROM Mp3 m where m.mp3Title=:name"),
+     @NamedQuery(name = "getMp3ByMp3ArtistId", query = "SELECT m FROM Mp3 m where m.mp3ArtistBean.artistId=:id")
 })
 public class Mp3Bean implements Serializable, Mp3{
     
@@ -138,5 +139,5 @@ public class Mp3Bean implements Serializable, Mp3{
     public String getArtistName() {
         return mp3Artist.getArtistName();
     }
-
+    
 }

@@ -6,7 +6,8 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:jsp="http://java.sun.com/jsp/jstl/core">
 
     <h:head>
         <title>Musicservice</title>
@@ -15,7 +16,9 @@ and open the template in the editor.
         <h1>Menu</h1>
         <br/>
         <f:view>
-            <h:button outcome="show_music" value="Show Musictitles"/>
+            <jsp:if test="#{!LoginMBean.role=='admin'}">
+                 <h:button outcome="show_music" value="Show Musictitles"/>
+            </jsp:if>       
             <br/>
             <h:form id="form" enctype="multipart/form-data">
                 <h:inputFile id="file"  value="#{LoadbalancerMBean.part}"/>
