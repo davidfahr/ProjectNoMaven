@@ -26,7 +26,7 @@ import javax.persistence.Query;
 @Stateless
 public class Mp3ArtistDao implements Serializable {
     private static final long serialVersionUID = 1L;
-    @PersistenceContext(unitName = "MusicservicePU2")
+    @PersistenceContext(unitName = "Musicservice2PU")
     private EntityManager em;
     private Id3Tag id3;
     private String part;

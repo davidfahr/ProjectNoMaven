@@ -37,7 +37,7 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
     @EJB
     private Mp3ArtistDao mp3ArtistDao;
     private static final long serialVersionUID = 1L;
-    @PersistenceContext(unitName = "MusicservicePU2")
+    @PersistenceContext(unitName = "Musicservice2PU")
     private EntityManager em;
     private Id3Tag id3;
 

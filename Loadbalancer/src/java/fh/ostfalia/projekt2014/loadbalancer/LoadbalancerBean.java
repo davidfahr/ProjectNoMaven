@@ -6,19 +6,14 @@
 package fh.ostfalia.projekt2014.loadbalancer;
 
 import fh.ostfalia.projekt2014.commentserviceremoteinterfaces.entities.Comment;
-import fh.ostfalia.projekt2014.loadbalancer.remote.IMusicserviceRemote;
 import fh.ostfalia.projekt2014.loadbalancer.remote.Musicservice1Remote;
 import fh.ostfalia.projekt2014.loadbalancer.remote.Musicservice2Remote;
-import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.entities.LoadbalancerResult;
 import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.interfaces.Loadbalancer;
 import fh.ostfalia.projekt2014.musicserviceentities.Mp3;
 import java.io.Serializable;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import org.hibernate.validator.internal.util.logging.Log;
 
 /**
  *
@@ -35,18 +30,13 @@ public class LoadbalancerBean implements Serializable, Loadbalancer {
     private Musicservice1Remote m1;
     @EJB 
     private Musicservice2Remote m2;
-      private static final Logger log = Logger.getLogger( LoadbalancerBean.class.getName() );
-
-  
-
-    private boolean status;
     
     /**
      * Boolean zur Bestimmung des angesprochenen Server
      * true = Methoden werden zu Musicservice 1 umgeleitet
      * false = Methoden werden zu Musicservice 2 umgeleitet
      */
-    private boolean switchServer = false;
+    private boolean switchServer = true;
     
     /*
     * maxRequests wird hier per Zufallsgenerator erzeugt
@@ -86,18 +76,6 @@ public class LoadbalancerBean implements Serializable, Loadbalancer {
          
 }
 
-    public void whoAmI() {
-        assignMusicservice();
-        if(status ==true){
-            m1.whoAmI();
-            status = false;
-        }
-        else{
-            m2.whoAmI();
-            status = true;
-        }  
-    }
-
 
     public List<Mp3> getAllMp3s() {
         assignMusicservice();
@@ -133,6 +111,7 @@ public class LoadbalancerBean implements Serializable, Loadbalancer {
     }
 
 
+    @Override
     public String getIdParameter() {
           assignMusicservice();
         if(switchServer==true){
