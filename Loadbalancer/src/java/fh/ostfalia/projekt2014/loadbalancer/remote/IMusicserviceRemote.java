@@ -37,4 +37,6 @@ public interface IMusicserviceRemote{
     public List<Comment> getAllMp3CommentsById(int id);
 
     public void addComment(String text, long id, String identfier);
+    
+    public Mp3 getMp3ByArtist(int mp3ArtistId);
 }

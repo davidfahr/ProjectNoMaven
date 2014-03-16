@@ -10,36 +10,38 @@ and open the template in the editor.
       xmlns:jsp="http://java.sun.com/jsp/jstl/core">
 
 
-    <jsp:set value="#{LoadbalancerMBean.idParameter}" var="id"/> 
-    <jsp:set value="#{LoadbalancerMBean.getMp3(id)}" var="mp3"/> 
+    <jsp:set value="${LoadbalancerMBean.idParameter}" var="id"/> 
+    <jsp:set value="${LoadbalancerMBean.getMp3(id)}" var="mp3"/> 
     <jsp:set value="mp3" var="identifier"/> 
 
     <f:metadata>
         <f:viewParam name="id" value="#{LoadbalancerMBean.id}" />
     </f:metadata>
 
+
     <h:head>
         <title>${mp3.mp3Title}</title>
     </h:head>
     <h:body>
         <h1>${mp3.artistName} - ${mp3.mp3Title}</h1>
-        <h:form>
-            <jsp:set value="${mp3.artistName} - ${mp3.mp3Title}" var="mp3Filename"/> 
-            <h:commandLink action="#{LoadbalancerMBean.downloadMp3File(mp3Filename, id)}" value="download" />
-            <br/>
-            <h:inputTextarea rows="5" value="#{LoadbalancerMBean.commentText}"/>
-            <br/>
-            <h:commandButton action="${LoadbalancerMBean.addComment(identifier)}" value="Post Comment"/> 
-            <br/>
-        </h:form>
-        <h3>Comments: </h3>
-        <br/>
-        <jsp:if test="${!LoadbalancerMBean.getAllMp3CommentsById(id).isEmpty()}"> 
-            <jsp:forEach items="${LoadbalancerMBean.getAllMp3CommentsById(id)}" var="comment">
-                <h:outputLabel value="#{comment.getcText()}"/>
+        <f:view>
+            <h:form>
                 <br/>
-            </jsp:forEach>
-        </jsp:if>
-        <h:link outcome="index" value="Home"/>
+                <h:inputTextarea rows="5" value="#{LoadbalancerMBean.commentText}"/>
+                <br/>
+                <h:commandButton action="${LoadbalancerMBean.addComment(identifier)}" value="Post Comment"/> 
+                <br/>
+            </h:form>
+
+            <h3>Comments: </h3>
+            <br/>
+            <jsp:if test="${!LoadbalancerMBean.getAllMp3CommentsById(id).isEmpty()}"> 
+                <jsp:forEach items="${LoadbalancerMBean.getAllMp3CommentsById(id)}" var="comment">
+                    <h:outputLabel value="#{comment.getcText()}"/>
+                    <br/>
+                </jsp:forEach>
+            </jsp:if>
+            <h:link outcome="index" value="Home"/>
+        </f:view>   
     </h:body>
 </html>

@@ -115,12 +115,8 @@ public class MusicserviceBean implements Musicservice, Serializable {
         mp3Dao.update(mp3Bean);
     }
 
-
     @Override
-    public void update(Comment comment) {
-        
+    public Mp3 getMp3ByArtist(int mp3ArtistId){
+        return mp3Dao.getMp3ByArtist(mp3ArtistId);
     }
-
-   
-    
 }

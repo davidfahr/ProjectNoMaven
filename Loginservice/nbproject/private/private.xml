@@ -6,9 +6,6 @@
         <group name="commentservice11.03.2014"/>
         <group name="commentservice2_11.03.2014"/>
         <group name="16.03.2014"/>
-        <group name="ProjektNoMaven">
-            <file>file:/C:/Users/KingDCB/Documents/GitHub/ProjectNoMaven/Loginservice/setup/glassfish-resources.xml</file>
-            <file>file:/C:/Users/KingDCB/Documents/GitHub/ProjectNoMaven/Loginservice/src/conf/persistence.xml</file>
-        </group>
+        <group name="ProjektNoMaven"/>
     </open-files>
 </project-private>

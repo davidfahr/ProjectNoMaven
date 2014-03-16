@@ -134,6 +134,7 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
         return em.find(Mp3Bean.class, mp3_id);
     }
 
+    @Override
     public Mp3 getMp3ByArtist(int mp3ArtistId) {
         return em.find(Mp3.class, mp3ArtistId);
     }
@@ -146,8 +147,9 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
     
     @Override
     public Mp3 getMp3ArtistByArtistId(int mp3ArtistId){
-        
-       return (Mp3)mp3ArtistDao.getMp3ArtistBean(mp3ArtistId);  
+       Mp3Bean mp3Bean = new Mp3Bean();
+       mp3Bean.setMp3ArtistBean(mp3ArtistDao.getMp3ArtistBean(mp3ArtistId));
+       return mp3Bean;  
     }
    
 

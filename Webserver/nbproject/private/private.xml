@@ -22,6 +22,9 @@
             <file>file:/C:/Users/Yannick/Documents/GitHub/ProjectNoMaven/Webserver/src/java/fh/ostfalia/projekt2014/loadbalancer/LoadbalancerMBean.java</file>
             <file>file:/C:/Users/Yannick/Documents/GitHub/ProjectNoMaven/Webserver/src/java/fh/ostfalia/projekt2014/loadbalancer/LoadbalancerSimulationMBean.java</file>
         </group>
-        <group name="ProjektNoMaven"/>
+        <group name="ProjektNoMaven">
+            <file>file:/C:/Users/KingDCB/Documents/GitHub/ProjectNoMaven/Webserver/web/LoginPages/MusicservicePages/view_artist.xhtml</file>
+            <file>file:/C:/Users/KingDCB/Documents/GitHub/ProjectNoMaven/Webserver/web/LoginPages/MusicservicePages/show_music.xhtml</file>
+        </group>
     </open-files>
 </project-private>

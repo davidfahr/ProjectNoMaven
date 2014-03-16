@@ -109,5 +109,10 @@ public class Musicservice2Bean implements Musicservice, Serializable {
         System.out.println("M2 update(mp3Bean)");
         mp3Dao.update(mp3Bean);
     }
+
+    @Override
+    public Mp3 getMp3ByArtist(int mp3ArtistId) {
+       return mp3Dao.getMp3ByArtist(mp3ArtistId);
+    }
     
 }

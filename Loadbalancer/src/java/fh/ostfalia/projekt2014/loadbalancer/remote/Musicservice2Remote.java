@@ -22,7 +22,7 @@ import javax.ejb.Stateless;
 @Stateless
 public class Musicservice2Remote extends RemoteBean implements Serializable{
     private static final long serialVersionUID = 1L;
-    private Musicservice musicservice1Bean;
+    private Musicservice musicservice2Bean;
 
     public Musicservice2Remote() {
         super("localhost", "3700", "java:global/NewProjectNoMaven/Musicservice2/Musicservice2Bean");
@@ -32,70 +32,74 @@ public class Musicservice2Remote extends RemoteBean implements Serializable{
     @PostConstruct
     public void initBean() {
         //Holen der entfernten Loginbean bzw. deren Stub-Objekt
-        musicservice1Bean = (Musicservice) super.getObject();
+        musicservice2Bean = (Musicservice) super.getObject();
     }
     
     
        
     public Musicservice getMusicservice1Bean() {
-        return musicservice1Bean;
+        return musicservice2Bean;
     }
 
     public void setMusicservice1Bean(Musicservice musicservice1Bean) {
-        this.musicservice1Bean = musicservice1Bean;
+        this.musicservice2Bean = musicservice1Bean;
     }
 
     public void whoAmI() {
-        musicservice1Bean.whoAmI();
+        musicservice2Bean.whoAmI();
     }
 
   
     public List<Mp3> getAllMp3s() {
-        return musicservice1Bean.getAllMp3s();
+        return musicservice2Bean.getAllMp3s();
     }
 
    
     public Mp3 getMp3(int mp3Id) {
-        return musicservice1Bean.getMp3(mp3Id);
+        return musicservice2Bean.getMp3(mp3Id);
     }
 
    
     public byte[] getMp3File(int mp3Id) {
-        return musicservice1Bean.getMp3File(mp3Id);
+        return musicservice2Bean.getMp3File(mp3Id);
     }
 
    
     public String getIdParameter() {
-        return musicservice1Bean.getIdParameter();
+        return musicservice2Bean.getIdParameter();
     }
 
    
     public void upload(String part) {
-        musicservice1Bean.upload(part);
+        musicservice2Bean.upload(part);
     }
 
 
     public void downloadMp3File(String filename, int mp3Id) {
-        musicservice1Bean.downloadMp3File(filename, mp3Id);
+        musicservice2Bean.downloadMp3File(filename, mp3Id);
     }
 
 
     public List<Comment> getAllArtistCommentsById(int id) {
-       return musicservice1Bean.getAllArtistCommentsById(id);
+       return musicservice2Bean.getAllArtistCommentsById(id);
     }
 
 
     public List<Comment> getAllMp3CommentsById(int id) {
-        return musicservice1Bean.getAllMp3CommentsById(id);
+        return musicservice2Bean.getAllMp3CommentsById(id);
     }
 
  
     public void addComment(String text, long id, String identfier) {
-        musicservice1Bean.addComment(text, id, identfier);
+        musicservice2Bean.addComment(text, id, identfier);
     }
   
     public Mp3 getMp3ArtistByArtistId(int mp3ArtistId){    
-        return musicservice1Bean.getMp3ArtistByArtistId(mp3ArtistId);
+        return musicservice2Bean.getMp3ArtistByArtistId(mp3ArtistId);
+    }
+    
+    public Mp3 getMp3ByArtist(int mp3ArtistId){
+        return musicservice2Bean.getMp3ByArtist(mp3ArtistId);
     }
     
 }

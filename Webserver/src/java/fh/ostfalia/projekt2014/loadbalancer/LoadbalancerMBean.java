@@ -25,20 +25,12 @@ public class LoadbalancerMBean extends RemoteBean {
 
     private Part part;
     private String commentText;
-    private long id;
+    private int id;
     private Loadbalancer loadbalancerRemoteBean;
     private List<Comment> commentList;
     FacesContext faces = FacesContext.getCurrentInstance();
     HttpServletRequest request = (HttpServletRequest) faces.getExternalContext().getRequest();
-            
     ServletContext ctx = request.getServletContext();
-            
- 
-  
-    private LoadbalancerResult loadbalancerResult;
-
-
- 
 
     public LoadbalancerMBean() {
         super("localhost", "3700", "java:global/NewProjectNoMaven/Loadbalancer/LoadbalancerBean");
@@ -64,30 +56,24 @@ public class LoadbalancerMBean extends RemoteBean {
         return loadbalancerRemoteBean.getAllMp3s();
     }
 
+     public List<Mp3> getMp3ByArtist(int id){
+        return loadbalancerRemoteBean.getMp3ByArtist(id);
+    }
 
     public Mp3 getMp3(int mp3Id) {
        return loadbalancerRemoteBean.getMp3(mp3Id);
     }
     
     public Mp3 getArtist(int mp3ArtistId) {
+        System.out.println(loadbalancerRemoteBean.getMp3ArtistByArtistId(mp3ArtistId).getArtistName());
+        System.out.println("NAME:   " + loadbalancerRemoteBean.getMp3ArtistByArtistId(mp3ArtistId));
         return loadbalancerRemoteBean.getMp3ArtistByArtistId(mp3ArtistId);
+        
     }
 
     public void upload() {
-        
-            // String pfad = ctx.getRealPath(part.getSubmittedFileName());
-           
             String pfad = ctx.getRealPath("/Uploads/" + part.getSubmittedFileName());
-            
-            System.out.println("PFAAAAD: " + pfad.toString());
-            
-            
-            
-            
             loadbalancerRemoteBean.upload(pfad);
-       
-      
-    
     }
 
     public Part getPart() {
@@ -122,10 +108,9 @@ public class LoadbalancerMBean extends RemoteBean {
         }
         else{
             return null;
-        }
-        
+        }   
     }
-    
+ 
      public String getIdParameter(){
        return loadbalancerRemoteBean.getIdParameter();
     }
@@ -138,11 +123,11 @@ public class LoadbalancerMBean extends RemoteBean {
         this.commentText = commentText;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 }

@@ -44,7 +44,7 @@ public class LoadbalancerBean implements Serializable, Loadbalancer {
     * Wenn maxRequests erreicht ist, wird die nächste Anfrage auf den anderen Server weitergeletitet
     * Dies wird durch die Methode assignMusicservice() geschaltet.
     */
-    private int maxRequests = (int) ((Math.random() * 2) + 1);
+    private int maxRequests = (int) ((Math.random() * 20) + 1);
     private int requests;
 
     /**
@@ -57,8 +57,8 @@ public class LoadbalancerBean implements Serializable, Loadbalancer {
               /**
              * Neue Zufallsn ummer generieren
              */
-            maxRequests = (int) ((Math.random() * 10) + 1);
-            requests = 0;
+            maxRequests = (int) ((Math.random() * 20) + 1);
+            requests = 1;
              /**
              * Prüfen ob schon ein lookup gemacht wurde Wenn nicht, dann lookup
              * ansonsten tue nichts
@@ -182,6 +182,7 @@ public class LoadbalancerBean implements Serializable, Loadbalancer {
         }
     }
     
+    @Override
     public Mp3 getMp3ArtistByArtistId(int mp3ArtistId){
          assignMusicservice();
         if(switchServer==true){
@@ -189,6 +190,17 @@ public class LoadbalancerBean implements Serializable, Loadbalancer {
         }
         else{
             return m2.getMp3ArtistByArtistId(mp3ArtistId);
+        }
+    }
+    
+    @Override
+    public Mp3 getMp3ByArtist(int mp3ArtistId){
+         assignMusicservice();
+        if(switchServer==true){
+            return m1.getMp3ByArtist(mp3ArtistId);
+        }
+        else{
+            return m2.getMp3ByArtist(mp3ArtistId);
         }
     }
 }
