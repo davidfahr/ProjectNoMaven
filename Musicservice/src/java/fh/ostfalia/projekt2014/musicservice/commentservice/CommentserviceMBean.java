@@ -6,7 +6,7 @@
 
 package fh.ostfalia.projekt2014.musicservice.commentservice;
 
-import fh.ostfalia.projekt2014.beanmanager.RemoteManagedBean;
+import fh.ostfalia.projekt2014.beanmanager.RemoteBean;
 import fh.ostfalia.projekt2014.commentserviceremoteinterfaces.entities.Comment;
 import fh.ostfalia.projekt2014.commentserviceremoteinterfaces.interfaces.Commentservice;
 import fh.ostfalia.projekt2014.musicserviceremoteinterface.interfaces.Musicservice;
@@ -19,7 +19,7 @@ import javax.ejb.Stateless;
  * @author Mettbroetchen
  */
 @Stateless
-public class CommentserviceMBean extends RemoteManagedBean implements CommentserviceBeanLocal{
+public class CommentserviceMBean extends RemoteBean implements CommentserviceBeanLocal{
     
     private Commentservice commentserviceBean;
     

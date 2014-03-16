@@ -5,7 +5,7 @@
  */
 package fh.ostfalia.projekt2014.loadbalancer;
 
-import fh.ostfalia.projekt2014.beanmanager.RemoteManagedBean;
+import fh.ostfalia.projekt2014.beanmanager.RemoteBean;
 import fh.ostfalia.projekt2014.commentserviceremoteinterfaces.entities.Comment;
 import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.entities.LoadbalancerResult;
 import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.interfaces.Loadbalancer;
@@ -21,7 +21,7 @@ import javax.servlet.http.Part;
  *
  * @author Mettbrötchen
  */
-public class LoadbalancerMBean extends RemoteManagedBean {
+public class LoadbalancerMBean extends RemoteBean {
 
     private Part part;
     private String commentText;

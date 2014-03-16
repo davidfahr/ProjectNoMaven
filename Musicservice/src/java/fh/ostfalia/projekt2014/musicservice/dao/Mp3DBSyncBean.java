@@ -7,7 +7,7 @@
 package fh.ostfalia.projekt2014.musicservice.dao;
 
 import fh.ostfalia.projekt2014.beanmanager.RemoteBeanManager;
-import fh.ostfalia.projekt2014.beanmanager.RemoteManagedBean;
+import fh.ostfalia.projekt2014.beanmanager.RemoteBean;
 import fh.ostfalia.projekt2014.commentserviceremoteinterfaces.interfaces.Commentservice;
 import fh.ostfalia.projekt2014.musicservice2remoteinterface.interfaces.Musicservice;
 import fh.ostfalia.projekt2014.musicserviceentities.Mp3;
@@ -20,7 +20,7 @@ import javax.ejb.LocalBean;
  * @author Yannick
  */
 @Stateless
-public class Mp3DBSyncBean extends RemoteManagedBean{
+public class Mp3DBSyncBean extends RemoteBean{
     private Musicservice musicservice;
     
     public Mp3DBSyncBean() {

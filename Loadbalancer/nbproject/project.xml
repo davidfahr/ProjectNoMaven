@@ -10,6 +10,7 @@
             <included-library dirs="200">reference.CommentserviceRemoteInterfaces.jar</included-library>
             <included-library dirs="200">reference.Musicservice2RemoteInterfaces.jar</included-library>
             <included-library dirs="200">reference.MusicserviceEntities.jar</included-library>
+            <included-library dirs="200">reference.RemoteLib.jar</included-library>
             <source-roots>
                 <root id="src.dir" name="Source Packages"/>
             </source-roots>
@@ -55,6 +56,14 @@
             </reference>
             <reference>
                 <foreign-project>MusicserviceRemoteInterfaces</foreign-project>
+                <artifact-type>jar</artifact-type>
+                <script>build.xml</script>
+                <target>jar</target>
+                <clean-target>clean</clean-target>
+                <id>jar</id>
+            </reference>
+            <reference>
+                <foreign-project>RemoteLib</foreign-project>
                 <artifact-type>jar</artifact-type>
                 <script>build.xml</script>
                 <target>jar</target>

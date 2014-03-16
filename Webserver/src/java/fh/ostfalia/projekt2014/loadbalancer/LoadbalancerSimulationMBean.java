@@ -4,7 +4,7 @@
  */
 package fh.ostfalia.projekt2014.loadbalancer;
 
-import fh.ostfalia.projekt2014.beanmanager.RemoteManagedBean;
+import fh.ostfalia.projekt2014.beanmanager.RemoteBean;
 import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.entities.LoadbalancerResult;
 import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.interfaces.Loadbalancer;
 import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.interfaces.LoadbalancerSimulation;
@@ -15,7 +15,7 @@ import javax.annotation.PostConstruct;
  *
  * @author Yannick
  */
-public class LoadbalancerSimulationMBean extends RemoteManagedBean{
+public class LoadbalancerSimulationMBean extends RemoteBean{
     private LoadbalancerSimulation loadBalancerSimulation;
     private LoadbalancerResult loadbalancerResult;
     private int time;

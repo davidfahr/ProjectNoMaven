@@ -5,7 +5,6 @@
  */
 package fh.ostfalia.projekt2014.loadbalancer;
 
-import fh.ostfalia.projekt2014.beanmanager.RemoteBean;
 import fh.ostfalia.projekt2014.commentserviceremoteinterfaces.entities.Comment;
 import fh.ostfalia.projekt2014.loadbalancer.remote.IMusicserviceRemote;
 import fh.ostfalia.projekt2014.loadbalancer.remote.Musicservice1Remote;

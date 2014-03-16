@@ -4,7 +4,7 @@
  */
 package fh.ostfalia.projekt2014.loginservice;
 
-import fh.ostfalia.projekt2014.beanmanager.RemoteManagedBean;
+import fh.ostfalia.projekt2014.beanmanager.RemoteBean;
 import fh.ostfalia.projekt2014.loginserviceremoteinterfaces.interfaces.Login;
 import java.security.Principal;
 import java.util.logging.Level;
@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Yannick
  */
-public class LoginMBean extends RemoteManagedBean {
+public class LoginMBean extends RemoteBean {
 
     private Login loginBean;
     private String username;

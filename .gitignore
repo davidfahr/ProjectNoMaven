@@ -33,3 +33,6 @@
 /MusicserviceEntities/build/
 /MusicserviceEntities/dist/
 /CommentserviceRemoteInterfaces/build
+/RemoteLib/nbproject/private/
+/RemoteLib/build/
+/RemoteLib/dist/
