@@ -98,9 +98,10 @@ public class LoginMBean extends RemoteBean {
 
         if (session != null) {
             try {
-
+                request.logout();    
                 session.invalidate();
-                request.logout();
+               
+                
 
             } catch (ServletException ex) {
                 Logger.getLogger(LoginMBean.class.getName()).log(Level.SEVERE, null, ex);
