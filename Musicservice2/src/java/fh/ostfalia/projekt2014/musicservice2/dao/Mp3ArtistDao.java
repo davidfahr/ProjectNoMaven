@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fh.ostfalia.projekt2014.musicservice2.dao;
 
 import fh.ostfalia.projekt2014.musicservice2.entities.Mp3ArtistBean;
 import fh.ostfalia.projekt2014.musicservice2.entities.Mp3Bean;
-import fh.ostfalia.projekt2014.musicservice2.util.Id3Tag;
-
-import java.io.File;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -21,15 +12,13 @@ import javax.persistence.Query;
 
 /**
  *
- * @author David
+ * @author M.Tönjes, D.Fahr, Y.Weißflog
  */
 @Stateless
 public class Mp3ArtistDao implements Serializable {
     private static final long serialVersionUID = 1L;
     @PersistenceContext(unitName = "Musicservice2PU")
     private EntityManager em;
-    private Id3Tag id3;
-    private String part;
 
     public void persistMp3Artist(Mp3ArtistBean mp3Artist) {
         em.persist(mp3Artist);
@@ -69,9 +58,9 @@ public class Mp3ArtistDao implements Serializable {
     }
 
     /**
-     * Holt die Mp3ArtistBean eines bestimmten Namens 
-     * Dazu wird die NamedQuery getMp3ArtistByName, welcher in der ArtistBean 
-     * steht verwendet
+     * Holt die Mp3ArtistBean eines bestimmten Namens Dazu wird die NamedQuery
+     * getMp3ArtistByName, welcher in der ArtistBean steht verwendet
+     *
      * @param name
      * @return
      */
@@ -82,24 +71,21 @@ public class Mp3ArtistDao implements Serializable {
 
         return list;
     }
-    
+
     /**
      * Es wird überprüft ob schon ein Artist mit übergebenen Namen existiert und
-     * gegebenfalls returned
-     * Wenn return null ist, existiert noch kein Artist mit dem Namen
-     * Es wird also nur ein Artist zurückgegeben wenn er existiert
-     * 
+     * gegebenfalls returned Wenn return null ist, existiert noch kein Artist
+     * mit dem Namen Es wird also nur ein Artist zurückgegeben wenn er existiert
+     *
      * @param name
-     * @return 
+     * @return
      */
     public Mp3ArtistBean checkArtist(String name) {
         Mp3ArtistBean artistBean = null;
-
         List<Mp3ArtistBean> list = getMp3ArtistByName(name);
         if (list.size() > 0) {
             artistBean = list.get(0);
         }
-
         return artistBean;
     }
 

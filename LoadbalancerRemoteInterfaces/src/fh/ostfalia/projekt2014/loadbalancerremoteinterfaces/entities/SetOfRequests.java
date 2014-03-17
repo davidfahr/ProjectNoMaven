@@ -1,17 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.entities;
 
 /**
  *
- * @author Yannick
+ * @author M.Tönjes, D.Fahr, Y.Weißflog 
+ * Interface für die Entität SetOfRequests
  */
 public interface SetOfRequests {
-     public int getServer();
-     public int getAmoutOfRequests();
-     
+
+    /**
+     * Siehe Implementierung in SetOfRequestsBean
+     * @return
+     */
+    public int getServer();
+
+    /**
+     * Siehe Implementierung in SetOfRequestsBean
+     * @return
+     */
+    public int getAmoutOfRequests();
 }

@@ -5,21 +5,35 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 
 /**
- * @author M.Tonejes, D.Fahr, Y.Weißflog
+ * RemoteBeanManager
+ * @author M.Tönjes, D.Fahr, Y.Weißflog
+ * Siehe Abschnitt 2.3.2
+ * Aufruf von: Allen klassen, die RemoteBeans sind (=von RemotBean erben), d.h. einen lookup durchführen wollen
+ * Beispiele: siehe RemoteBean-Kommentare (RemoteLib->beanmananger->RemoteBean)
+
  * RemoteBeanManager der es ermöglicht einen lookup auf beliebige Dienste durchzuführen.
- * Wird von der abstrakten RemoteManagedBean instanziert (einmalig, da Singleton) und 
- * stellt übre die Methode lookupRemoteBean die entfernte Bean/das entfernte Objekt bereit.
- * Dazu sind 3 Parameter an die Methode lookupRemoteBean zu übergeben:
+ * Wird bei Programmstart (siehe statische Initialisierung!) instanziert (einmalig, da Singleton) und 
+ * holt über die Lookup-Methode das entfernte Objekt.
+ * Genauere Beschreibung befindet sich in Abschnit 2.3.2!
+ * 
+ * Dazu sind wieder 3 Parameter an die Methode lookupRemoteBean zu übergeben:
  * jndiName des Objektes, ip und der Port
  * 
  */
 public class RemoteBeanManager {
 
+    //statische Variable, zu Beginn null, aber bei Programmstart existent
     private static RemoteBeanManager instance = null;
 
     private RemoteBeanManager(){
     }
     
+    /**
+     * Aufruf zur Instanzierung der bereits angelgeten statischen Variable
+     * Erläuterung (Siehe Singleton, OOP-Vorlesung)
+     * Zweck: Einmaligkeit des RemoteBeanManagers unter allen RemoteBeans.
+     * @return
+     */
     public static RemoteBeanManager getInstance(){
         if(instance == null){
             instance = new RemoteBeanManager();
@@ -30,9 +44,9 @@ public class RemoteBeanManager {
     /**
      *  Übergabe der oben beschriebenen Paremeter
      *  Als Rückgabe wird das Stub-Objekt erwartet.
-     * @param jndiName JNDI-Name des Objektes z.B. musicservice.fh.ostfalia.projek2014.musicservice
-     * @param ip Hier wird die IP des Servers angegeben --> Bei Multi-Server-Systemen steht hier nicht mehr localhost sondern die entsprechende Server IP auf dem 
-     * der der Dienst deployt ist!!!!
+     * Beispiel für Aufruf befindet sich ebenfalls in 2.3.1!
+     * @param jndiName JNDI-Name des Objektes 
+     * @param ip Hier wird die IP des Servers angegeben  
      * @param port Der Port auf dem Server.
      * @return Das Stub-Objekt.
      */

@@ -1,13 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fh.ostfalia.projekt2014.musicservice.entities;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,8 +9,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 /**
- *
- * @author David
+ * Mp3ArtistBean ist eine Entity bildet die Tabelle Mp3Artist der Datenbank.
+ * @author M.Tönjes, D.Fahr, Y.Weißflog Aufruf von:
  */
 @Entity(name = "Mp3Artist")
 @NamedQueries({
@@ -26,19 +19,26 @@ import javax.persistence.NamedQuery;
 })
 
 public class Mp3ArtistBean implements Serializable {
-
     private static final long serialVersionUID = 1L;
     private int artistId;
     private String artistName;
-    private Set<Mp3Bean> mp3Beans = new HashSet();
+
 
     public Mp3ArtistBean() {
     }
 
+    /**
+     * 
+     * @param artistName
+     */
     public Mp3ArtistBean(String artistName) {
         this.artistName = artistName;
     }
 
+    /**
+     * Primärschlüssel
+     * @return int id
+     */
     @Id
     @GeneratedValue
     @Column(name = "artist_id", unique = true, nullable = false)
@@ -46,30 +46,28 @@ public class Mp3ArtistBean implements Serializable {
         return artistId;
     }
 
+    /**
+     * Setzt eine Artist Id
+     * @param artist_id
+     */
     public void setArtistId(int artist_id) {
         this.artistId = artist_id;
     }
 
-    public void addMp3Bean(Mp3Bean mp3Bean) {
-        mp3Beans.add(mp3Bean);
-    }
-
+    /**
+     * Artistname 
+     * @return String artistname
+     */
     @Column(name = "artist_name")
     public String getArtistName() {
         return artistName;
     }
 
+    /**
+     * Setzet einen Artistnamen
+     * @param artist_name Sting
+     */
     public void setArtistName(String artist_name) {
         this.artistName = artist_name;
     }
-
-    /*
-     @OneToMany(cascade=CascadeType.ALL , fetch = FetchType.LAZY, mappedBy = "Mp3Bean")
-     public Set<Mp3Bean> getMp3Beans() {
-     return this.mp3Beans;
-     }*/
-    public void setMp3Beans(Set<Mp3Bean> mp3Beans) {
-        this.mp3Beans = mp3Beans;
-    }
-
 }

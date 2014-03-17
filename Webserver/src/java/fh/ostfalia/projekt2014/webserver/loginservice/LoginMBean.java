@@ -10,20 +10,20 @@ import java.security.Principal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
+import javax.ejb.EJBException;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-/** LoginMBean
- * 
- * @author M.Tönjes, D.Fahr, Y.Weißflog
- * Siehe Abschnitt 
- * 
- * erbt von:  RemoteBean, damit Lookup durchgeführt werden kann.
- * Aufruf von:
- * Beispiele: 
+/**
+ * LoginMBean
+ *
+ * @author M.Tönjes, D.Fahr, Y.Weißflog Siehe Abschnitt
+ *
+ * erbt von: RemoteBean, damit Lookup durchgeführt werden kann. Aufruf von:
+ * Beispiele:
  */
 public class LoginMBean extends RemoteBean {
 
@@ -31,16 +31,17 @@ public class LoginMBean extends RemoteBean {
     private String username;
     private String password;
 
-     /**
-     * Konstruktor mit IP, Port und JNDI-Namen
-     * Zweck: Festlegung der Konfigurationsparameter des entfernten Objektes
+    /**
+     * Konstruktor mit IP, Port und JNDI-Namen Zweck: Festlegung der
+     * Konfigurationsparameter des entfernten Objektes
      */
     public LoginMBean() {
         super("localhost", "3700", "java:global/NewProjectNoMaven/Loginservice/LoginBean");
     }
 
-     /**
-     * Anforderung und Setzen des entfernten Objektes in eine lokale Variable über die zuvor konfigurierte entfernte Bean (s. Konstruktor)
+    /**
+     * Anforderung und Setzen des entfernten Objektes in eine lokale Variable
+     * über die zuvor konfigurierte entfernte Bean (s. Konstruktor)
      */
     @PostConstruct
     public void initBean() {
@@ -49,6 +50,7 @@ public class LoginMBean extends RemoteBean {
     }
 
     /**
+     * Anmelden eines Benutzers
      *
      * @return
      */
@@ -56,11 +58,13 @@ public class LoginMBean extends RemoteBean {
         FacesContext fc = FacesContext.getCurrentInstance();
         HttpServletRequest request;
         request = (HttpServletRequest) fc.getExternalContext().getRequest();
-  
+
         try {
-            System.out.println("Login wird gestartet ... ");
+            //Anmeldung über http-request-Objekt bzw. über web.xml zugeordneten realm
             request.login(username, password);
+
             Principal principal = request.getUserPrincipal();
+
             if (request.isUserInRole("admin")) {
                 String msg = "User: " + principal.getName() + ", Role: admin";
                 fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null));
@@ -79,24 +83,29 @@ public class LoginMBean extends RemoteBean {
     }
 
     /**
+     * Gibt die Rolle des aktuellen Benutzers zurück
      *
      * @return
      */
     public String getRole() {
         FacesContext fc = FacesContext.getCurrentInstance();
         HttpServletRequest request;
+        //Hole das http-request-Object aus FacesContext
         request = (HttpServletRequest) fc.getExternalContext().getRequest();
         String role = "";
+        //Ist es ein Admin? (admin)
         if (request.isUserInRole("admin")) {
             role = "admin";
+            //Oder ein normaler Nutzer? (user)
         } else if (request.isUserInRole("user")) {
             role = "user";
         }
-
+        //Rückgabe der Rolle
         return role;
     }
 
     /**
+     * Rückgabe des Status
      *
      * @return
      */
@@ -113,6 +122,8 @@ public class LoginMBean extends RemoteBean {
     }
 
     /**
+     * Abmelden des aktuellen Nutzers und Auflösen der aktuellen Session um
+     * Überreste zu bereinigen
      *
      * @return
      */
@@ -125,10 +136,10 @@ public class LoginMBean extends RemoteBean {
 
         if (session != null) {
             try {
-                request.logout();    
+                //abmelden über Realm (in web.xml) definiert
+                request.logout();
+                //Auflösen der Session
                 session.invalidate();
-               
-                
 
             } catch (ServletException ex) {
                 Logger.getLogger(LoginMBean.class.getName()).log(Level.SEVERE, null, ex);
@@ -136,21 +147,28 @@ public class LoginMBean extends RemoteBean {
 
         }
 
-        fc.addMessage(username, new FacesMessage(username + " wurde erfolgreich abgemeldet."));
+        fc.addMessage(username, new FacesMessage(username + " was logged out!"));
         return "/LoginPages/login.xhtml";
 
     }
 
     /**
-     *
+     * Entferter Aufruf auf die LoginBean im Logindienst zum Anlegen eines neuen
+     * Nutzers (als Rolle: "user")
      */
     public void addUser() {
-        System.out.println("Username: " + username);
-        System.out.println("Passwort: " + password);
-        loginBean.addUser(username, password);
+
+        FacesContext fc = FacesContext.getCurrentInstance();
+        try {
+            loginBean.addUser(username, password);
+            fc.addMessage(username, new FacesMessage(username + " was registered!"));
+        } catch (EJBException exc) {
+            fc.addMessage(username, new FacesMessage(username + " is already registered. Please select an other username!"));
+        }
     }
 
     /**
+     * Holen des Passworts
      *
      * @param username
      */
@@ -159,6 +177,7 @@ public class LoginMBean extends RemoteBean {
     }
 
     /**
+     * Setzen des Passworts
      *
      * @param password
      */
@@ -167,6 +186,7 @@ public class LoginMBean extends RemoteBean {
     }
 
     /**
+     * Setzen des Usernamens
      *
      * @return
      */
@@ -175,6 +195,7 @@ public class LoginMBean extends RemoteBean {
     }
 
     /**
+     * Holen des Usernamens
      *
      * @return
      */

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fh.ostfalia.projekt2014.musicservice2.dao;
 
 import fh.ostfalia.projekt2014.musicservice2.entities.Mp3ArtistBean;
@@ -27,7 +22,7 @@ import javax.ejb.Stateful;
 
 /**
  *
- * @author David
+ * @author M.Tönjes, D.Fahr, Y.Weißflog
  */
 @Stateful
 public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
@@ -135,7 +130,7 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
 
     @Override
     public List<Mp3> getMp3ByArtist(int mp3ArtistId) {
-         Query queryMp3List = em.createNamedQuery("getMp3ByMp3ArtistId");
+        Query queryMp3List = em.createNamedQuery("getMp3ByMp3ArtistId");
         queryMp3List.setParameter("id", mp3ArtistId);
         List<Mp3Bean> mp3BeanList = queryMp3List.getResultList();
         return new LinkedList<Mp3>(mp3BeanList);
@@ -146,12 +141,12 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
 
         return mp3Bean.getArtistId();
     }
-    
-     @Override
-    public Mp3 getMp3ArtistByArtistId(int mp3ArtistId){
-       Mp3Bean mp3Bean = new Mp3Bean();
-       mp3Bean.setMp3ArtistBean(mp3ArtistDao.getMp3ArtistBean(mp3ArtistId));
-       return mp3Bean;  
+
+    @Override
+    public Mp3 getMp3ArtistByArtistId(int mp3ArtistId) {
+        Mp3Bean mp3Bean = new Mp3Bean();
+        mp3Bean.setMp3ArtistBean(mp3ArtistDao.getMp3ArtistBean(mp3ArtistId));
+        return mp3Bean;
     }
 
     public String getMp3Title(int mp3Id) {
@@ -183,10 +178,6 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
 
     public void setPassedParameter(String passedParameter) {
         this.passedParameter = passedParameter;
-    }
-
-    public void addMp3(Mp3 mp3) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private static final int DEFAULT_BUFFER_SIZE = 10240;
@@ -288,8 +279,6 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
      */
     @Override
     public void update(Mp3 mp3) {
-        System.out.println("MP3DaoImpl.update(mp3) ---> in M2 ");
-
         Mp3Bean mp3Bean = new Mp3Bean();
 
         mp3Bean.setMp3File(mp3.getMp3File());

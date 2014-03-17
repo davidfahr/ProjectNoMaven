@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fh.ostfalia.projekt2014.musicserviceremoteinterface.interfaces;
 
 import fh.ostfalia.projekt2014.commentserviceremoteinterfaces.entities.Comment;
@@ -11,8 +6,11 @@ import java.util.List;
 import javax.ejb.Remote;
 
 /**
- *
- * @author Mettbrötchen
+ * Remote Interface welches die Schnittstelle zu dem Musicservice ist.
+ * Die hier aufgeführten Methoden sind nach einem lookup von anderen Diensten
+ * aufrufbar.
+ * 
+ * @author M.Tönjes, D.Fahr, Y.Weißflog
  */
 @Remote
 public interface Musicservice {

@@ -1,16 +1,14 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package fh.ostfalia.projekt2014.musicservice.dao;
 
-
-import fh.ostfalia.projekt2014.commentserviceremoteinterfaces.entities.Comment;
-import fh.ostfalia.projekt2014.musicservice.entities.Mp3Bean;
 import fh.ostfalia.projekt2014.musicserviceentities.Mp3;
 import java.util.List;
 import javax.ejb.Local;
 
+/**
+ * Interface welches von der Klasse Mp3DaoImpl implementiert wird.
+ *
+ * @author M.Tönjes, D.Fahr, Y.Weißflog
+ */
 @Local
 public interface Mp3DaoLocal {
     public List<Mp3> getAllMp3();

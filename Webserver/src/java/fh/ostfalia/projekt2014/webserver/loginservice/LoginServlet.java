@@ -11,12 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 
 
 /** LoginServlet
- * 
+ *  Ist die Startseite des Projektes (welcomefile in der web.xml)
  * @author M.Tönjes, D.Fahr, Y.Weißflog
  * Siehe Abschnitt 
- * 
+ * Abhängig vom Loginstatus (hat sich ein Nutzer bereits eingeloggt) wird hier auf die korrekte Startseite weitergeleitet.
  * Aufruf von:
- * Beispiele: 
  */
 public class LoginServlet extends HttpServlet {
 
@@ -34,25 +33,24 @@ public class LoginServlet extends HttpServlet {
         System.out.println("LoginServlet");
         FacesContext fc = FacesContext.getCurrentInstance();
 
-        //request = (HttpServletRequest) fc.getExternalContext().getRequest();
-
-        System.out.println("Login wird gestartet ... ");
-
-        //Principal principal = request.getUserPrincipal();
+      
         if (request.isUserInRole("admin")) {
-            
-            response.sendRedirect("faces/LoginPages/MusicservicePages/index.xhtml");
+            //Als Admin starten
             fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Rolle: Admin", null));
+            response.sendRedirect("faces/LoginPages/MusicservicePages/index.xhtml");
+            
 
         } else if (request.isUserInRole("user")) {
-            //String msg = "User: " + principal.getName() + ", Role: user";
+            //Als User starten
+             fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Rolle: User", null));
             response.sendRedirect("faces/LoginPages/MusicservicePages/index.xhtml");
-            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Rolle: User", null));
+           
 
         } else {
-            
-            response.sendRedirect("faces/LoginPages/login.xhtml");
+            // Man ist noch nicht angemeldet
             fc.addMessage(null, new FacesMessage("Noch nicht angemeldet."));
+            response.sendRedirect("faces/LoginPages/login.xhtml");
+            
         }
         
         

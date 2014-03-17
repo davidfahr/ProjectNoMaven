@@ -6,6 +6,7 @@ import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.interfaces.Loadbalan
 import fh.ostfalia.projekt2014.musicserviceentities.Mp3;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.ejb.EJBTransactionRolledbackException;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
@@ -18,7 +19,7 @@ import javax.servlet.http.Part;
  *  an die beiden existierenden Musikdienste. 
  * 
  * @author M.Tönjes, D.Fahr, Y.Weißflog
- * Siehe Abschnitt 
+ * Siehe Abschnitt 3.3.1.1 
  * 
  * erbt von:  RemoteBean, damit Lookup durchgeführt werden kann.
  * Aufruf von:
@@ -113,6 +114,9 @@ public class LoadbalancerMBean extends RemoteBean {
      * Weiterleitung des Uploads an Loadbalancer (der den Upload dann auf den Musikdienst 1 oder den Musikdienst 2 verteilt)
      */
     public void upload() {
+      try{
+          
+     
         //Definition des Pfades Anhand der part-Datei aus dem Dialog
         String pfad = ctx.getRealPath("/Uploads/" + part.getSubmittedFileName());
 
@@ -121,8 +125,12 @@ public class LoadbalancerMBean extends RemoteBean {
             loadbalancerRemoteBean.upload(pfad);
             faces.addMessage(null, new FacesMessage("File was uploaded successfully!"));
         } else {
-            faces.addMessage(null, new FacesMessage("Please select a File"));
+            faces.addMessage(null, new FacesMessage("Please select a mp3-File"));
         }
+         }
+        catch (EJBTransactionRolledbackException exc){
+        faces.addMessage(null, new FacesMessage("The file has to be mp3!"));
+ }
     }
 
     /**

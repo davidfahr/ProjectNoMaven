@@ -1,10 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package fh.ostfalia.projekt2014.musicservice2.dao;
-
-
 
 import fh.ostfalia.projekt2014.musicserviceentities.Mp3;
 import java.util.List;

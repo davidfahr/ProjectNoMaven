@@ -1,19 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fh.ostfalia.projekt2014.musicservice.dao;
 
 import fh.ostfalia.projekt2014.musicservice.entities.Mp3ArtistBean;
 import fh.ostfalia.projekt2014.musicservice.entities.Mp3Bean;
 import fh.ostfalia.projekt2014.musicservice.util.Id3Tag;
 import fh.ostfalia.projekt2014.musicserviceentities.Mp3;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import javax.ejb.EJB;
@@ -27,32 +20,41 @@ import java.util.logging.Logger;
 import javax.ejb.Stateful;
 
 /**
+ * Das Mp3DaoImpl ist für die Verwaltung der Mp3Bean durch den EnititManger
+ * zuständig. Siehe auch Abschnitt 6.5.2
  *
- * @author David
+ * @author M.Tönjes, D.Fahr, Y.Weißflog
+ * Webserver->Loadbalancer->MusicserviceBean->Mp3DaoLocal->Mp3DaoImpl
  */
 @Stateful
 public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
 
+    private static final long serialVersionUID = 1L;
+    
+    //Initialisierung Mp3DBSyncBean die für de Synchronisierung des anderen Musicservices zuständig ist 
     @EJB
     private Mp3DBSyncBean mp3Sync;
+
+    //Initialisierung des Mp3ArtistDao um ArtistBeans zu erstellen
     @EJB
-    Mp3ArtistDao mp3ArtistDao;
-    private static final long serialVersionUID = 1L;
+    private Mp3ArtistDao mp3ArtistDao;
+
+    //Initialisierung des EntitManagers
     @PersistenceContext(unitName = "MusicservicePU")
     private EntityManager em;
+
+    //Id3Tag Klasse für das auslesen der Mp3 Dateien
     private Id3Tag id3;
 
-    public void addMp3List(ArrayList<Mp3> mp3BeanList) {
-        for (int i = 0; i <= mp3BeanList.size(); i++) {
-            Mp3 tempMp3Bean = mp3BeanList.get(i);
-            em.persist(tempMp3Bean);
-        }
-    }
+    // Methoden zum Extrahieren der Id aus der URI, um Mp3 zu identifizieren 
+    private String passedParameter;
 
     /**
-     * Speichern einer Mp3Bean in die Datenbank
+     * Speichern einer Mp3Bean in die Datenbank. Bevor das passiert wird die
+     * Bean erst noch auf Redundanz in der Datenbank kontrolliert. Nähere
+     * Erläuterung dazu auch im Abschnitt 6.6 Upload in der Dokumentation.
      *
-     * @param mp3Bean
+     * @param mp3Bean Bean der in die Datenbank gespeichert werden soll
      */
     public void persistMp3(Mp3Bean mp3Bean) {
         if (checkMp3(mp3Bean) == false) {
@@ -64,12 +66,14 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
 
     /**
      * Überprüft ob schon einen Mp3 Eintrag mit gleichen Titel in der DB
-     * existiert Dazu wird die NamedQuery getMp3ByName aus der Mp3Bean verwendet
-     * Wenn keiner existiert ist der returnwert false Existiert einer ist der
-     * returnwert true
+     * existiert. Dazu wird die NamedQuery getMp3ByName aus der Mp3Bean
+     * verwendet Wenn keiner existiert ist der returnwert false Existiert einer
+     * ist der returnwert true Siehe auch Abschnitt 6.6 Upload in der
+     * Dokumentation.
      *
-     * @param mp3Bean
-     * @return
+     * @param mp3Bean Bean die überprüft werden soll
+     * @return boolean false -> Es existiert keine Mp3 in der DB true -> Es
+     * existiert eine Mp3 in der DB
      */
     private boolean checkMp3(Mp3Bean mp3Bean) {
         boolean existAlready = false;
@@ -89,7 +93,8 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
      * Überprüft ob es schon ein Mp3Artist mit gleichen Namen existiert. Wenn
      * ja, wird kein neuer erzeugt, sondern den schon bestehenden verwendet Dazu
      * wird im Mp3ArtistDao die Methode getMp3ArtistByName benutzt, um zu
-     * überprüfen ob es schon den gleichen Artist gibt
+     * überprüfen ob es schon den gleichen Artist gibt. Siehe auch Abschnitt 6.6
+     * Upload in der Dokumentation.
      *
      * @param mp3Bean
      * @return
@@ -101,21 +106,17 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
          */
         Mp3ArtistBean mp3Artist = mp3ArtistDao.checkArtist(mp3Bean.getArtistName());
 
-        /**
-         * Wenn es schon einen Artist gibt
-         */
+        //Wenn es schon einen Artist gibt
         if (mp3Artist != null) {
-            /**
-             * Es gibt schon einen Artist, somit wird der schon bestehende
-             * verwendet
-             */
+
+            //Es gibt schon einen Artist, somit wird der schon bestehende verwendet
             mp3Bean.setMp3ArtistBean(mp3Artist);
         }
         return mp3Bean;
     }
 
     /**
-     * Löschung einer Mp3 aus der Datenbank
+     * Löschung einer Mp3 aus der Datenbank. Aktuell nicht in Benutzung
      *
      * @param mp3_id
      */
@@ -124,16 +125,23 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
     }
 
     /**
-     * Holt eine Mp3 aus der Datenbank
+     * Fragt die Datenbank nach einer bestimmten Mp3 inkl. Artist ab und gibt
+     * diese zurück
      *
-     * @param mp3_id
-     * @return Mp3Bean
+     * @param mp3_id id des Datensatzes, welcher zurückkommen soll
+     * @return Mp3 Entity mit den Daten aus der Datenbank
      */
     @Override
     public Mp3Bean getMp3(int mp3_id) {
         return em.find(Mp3Bean.class, mp3_id);
     }
 
+    /**
+     * Fragt die Datenbank nach allen Artists einer bestimmten artist_id ab
+     *
+     * @param mp3ArtistId id des Datensatzes, welcher zurückkommen soll
+     * @return mp3ArtistId List<Mp3> Liste mit Artists
+     */
     @Override
     public List<Mp3> getMp3ByArtist(int mp3ArtistId) {
         Query queryMp3List = em.createNamedQuery("getMp3ByMp3ArtistId");
@@ -142,29 +150,61 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
         return new LinkedList<Mp3>(mp3BeanList);
     }
 
+    /**
+     * Fragt die Datenbank nach einem bestimmten Artist ab und gibt diesen
+     * zurück
+     *
+     * @param mp3Id id des Datensatzes, welcher zurückkommen soll
+     * @return Mp3 Entity mit den Daten aus der Datenbank, wobei hier nur
+     * Informationen vom Artist enthalten sind
+     */
     public int getMp3ArtistIdByMp3Id(int mp3Id) {
         Mp3 mp3Bean = em.find(Mp3.class, mp3Id);
 
         return mp3Bean.getArtistId();
     }
-    
-    @Override
-    public Mp3 getMp3ArtistByArtistId(int mp3ArtistId){
-       Mp3Bean mp3Bean = new Mp3Bean();
-       mp3Bean.setMp3ArtistBean(mp3ArtistDao.getMp3ArtistBean(mp3ArtistId));
-       return mp3Bean;  
-    }
-   
 
+    /**
+     * Fragt die Datenbank nach einem bestimmten Artist ab und gibt diesen
+     * zurück
+     *
+     * @param mp3ArtistId id des Datensatzes, welcher zurückkommen soll
+     * @return Mp3 Entity mit den Daten aus der Datenbank, wobei hier nur
+     * Informationen vom Artist enthalten sind
+     */
+    @Override
+    public Mp3 getMp3ArtistByArtistId(int mp3ArtistId) {
+        Mp3Bean mp3Bean = new Mp3Bean();
+        mp3Bean.setMp3ArtistBean(mp3ArtistDao.getMp3ArtistBean(mp3ArtistId));
+        return mp3Bean;
+    }
+
+    /**
+     * Fragt den Titel einer bestimmten Mp3 Datei ab und gibt sie zurück
+     *
+     * @param mp3Id id welcher Name zurück geben werden soll
+     * @return String mit dem Titel
+     */
     public String getMp3Title(int mp3Id) {
         return em.find(Mp3.class, mp3Id).getMp3Title();
     }
 
+    /**
+     * Fragt die Datenbank nach einem bestimmten Mp3File ab
+     *
+     * @param mp3Id id vom File welches zurück gegeben werden soll
+     * @return byte[] Byte Array
+     */
     @Override
     public byte[] getMp3File(int mp3Id) {
         return em.find(Mp3Bean.class, mp3Id).getMp3File();
     }
 
+    /**
+     * Fragt die Datenbank nach allen Mp3s inkls Artist ab und gibt sie zurück
+     *
+     * @return List<Mp3> Liste mit Mp3 Entitys
+     */
     @Override
     public List<Mp3> getAllMp3() {
         Query queryMp3List = em.createQuery("SELECT e FROM Mp3 e");
@@ -172,9 +212,11 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
         return new LinkedList<Mp3>(mp3BeanList);
     }
 
-    // Methoden zum Extrahieren der Id aus der URI, um Mp3 zu identifizieren 
-    private String passedParameter;
-
+    /**
+     * Gibt die id eines GET Requests aus der Url des Browsers wieder
+     *
+     * @return String id
+     */
     @Override
     public String getIdParameter() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -183,18 +225,19 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
         return this.passedParameter;
     }
 
+    /**
+     *
+     * @param passedParameter
+     */
     public void setPassedParameter(String passedParameter) {
         this.passedParameter = passedParameter;
-    }
-
-    public void addMp3(Mp3 mp3) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private static final int DEFAULT_BUFFER_SIZE = 10240;
 
     /**
-     * Methode welche die Download Ressource in Form eines Response wiedergibt
+     * Methode welche die Download Ressource in Form eines Response wiedergibt.
+     * Siehe auch 6.7 Download der Dokumentation
      *
      * @param name Name des Mp3Files
      * @param mp3Id Die Id der Mp3 Datei
@@ -247,12 +290,13 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
      * einer Mp3 Datei verwendet. Der Titel und der Artist werden ausgelesen und
      * in die Datenbank gespeichert. Der Parameter part enthält unter anderem
      * den Namen der Datei (der Name wird mit Hilfe der Methode getFileName
-     * extrahiert) der für die id3Tag Libary gebraucht wird.
+     * extrahiert) der für die id3Tag Libary gebraucht wird. Siehe auch 6.6
+     * Upload der Dokumentation
      *
-     * @param part
+     * @param path Dateipfad der Datei
      */
     @Override
-    public void upload(String part) {
+    public void upload(String path) {
         /**
          * Initialisierung der Id3Tag Klasse zum verwenden der jid3lib Libary
          */
@@ -263,12 +307,12 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
          * Hilfe der Methode getFileName und dem Parameter part (welcher aus der
          * Komponente im Webfrontend mitgeliefert wird) erstellt
          */
-        File file = new File(part);
+        File file = new File(path);
 
         /**
          * Initialisierung der Mp3Bean
          */
-        Mp3Bean mp3Bean = new Mp3Bean();
+        Mp3Bean mp3Bean;
 
         /**
          * Die Methode readMp3File aus der Id3Tag Klasse liest die notwendigen
@@ -279,7 +323,6 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
         /**
          * Speicherung der Mp3Bean in Datenbank
          */
-        System.out.println("PERSIST IN Mp3DAOImpl!!!!");
         this.persistMp3(mp3Bean);
         /*
          1. Benachrichtigung über Änderung --> notifyOtherMusicservice()
@@ -287,18 +330,17 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
          3. Anderer Musikdienst ruft persisMp3 auf
          */
         mp3Sync.update(mp3Bean);
-
     }
 
     /**
      * Ruft die update-Methode auf dem Musicservice auf, der die Daten in seiner
-     * eigenen Daten auf den aktuellen Stand synchronisiert
+     * eigenen Daten auf den aktuellen Stand synchronisiert. Siehe auch 6.6
+     * Upload der Dokumentation
      *
-     * @param mp3
+     * @param mp3 Mp3 die aktualisiert werdens soll.
      */
     @Override
     public void update(Mp3 mp3) {
-        System.out.println("MP3DaoImpl.update(mp3) ---> in M1 ");
         Mp3Bean mp3Bean = new Mp3Bean();
 
         mp3Bean.setMp3File(mp3.getMp3File());

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package fh.ostfalia.projekt2014.musicservice2.commentservice;
 
 import fh.ostfalia.projekt2014.commentserviceremoteinterfaces.entities.Comment;
@@ -10,7 +6,7 @@ import javax.ejb.Local;
 
 /**
  *
- * @author Yannick
+ * @author M.Tönjes, D.Fahr, Y.Weißflog
  */
 @Local
 public interface CommentserviceBeanLocal {
