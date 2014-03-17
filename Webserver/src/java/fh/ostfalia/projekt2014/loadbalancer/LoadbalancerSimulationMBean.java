@@ -6,7 +6,9 @@ package fh.ostfalia.projekt2014.loadbalancer;
 
 import fh.ostfalia.projekt2014.beanmanager.RemoteBean;
 import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.entities.LoadbalancerResult; 
+import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.entities.SetOfRequests;
 import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.interfaces.LoadbalancerSimulation;
+import java.util.LinkedList;
 import javax.annotation.PostConstruct;
 
 
@@ -17,6 +19,9 @@ import javax.annotation.PostConstruct;
 public class LoadbalancerSimulationMBean extends RemoteBean{
     private LoadbalancerSimulation loadBalancerSimulation;
     private LoadbalancerResult loadbalancerResult;
+    private LinkedList<SetOfRequests> requestList;
+ 
+
     private int time;
 
 
@@ -53,9 +58,23 @@ public class LoadbalancerSimulationMBean extends RemoteBean{
     
 
      
-     public void startLoadbalancerSimulationByTime(){
-        loadBalancerSimulation.startLoadbalancerSimulationByTime(time);
+     public String startLoadbalancerSimulationByTime(){
+        loadbalancerResult = loadBalancerSimulation.startLoadbalancerSimulationByTime(time);
+        
+        return "timedResult";
     }
+     
+     
+    public LoadbalancerResult getLoadbalancerResult() {
+        return loadbalancerResult;
+    }
+
+ 
+    
+     public LinkedList<SetOfRequests> getRequestList() {
+        return loadbalancerResult.getSetOfRequests();
+    }
+
     
       public String getMode() {
         return mode;

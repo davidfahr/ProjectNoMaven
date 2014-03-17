@@ -9,8 +9,12 @@ import fh.ostfalia.projekt2014.loadbalancer.remote.Musicservice1Remote;
 import fh.ostfalia.projekt2014.loadbalancer.remote.Musicservice2Remote;
 import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.entities.LoadbalancerResult;
 import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.interfaces.LoadbalancerSimulation;
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -20,10 +24,12 @@ import javax.ejb.Stateless;
  * @author Yannick
  */
 @Stateless
-public class LoadbalancerSimulationBean implements LoadbalancerSimulation {
-
+public class LoadbalancerSimulationBean implements LoadbalancerSimulation, Serializable {
+    
+    private static final long serialVersionUID = 1L;
+    
     private int requests;
-    private LoadbalancerResult lbR;
+    private LoadbalancerResult loadbalancerResult;
     
     @EJB
     private Musicservice1Remote m1;
@@ -50,49 +56,55 @@ public class LoadbalancerSimulationBean implements LoadbalancerSimulation {
         //Starte das Loadbalancing und speichere das Ergebnis in asyncresult
 
         while (status == true) {
-            lbR = runSimulation();
+            //loadbalancerResult = runSimulation();
         }
 
 
-        return lbR;
+        return loadbalancerResult;
     }
 
     /* Startet die Loadbalancingsimulation
      * 
      */
-    public LoadbalancerResult runSimulation() {
-
+    public SetOfRequestsBean runSimulation() {
+        
         System.out.println(status);
         //generiere einen Zufallswert für die Anzahl der Anfragen an den ersten Zielserver
-
+        int zaehler = 0;
         //Wähle den nächsten Server:
-     
-
-
         if (status) {
-         
             
             for(int i=0;i<(int) ((Math.random() * 20) + 1);i++){
                 m1.whoAmI();
+                try {
+                    Thread.sleep(50);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(LoadbalancerSimulationBean.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                zaehler++;
+               
             }
-            
-            status = false;
-
+             System.out.println("Aufrufe: " + zaehler);
+             status = false;
+             //M1 und Anzahl der Aufrufe wird der Liste hinzugefuegt
+            return new SetOfRequestsBean(1,zaehler);
         } else {
          
             for(int i=0;i<(int) ((Math.random() * 20) + 1);i++){
                 m2.whoAmI();
+                try {
+                    Thread.sleep(50);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(LoadbalancerSimulationBean.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                zaehler++; 
             }
+            //M1 und Anzahl der Aufrufe wird der Liste hinzugefuegt
+            
+            System.out.println("Aufrufe: " + zaehler);
             status = true;
+            return new SetOfRequestsBean(2,zaehler);
         }
-
-
-
-
-        System.out.println("Anzahl der Aufrufe: " + requests);
-
-        LoadbalancerResult loadbalancerResult = new LoadbalancerResultBean(new ArrayList<SetOfRequests>());
-        return loadbalancerResult;
     }
 
 
@@ -100,7 +112,7 @@ public class LoadbalancerSimulationBean implements LoadbalancerSimulation {
     public LoadbalancerResult startLoadbalancerSimulationByTime(int time) {
         //übergebene Zeit
         System.out.println("Zeit:" + time);
-        
+        LinkedList <SetOfRequestsBean> requestList = new LinkedList<SetOfRequestsBean>();
         for (long stop = System.nanoTime() + TimeUnit.SECONDS.toNanos(time); stop > System.nanoTime();) {
             
             //Differenz, bis Zeitintervall abgelaufen ist
@@ -108,12 +120,12 @@ public class LoadbalancerSimulationBean implements LoadbalancerSimulation {
             System.out.println(System.nanoTime() - stop);
 
             //Starte Simulation
-            runSimulation();
+            requestList.add(runSimulation());
 
         }
         System.out.println("Zeit abgelaufen");
-
-        return null;
+        
+        return new LoadbalancerResultBean(requestList);
     }
 
     @Override

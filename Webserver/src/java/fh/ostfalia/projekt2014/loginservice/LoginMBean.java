@@ -40,8 +40,7 @@ public class LoginMBean extends RemoteBean {
         FacesContext fc = FacesContext.getCurrentInstance();
         HttpServletRequest request;
         request = (HttpServletRequest) fc.getExternalContext().getRequest();
-        System.out.println("Ich wurde aufgerufen! :D");
-
+  
         try {
             System.out.println("Login wird gestartet ... ");
             request.login(username, password);
@@ -55,11 +54,11 @@ public class LoginMBean extends RemoteBean {
                 fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null));
                 return "/LoginPages/MusicservicePages/index";
             }
-            return "du_musst_die_rollen_noch_definieren";
+            return "falsche Rolle";
         } catch (ServletException e) {
 
             fc.addMessage(null, new FacesMessage("Login failed."));
-            return "error";
+            return "/LoginPages/error";
         }
     }
 

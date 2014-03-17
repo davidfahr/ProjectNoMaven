@@ -71,17 +71,18 @@ public class LoginServlet extends HttpServlet {
         //Principal principal = request.getUserPrincipal();
         if (request.isUserInRole("admin")) {
             
-            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Rolle: Admin", null));
             response.sendRedirect("faces/AdminPages/index.xhtml");
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Rolle: Admin", null));
 
         } else if (request.isUserInRole("user")) {
             //String msg = "User: " + principal.getName() + ", Role: user";
-            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Rolle: User", null));
             response.sendRedirect("faces/LoginPages/MusicservicePages/index.xhtml");
+            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Rolle: User", null));
 
         } else {
-            fc.addMessage(null, new FacesMessage("Noch nicht angemeldet."));
+            
             response.sendRedirect("faces/LoginPages/login.xhtml");
+            fc.addMessage(null, new FacesMessage("Noch nicht angemeldet."));
         }
         
         

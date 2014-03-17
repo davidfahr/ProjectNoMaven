@@ -26,10 +26,10 @@
         </group>
         <group name="16.03.2014">
             <file>file:/C:/Users/Yannick/Documents/GitHub/ProjectNoMaven/Webserver/web/LoginPages/MusicservicePages/index.xhtml</file>
-            <file>file:/C:/Users/Yannick/Documents/GitHub/ProjectNoMaven/Webserver/src/java/fh/ostfalia/projekt2014/loginservice/LoginMBean.java</file>
-            <file>file:/C:/Users/Yannick/Documents/GitHub/ProjectNoMaven/Webserver/src/java/fh/ostfalia/projekt2014/loginservice/LoginServlet.java</file>
-            <file>file:/C:/Users/Yannick/Documents/GitHub/ProjectNoMaven/Webserver/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/Yannick/Documents/GitHub/ProjectNoMaven/Webserver/web/LoginPages/login.xhtml</file>
+            <file>file:/C:/Users/Yannick/Documents/GitHub/ProjectNoMaven/Webserver/web/LoginPages/MusicservicePages/view_artist.xhtml</file>
+            <file>file:/C:/Users/Yannick/Documents/GitHub/ProjectNoMaven/Webserver/web/LoginPages/MusicservicePages/show_music.xhtml</file>
+            <file>file:/C:/Users/Yannick/Documents/GitHub/ProjectNoMaven/Webserver/web/AdminPages/LoadbalancerPages/timedResult.xhtml</file>
+            <file>file:/C:/Users/Yannick/Documents/GitHub/ProjectNoMaven/Webserver/src/java/fh/ostfalia/projekt2014/loadbalancer/LoadbalancerSimulationMBean.java</file>
         </group>
     </open-files>
 </project-private>
