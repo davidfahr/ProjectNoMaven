@@ -6,11 +6,13 @@
         <title>Timed Simulation</title>
     </h:head>
     <h:body>
+         <h1>Timed Simulation</h1>
+        <br/>
         <h:form>    
             <h:outputLabel value="Time in Seconds:"/>
             <h:inputText value="#{LoadbalancerSimulationMBean.time}" maxlength="2" />
             <h:commandButton value="Start Simulation" action="#{LoadbalancerSimulationMBean.startLoadbalancerSimulationByTime}"/>
-            
+             <br/>
              <h:link outcome="/LoginPages/MusicservicePages/index" value="Home"/>  
         </h:form>
     </h:body>
