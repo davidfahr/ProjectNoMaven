@@ -48,7 +48,7 @@ public class LoginMBean extends RemoteBean {
             if (request.isUserInRole("admin")) {
                 String msg = "User: " + principal.getName() + ", Role: admin";
                 fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null));
-                return "/AdminPages/index";
+                return "/LoginPages/MusicservicePages/index";
             } else if (request.isUserInRole("user")) {
                 String msg = "User: " + principal.getName() + ", Role: user";
                 fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null));
