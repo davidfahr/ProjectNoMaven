@@ -1,0 +1,184 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package fh.ostfalia.projekt2014.webserver.loginservice;
+
+import fh.ostfalia.projekt2014.beanmanager.RemoteBean;
+import fh.ostfalia.projekt2014.loginserviceremoteinterfaces.interfaces.Login;
+import java.security.Principal;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+/** LoginMBean
+ * 
+ * @author M.Tönjes, D.Fahr, Y.Weißflog
+ * Siehe Abschnitt 
+ * 
+ * erbt von:  RemoteBean, damit Lookup durchgeführt werden kann.
+ * Aufruf von:
+ * Beispiele: 
+ */
+public class LoginMBean extends RemoteBean {
+
+    private Login loginBean;
+    private String username;
+    private String password;
+
+     /**
+     * Konstruktor mit IP, Port und JNDI-Namen
+     * Zweck: Festlegung der Konfigurationsparameter des entfernten Objektes
+     */
+    public LoginMBean() {
+        super("localhost", "3700", "java:global/NewProjectNoMaven/Loginservice/LoginBean");
+    }
+
+     /**
+     * Anforderung und Setzen des entfernten Objektes in eine lokale Variable über die zuvor konfigurierte entfernte Bean (s. Konstruktor)
+     */
+    @PostConstruct
+    public void initBean() {
+        //Holen der entfernten Loginbean bzw. deren Stub-Objekt
+        loginBean = (Login) super.getObject();
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String login() {
+        FacesContext fc = FacesContext.getCurrentInstance();
+        HttpServletRequest request;
+        request = (HttpServletRequest) fc.getExternalContext().getRequest();
+  
+        try {
+            System.out.println("Login wird gestartet ... ");
+            request.login(username, password);
+            Principal principal = request.getUserPrincipal();
+            if (request.isUserInRole("admin")) {
+                String msg = "User: " + principal.getName() + ", Role: admin";
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null));
+                return "/LoginPages/MusicservicePages/index";
+            } else if (request.isUserInRole("user")) {
+                String msg = "User: " + principal.getName() + ", Role: user";
+                fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null));
+                return "/LoginPages/MusicservicePages/index";
+            }
+            return "falsche Rolle";
+        } catch (ServletException e) {
+
+            fc.addMessage(null, new FacesMessage("Login failed."));
+            return "/LoginPages/error";
+        }
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getRole() {
+        FacesContext fc = FacesContext.getCurrentInstance();
+        HttpServletRequest request;
+        request = (HttpServletRequest) fc.getExternalContext().getRequest();
+        String role = "";
+        if (request.isUserInRole("admin")) {
+            role = "admin";
+        } else if (request.isUserInRole("user")) {
+            role = "user";
+        }
+
+        return role;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getStatus() {
+        FacesContext fc = FacesContext.getCurrentInstance();
+        //Hole aktuelle Session, erzeuge aber keine neue Session, falls keine existiert (-> daher getSession(false)
+        Object session = fc.getExternalContext().getSession(false);
+        System.out.println(session.toString());
+        if (session == null) {
+            return "login";
+        } else {
+            return "MusicservicePages/index";
+        }
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String logout() {
+        FacesContext fc = FacesContext.getCurrentInstance();
+        //Hole aktuelle Session, erzeuge aber keine neue Session, falls keine existiert (-> daher getSession(false)
+        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+        HttpServletRequest request;
+        request = (HttpServletRequest) fc.getExternalContext().getRequest();
+
+        if (session != null) {
+            try {
+                request.logout();    
+                session.invalidate();
+               
+                
+
+            } catch (ServletException ex) {
+                Logger.getLogger(LoginMBean.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+
+        fc.addMessage(username, new FacesMessage(username + " wurde erfolgreich abgemeldet."));
+        return "/LoginPages/login.xhtml";
+
+    }
+
+    /**
+     *
+     */
+    public void addUser() {
+        System.out.println("Username: " + username);
+        System.out.println("Passwort: " + password);
+        loginBean.addUser(username, password);
+    }
+
+    /**
+     *
+     * @param username
+     */
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    /**
+     *
+     * @param password
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getUsername() {
+        return username;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getPassword() {
+        return password;
+    }
+}

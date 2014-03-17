@@ -17,11 +17,6 @@
             <file>file:/C:/Users/Yannick/Documents/GitHub/ProjectNoMaven/Webserver/src/java/fh/ostfalia/projekt2014/loginservice/LoginMBean.java</file>
             <file>file:/C:/Users/Yannick/Documents/GitHub/ProjectNoMaven/Webserver/src/java/fh/ostfalia/projekt2014/loadbalancer/LoadbalancerMBean.java</file>
         </group>
-        <group name="16.03.2014">
-            <file>file:/C:/Users/Yannick/Documents/GitHub/ProjectNoMaven/Webserver/src/java/fh/ostfalia/projekt2014/loginservice/LoginMBean.java</file>
-            <file>file:/C:/Users/Yannick/Documents/GitHub/ProjectNoMaven/Webserver/src/java/fh/ostfalia/projekt2014/loadbalancer/LoadbalancerMBean.java</file>
-            <file>file:/C:/Users/Yannick/Documents/GitHub/ProjectNoMaven/Webserver/src/java/fh/ostfalia/projekt2014/loadbalancer/LoadbalancerSimulationMBean.java</file>
-        </group>
         <group name="ProjektNoMaven">
             <file>file:/C:/Users/KingDCB/Documents/GitHub/ProjectNoMaven/Webserver/web/AdminPages/LoadbalancerPages/timedResult.xhtml</file>
             <file>file:/C:/Users/KingDCB/Documents/GitHub/ProjectNoMaven/Webserver/web/AdminPages/LoadbalancerPages/index.xhtml</file>
@@ -37,5 +32,6 @@
             <file>file:/C:/Users/KingDCB/Documents/GitHub/ProjectNoMaven/Webserver/web/AdminPages/LoadbalancerPages/timed.xhtml</file>
             <file>file:/C:/Users/KingDCB/Documents/GitHub/ProjectNoMaven/Webserver/src/java/fh/ostfalia/projekt2014/loadbalancer/LoadbalancerMBean.java</file>
         </group>
+        <group name="16.03.2014"/>
     </open-files>
 </project-private>
