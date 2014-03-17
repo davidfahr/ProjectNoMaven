@@ -28,8 +28,6 @@ public class Mp3ArtistDao implements Serializable {
     private static final long serialVersionUID = 1L;
     @PersistenceContext(unitName = "MusicservicePU")
     private EntityManager em;
-    private Id3Tag id3;
-    private String part;
 
     public void persistMp3Artist(Mp3ArtistBean mp3Artist) {
         em.persist(mp3Artist);

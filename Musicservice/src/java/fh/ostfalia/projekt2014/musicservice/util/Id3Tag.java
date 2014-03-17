@@ -29,7 +29,7 @@ public class Id3Tag implements Serializable{
     private MP3File mp3file;
     private final File uploadDir;
     private Mp3Bean mp3;
-    Mp3ArtistBean mp3Artist;
+    private Mp3ArtistBean mp3Artist;
 
     public Id3Tag() {
         mp3 = new Mp3Bean();

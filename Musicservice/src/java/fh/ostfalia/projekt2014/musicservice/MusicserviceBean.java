@@ -7,11 +7,8 @@ package fh.ostfalia.projekt2014.musicservice;
 
 
 import fh.ostfalia.projekt2014.musicservice.commentservice.CommentserviceBeanLocal;
-import fh.ostfalia.projekt2014.musicservice.commentservice.CommentserviceMBean;
 import fh.ostfalia.projekt2014.commentserviceremoteinterfaces.entities.Comment;
 import fh.ostfalia.projekt2014.musicservice.dao.Mp3DaoLocal;
-import fh.ostfalia.projekt2014.musicservice.entities.Mp3ArtistBean;
-import fh.ostfalia.projekt2014.musicservice.entities.Mp3Bean;
 import fh.ostfalia.projekt2014.musicserviceentities.Mp3;
 import fh.ostfalia.projekt2014.musicserviceremoteinterface.interfaces.Musicservice;
 
@@ -38,8 +35,6 @@ public class MusicserviceBean implements Musicservice, Serializable {
     //private Mp3ArtistDaoLocal mp3ArtistDao;
     //@EJB
     //private Mp3DaoImpl mp3DaoImpl;
-
-    private List<Mp3ArtistBean> lArtists;
 
     @Override
     public Mp3 getMp3(int mp3_id) {

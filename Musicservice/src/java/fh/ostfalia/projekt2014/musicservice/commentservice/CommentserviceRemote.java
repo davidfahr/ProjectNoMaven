@@ -9,7 +9,6 @@ package fh.ostfalia.projekt2014.musicservice.commentservice;
 import fh.ostfalia.projekt2014.beanmanager.RemoteBean;
 import fh.ostfalia.projekt2014.commentserviceremoteinterfaces.entities.Comment;
 import fh.ostfalia.projekt2014.commentserviceremoteinterfaces.interfaces.Commentservice;
-import fh.ostfalia.projekt2014.musicserviceremoteinterface.interfaces.Musicservice;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
@@ -19,11 +18,11 @@ import javax.ejb.Stateless;
  * @author Mettbroetchen
  */
 @Stateless
-public class CommentserviceMBean extends RemoteBean implements CommentserviceBeanLocal{
+public class CommentserviceRemote extends RemoteBean implements CommentserviceBeanLocal{
     
     private Commentservice commentserviceBean;
     
-    public CommentserviceMBean() {
+    public CommentserviceRemote() {
         super("localhost", "3700", "java:global/NewProjectNoMaven/Commentservice/CommentserviceBean");
         //Holen der entfernten Loginbean bzw. deren Stub-Objekt
         

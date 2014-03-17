@@ -5,8 +5,7 @@
 package fh.ostfalia.projekt2014.loadbalancer;
 
 import fh.ostfalia.projekt2014.beanmanager.RemoteBean;
-import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.entities.LoadbalancerResult;
-import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.interfaces.Loadbalancer;
+import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.entities.LoadbalancerResult; 
 import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.interfaces.LoadbalancerSimulation;
 import javax.annotation.PostConstruct;
 

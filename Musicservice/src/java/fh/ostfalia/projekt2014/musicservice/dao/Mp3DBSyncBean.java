@@ -6,14 +6,12 @@
 
 package fh.ostfalia.projekt2014.musicservice.dao;
 
-import fh.ostfalia.projekt2014.beanmanager.RemoteBeanManager;
+
 import fh.ostfalia.projekt2014.beanmanager.RemoteBean;
-import fh.ostfalia.projekt2014.commentserviceremoteinterfaces.interfaces.Commentservice;
 import fh.ostfalia.projekt2014.musicservice2remoteinterface.interfaces.Musicservice;
 import fh.ostfalia.projekt2014.musicserviceentities.Mp3;
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
-import javax.ejb.LocalBean;
 
 /**
  *

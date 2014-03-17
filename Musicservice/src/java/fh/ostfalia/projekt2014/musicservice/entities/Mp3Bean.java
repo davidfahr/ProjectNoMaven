@@ -17,19 +17,13 @@ import java.util.logging.Logger;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Transient;
-
 /**
  *
  * @author Mettbrötchen
@@ -47,7 +41,6 @@ public class Mp3Bean implements Serializable, Mp3{
     
     private Mp3ArtistBean mp3Artist;
     private int mp3Id;
-    private int artist_id;
     private byte[] mp3File;
     private String mp3Title;
 

@@ -19,10 +19,6 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${reference.MusicserviceRemoteInterfaces.jar}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
-                </library>
-                <library dirs="200">
                     <file>${reference.MusicserviceEntities.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
@@ -69,14 +65,6 @@
             </reference>
             <reference>
                 <foreign-project>MusicserviceEntities</foreign-project>
-                <artifact-type>jar</artifact-type>
-                <script>build.xml</script>
-                <target>jar</target>
-                <clean-target>clean</clean-target>
-                <id>jar</id>
-            </reference>
-            <reference>
-                <foreign-project>MusicserviceRemoteInterfaces</foreign-project>
                 <artifact-type>jar</artifact-type>
                 <script>build.xml</script>
                 <target>jar</target>
