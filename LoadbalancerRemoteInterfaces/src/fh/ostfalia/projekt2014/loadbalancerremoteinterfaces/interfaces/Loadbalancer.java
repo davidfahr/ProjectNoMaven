@@ -21,7 +21,7 @@ public interface Loadbalancer {
     public Mp3 getMp3(int mp3Id); 
     public byte[] getMp3File(int mp3Id);
     public String getIdParameter();
-    public void upload(String part);
+    public void upload(String path);
     public void downloadMp3File(String filename, int mp3Id);
     public List<Comment> getAllArtistCommentsById(int id);
     public List<Comment> getAllMp3CommentsById(int id);

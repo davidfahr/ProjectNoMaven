@@ -5,12 +5,13 @@
 package fh.ostfalia.projekt2014.loginserviceremoteinterfaces.interfaces;
 
 import javax.ejb.Remote;
+import javax.persistence.PersistenceException;
 
 
 @Remote
 public interface Login {
 
-    public String addUser(String username, String password);
+    public String addUser(String username, String password) throws PersistenceException;
       
 }
 

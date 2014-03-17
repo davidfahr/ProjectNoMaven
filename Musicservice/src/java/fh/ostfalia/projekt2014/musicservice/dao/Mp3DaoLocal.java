@@ -15,7 +15,7 @@ import javax.ejb.Local;
 public interface Mp3DaoLocal {
     public List<Mp3> getAllMp3();
     public Mp3 getMp3(int id);
-    public void upload(String part);
+    public void upload(String path);
     public String getIdParameter();
     public byte[] getMp3File(int mp3Id);
     public void downloadMp3File(String filename, int mp3Id);

@@ -123,16 +123,16 @@ public class LoadbalancerBean implements Serializable, Loadbalancer {
     }
 
 
-    public void upload(String part) {
+    public void upload(String path) {
         assignMusicservice();
         if(switchServer==true){
             System.out.println("UPLOAD in LOADBALNCERBEAN!!!!");
-            m1.upload(part);
+            m1.upload(path);
             
         }
         else{
              System.out.println("UPLOAD in LOADBALNCERBEAN!!!!");
-            m2.upload(part);
+            m2.upload(path);
         }
     }
 

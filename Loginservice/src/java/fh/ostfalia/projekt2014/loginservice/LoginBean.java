@@ -11,6 +11,7 @@ import java.io.Serializable;
 import fh.ostfalia.projekt2014.loginserviceremoteinterfaces.interfaces.Login;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
+import javax.persistence.PersistenceException;
 
 
 
@@ -27,7 +28,7 @@ public class LoginBean implements Serializable, Login {
  
 
     @Override
-    public String addUser(String username, String password) {
+    public String addUser(String username, String password) throws PersistenceException {
         System.out.println("-----> Wir sind in Adduser im Loginservice!");
         User user = new User(username, password,"user");
         System.out.println("-----> Im Loginservice wurde der User erstellt!");

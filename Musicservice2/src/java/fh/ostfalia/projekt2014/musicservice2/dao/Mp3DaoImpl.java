@@ -40,6 +40,7 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
     @PersistenceContext(unitName = "Musicservice2PU")
     private EntityManager em;
     private Id3Tag id3;
+    private String path = "";
 
     public void addMp3List(ArrayList<Mp3> mp3BeanList) {
         for (int i = 0; i <= mp3BeanList.size(); i++) {
@@ -237,6 +238,21 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
         } catch (IOException ex) {
             Logger.getLogger(Mp3DaoImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+       
+    public void initUploadFiles(){
+        id3 = new Id3Tag();
+        File file = new File(path);
+        ArrayList <Mp3Bean> mp3Beans = id3.initFiles(file, 3);
+        
+        for(int i = 0; i <= mp3Beans.size(); i++){
+            this.persistMp3(mp3Beans.get(i));
+            
+            mp3Sync.update(mp3Beans.get(i));
+        }
+        
+        
     }
 
     /**

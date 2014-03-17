@@ -10,8 +10,11 @@ import java.security.Principal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
+import javax.ejb.EJBException;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.el.EvaluationException;
+import javax.persistence.PersistenceException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -108,15 +111,20 @@ public class LoginMBean extends RemoteBean {
 
         }
 
-        fc.addMessage(username, new FacesMessage(username + " wurde erfolgreich abgemeldet."));
+        fc.addMessage(username, new FacesMessage(username + " was logged out!"));
         return "/LoginPages/login.xhtml";
 
     }
 
     public void addUser() {
-        System.out.println("Username: " + username);
-        System.out.println("Passwort: " + password);
+        FacesContext fc = FacesContext.getCurrentInstance();
+        try{
         loginBean.addUser(username, password);
+       fc.addMessage(username, new FacesMessage(username + " was registered!"));
+        }
+        catch (EJBException exc){
+            fc.addMessage(username, new FacesMessage(username + " is already registered. Please select an other username!"));
+        }
     }
 
     public void setUsername(String username) {

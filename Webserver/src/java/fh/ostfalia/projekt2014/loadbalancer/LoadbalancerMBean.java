@@ -11,6 +11,7 @@ import fh.ostfalia.projekt2014.loadbalancerremoteinterfaces.interfaces.Loadbalan
 import fh.ostfalia.projekt2014.musicserviceentities.Mp3;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.ejb.EJBTransactionRolledbackException;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
@@ -48,6 +49,7 @@ public class LoadbalancerMBean extends RemoteBean {
         return loadbalancerRemoteBean;
     }
 
+    
     public void setMusicserviceBean(Loadbalancer musicserviceBean) {
         this.loadbalancerRemoteBean = musicserviceBean;
     }
@@ -72,15 +74,19 @@ public class LoadbalancerMBean extends RemoteBean {
     }
 
     public void upload() {
-
+try{
         String pfad = ctx.getRealPath("/Uploads/" + part.getSubmittedFileName());
 
         if (!pfad.equals(ctx.getRealPath("/Uploads"))) {
             loadbalancerRemoteBean.upload(pfad);
             faces.addMessage(null, new FacesMessage("File was uploaded successfully!"));
         } else {
-            faces.addMessage(null, new FacesMessage("Please select a File"));
+            faces.addMessage(null, new FacesMessage("Please select an mp3 file!"));
         }
+}
+catch (EJBTransactionRolledbackException exc){
+    faces.addMessage(null, new FacesMessage("The file has to be mp3!"));
+}
     }
 
     public Part getPart() {

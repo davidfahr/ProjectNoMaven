@@ -10,6 +10,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceException;
 
 
 
@@ -21,12 +22,12 @@ public class UserDao implements Serializable {
   //  @Resource
     //UserTransaction ut;
     
-    public void addUser(User user) {
+    public void addUser(User user) throws PersistenceException {
          System.out.println("-----> Wir sind in Adduser im UserDAO!");
         
-           //  ut.begin();
+          
              em.persist(user);
-             //ut.commit();
+
        
     }
 

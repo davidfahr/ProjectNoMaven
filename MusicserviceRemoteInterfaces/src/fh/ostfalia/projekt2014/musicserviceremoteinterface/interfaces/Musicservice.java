@@ -27,7 +27,7 @@ public interface Musicservice {
 
     public String getIdParameter();
 
-    public void upload(String part);
+    public void upload(String path);
 
     public void downloadMp3File(String filename, int mp3Id);
 

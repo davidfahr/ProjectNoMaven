@@ -57,9 +57,8 @@ public class MusicserviceBean implements Musicservice, Serializable {
     }
 
     @Override
-    public void upload(String part) {
-         System.out.println("UPLOAD IN MUSICESERVICE(1)BEAN");
-        mp3Dao.upload(part);
+    public void upload(String path) {
+        mp3Dao.upload(path);
 
     }
 

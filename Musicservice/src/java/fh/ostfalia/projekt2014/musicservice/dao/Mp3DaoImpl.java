@@ -32,7 +32,7 @@ import javax.ejb.Stateful;
  */
 @Stateful
 public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
-
+    
     @EJB
     private Mp3DBSyncBean mp3Sync;
     @EJB
@@ -41,7 +41,8 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
     @PersistenceContext(unitName = "MusicservicePU")
     private EntityManager em;
     private Id3Tag id3;
-
+    private String path = "";
+    
     public void addMp3List(ArrayList<Mp3> mp3BeanList) {
         for (int i = 0; i <= mp3BeanList.size(); i++) {
             Mp3 tempMp3Bean = mp3BeanList.get(i);
@@ -241,6 +242,21 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
         }
     }
 
+     
+    public void initUploadFiles(){
+        id3 = new Id3Tag();
+        File file = new File(path);
+        ArrayList <Mp3Bean> mp3Beans = id3.initFiles(file, 3);
+        
+        for(int i = 0; i <= mp3Beans.size(); i++){
+            this.persistMp3(mp3Beans.get(i));
+            
+            mp3Sync.update(mp3Beans.get(i));
+        }
+        
+        
+    }
+    
     /**
      * Ausführen eines Uploads Diese Methode wird aus dem Webfrontend
      * aufgerufen. Es wird die Jid3lib Libary zum auslesen der Informationen
@@ -252,7 +268,7 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
      * @param part
      */
     @Override
-    public void upload(String part) {
+    public void upload(String path) {
         /**
          * Initialisierung der Id3Tag Klasse zum verwenden der jid3lib Libary
          */
@@ -262,13 +278,14 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
          * Die Id3Tag Klasse braucht ein File zum auslesen. Dieses wird mit
          * Hilfe der Methode getFileName und dem Parameter part (welcher aus der
          * Komponente im Webfrontend mitgeliefert wird) erstellt
+        File file = new File(part
          */
-        File file = new File(part);
+        File file = new File(path);
 
         /**
          * Initialisierung der Mp3Bean
          */
-        Mp3Bean mp3Bean = new Mp3Bean();
+        Mp3Bean mp3Bean;
 
         /**
          * Die Methode readMp3File aus der Id3Tag Klasse liest die notwendigen
@@ -279,7 +296,6 @@ public class Mp3DaoImpl implements Mp3DaoLocal, Serializable {
         /**
          * Speicherung der Mp3Bean in Datenbank
          */
-        System.out.println("PERSIST IN Mp3DAOImpl!!!!");
         this.persistMp3(mp3Bean);
         /*
          1. Benachrichtigung über Änderung --> notifyOtherMusicservice()
